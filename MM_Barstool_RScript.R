@@ -67,6 +67,7 @@ table(barstool$review_stats_all_average_score)
 table(barstool$review_stats_all_count)
 
 #Boxplot#
+#needs to probably be updated to ggplot#
 boxplot(barstool$price_level)
 boxplot(barstool$provider_rating)
 boxplot(barstool$provider_review_count)
