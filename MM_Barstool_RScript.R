@@ -45,6 +45,41 @@ apply(barstool, 2, function(x) length(unique(x)))
 apply(datafiniti, 2, function(x) length(unique(x)))  
 apply(jared, 2, function(x) length(unique(x)))  
 
+setwd("/Users/sidne/Documents/Data Wrangling")
+library(readr)
+barstool <- read_csv("pizza barstool.csv")
+
+#Attributes#
+attributes(barstool)
+
+#Table#
+table(barstool$name) #checked
+table(barstool$address1) #checked
+table(barstool$city) #checked
+table(barstool$zip) #checked
+table(barstool$country) #checked
+table(barstool$price_level)
+table(barstool$provider_rating)
+table(barstool$provider_review_count)
+table(barstool$latitude)
+table(barstool$longitude)
+table(barstool$review_stats_all_average_score)
+table(barstool$review_stats_all_count)
+
+#Boxplot#
+boxplot(barstool$price_level)
+boxplot(barstool$provider_rating)
+boxplot(barstool$provider_review_count)
+boxplot(barstool$review_stats_all_average_score)
+boxplot(barstool$review_stats_all_count)
+
+#Summary#
+summary(barstool$price_level)
+summary(barstool$provider_rating)
+summary(barstool$provider_review_count)
+summary(barstool$review_stats_all_average_score)
+summary(barstool$review_stats_all_count)
+
 
 
 
