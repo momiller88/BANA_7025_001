@@ -500,12 +500,12 @@ The WurliTzer Pizza Co,1401 Nash Rd,North Tonawanda,US,NY,43.060997,-78.865475,"
 Papis Pizzeria,109 E 8th St,Los Angeles,US,CA,34.042482,-118.252786,"Restaurant,Pizza Restaurants,Pizza Place,Restaurants",0,25
 Papis Pizzeria,109 E 8th St,Los Angeles,US,CA,34.042482,-118.252786,"Restaurant,Pizza Restaurants,Pizza Place,Restaurants",0,25
 Papis Pizzeria,109 E 8th St,Los Angeles,US,CA,34.042482,-118.252786,"Restaurant,Pizza Restaurants,Pizza Place,Restaurants",0,25
-Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542000000004,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
-Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542000000004,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
-Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542000000004,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
-Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542000000004,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
-Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542000000004,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
-Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542000000004,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
+Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
+Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
+Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
+Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
+Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
+Carlos Pizza,575 Seneca Ave,Ridgewood,US,NY,40.704542,-73.910649,"Pizza,Restaurant,Italian,Pizza Place,Restaurants",0,25
 Rosarios Pronto Pizza Italian Restaurant,289 W Main St,Leola,US,PA,40.085942,-76.20824,"Italian Restaurant,Pizza Place",0,25
 Rosarios Pronto Pizza Italian Restaurant,289 W Main St,Leola,US,PA,40.085942,-76.20824,"Italian Restaurant,Pizza Place",0,25
 Rosarios Pronto Pizza Italian Restaurant,289 W Main St,Leola,US,PA,40.085942,-76.20824,"Italian Restaurant,Pizza Place",0,25
@@ -726,10 +726,10 @@ Rays New York Pizza,26 5th St NW,Atlanta,US,GA,33.776749,-84.388042,"Mediterrane
 Rays New York Pizza,26 5th St NW,Atlanta,US,GA,33.776749,-84.388042,"Mediterranean Restaurant,Restaurant,Pizza Place,Pizza Place and Mediterranean Restaurant",1,25
 Rays New York Pizza,26 5th St NW,Atlanta,US,GA,33.776749,-84.388042,"Mediterranean Restaurant,Restaurant,Pizza Place,Pizza Place and Mediterranean Restaurant",1,25
 Rays New York Pizza,26 5th St NW,Atlanta,US,GA,33.776749,-84.388042,"Mediterranean Restaurant,Restaurant,Pizza Place,Pizza Place and Mediterranean Restaurant",1,25
-Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535106999999996,-105.991793,"Brewery,Pizza Place",0,25
-Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535106999999996,-105.991793,"Brewery,Pizza Place",0,25
-Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535106999999996,-105.991793,"Brewery,Pizza Place",0,25
-Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535106999999996,-105.991793,"Brewery,Pizza Place",0,25
+Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535107,-105.991793,"Brewery,Pizza Place",0,25
+Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535107,-105.991793,"Brewery,Pizza Place",0,25
+Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535107,-105.991793,"Brewery,Pizza Place",0,25
+Amicas Wood Fired Pizza Microbrews,127 F St,Salida,US,CO,38.535107,-105.991793,"Brewery,Pizza Place",0,25
 Grand Avenue Pizza,3424 30th Ave,Astoria,US,NY,40.765323,-73.918233,"Restaurant,Pizza Place",0,25
 Drexel Hill Pizza,4603 State Rd,Drexel Hill,US,PA,39.950501,-75.311856,"Restaurant,Pizza Place",25,40
 Drexel Hill Pizza,4603 State Rd,Drexel Hill,US,PA,39.950501,-75.311856,"Restaurant,Pizza Place",25,40
@@ -942,11 +942,11 @@ Marias Old Town 21,21 W Old St,Petersburg,US,VA,37.233005,-77.405514,"Italian Re
 Rascal House,1836 Euclid Ave,Cleveland,US,OH,41.501097,-81.678001,Pizza Place,0,25
 Rascal House,1836 Euclid Ave,Cleveland,US,OH,41.501097,-81.678001,Pizza Place,0,25
 Rascal House,1836 Euclid Ave,Cleveland,US,OH,41.501097,-81.678001,Pizza Place,0,25
-Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911000000007,"Pizza,Restaurant,Pizza Place",0,25
-Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911000000007,"Pizza,Restaurant,Pizza Place",0,25
-Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911000000007,"Pizza,Restaurant,Pizza Place",0,25
-Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911000000007,"Pizza,Restaurant,Pizza Place",0,25
-Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911000000007,"Pizza,Restaurant,Pizza Place",0,25
+Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911,"Pizza,Restaurant,Pizza Place",0,25
+Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911,"Pizza,Restaurant,Pizza Place",0,25
+Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911,"Pizza,Restaurant,Pizza Place",0,25
+Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911,"Pizza,Restaurant,Pizza Place",0,25
+Groovys Pizza,921 Washington Ave,Miami Beach,US,FL,25.779851,-80.132911,"Pizza,Restaurant,Pizza Place",0,25
 Old Chicago Pizza,203 N McDowell Blvd,Petaluma,US,CA,38.250343,-122.628761,Pizza Place,0,25
 Old Chicago Pizza,203 N McDowell Blvd,Petaluma,US,CA,38.250343,-122.628761,Pizza Place,0,25
 Old Chicago Pizza,203 N McDowell Blvd,Petaluma,US,CA,38.250343,-122.628761,Pizza Place,0,25
@@ -1159,16 +1159,16 @@ Johns Pizza,83-40 Parsons Blvd,Jamaica,US,NY,40.714599,-73.807591,"Italian Resta
 Johns Pizza,83-40 Parsons Blvd,Jamaica,US,NY,40.714599,-73.807591,"Italian Restaurant,Pizza Place",0,25
 Johns Pizza,83-40 Parsons Blvd,Jamaica,US,NY,40.714599,-73.807591,"Italian Restaurant,Pizza Place",0,25
 Johns Pizza,83-40 Parsons Blvd,Jamaica,US,NY,40.714599,-73.807591,"Italian Restaurant,Pizza Place",0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
-Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032000000007,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
+Vincenzos Pizzeria,109 Main St,Port Jefferson,US,NY,40.946321,-73.069032,Pizza Place,0,25
 Jacks Pizza Burgers,1000 N Green Bay Rd,Waukegan,US,IL,42.375039,-87.883344,Pizza Place,0,25
 Jacks Pizza Burgers,1000 N Green Bay Rd,Waukegan,US,IL,42.375039,-87.883344,Pizza Place,0,25
 Jacks Pizza Burgers,1000 N Green Bay Rd,Waukegan,US,IL,42.375039,-87.883344,Pizza Place,0,25
@@ -1790,11 +1790,11 @@ Spankys Pizza Bar,4659 Telephone Rd,Houston,US,TX,29.694913,-95.299597,Pizza Pla
 Spankys Pizza Bar,4659 Telephone Rd,Houston,US,TX,29.694913,-95.299597,Pizza Place,0,25
 Gina Marias Pizzaria,1525 N Placentia Ave Unit C-D,Placentia,US,CA,33.891359,-117.874259,Pizza Place,0,25
 Bill Bobes Pizzeria,1651 N 6th St,Vincennes,US,IN,38.68512,-87.5134,"Restaurant,Pizza Place,Restaurants",0,25
-Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422000000004,-80.732694,"Pizza Place,Restaurants",0,25
-Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422000000004,-80.732694,"Pizza Place,Restaurants",0,25
-Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422000000004,-80.732694,"Pizza Place,Restaurants",0,25
-Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422000000004,-80.732694,"Pizza Place,Restaurants",0,25
-Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422000000004,-80.732694,"Pizza Place,Restaurants",0,25
+Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422,-80.732694,"Pizza Place,Restaurants",0,25
+Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422,-80.732694,"Pizza Place,Restaurants",0,25
+Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422,-80.732694,"Pizza Place,Restaurants",0,25
+Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422,-80.732694,"Pizza Place,Restaurants",0,25
+Wedgewood Pizza,1622 S Raccoon Rd,Youngstown,US,OH,41.084422,-80.732694,"Pizza Place,Restaurants",0,25
 Headys Pizzeria,4120 N 1st Ave,Evansville,US,IN,38.016596,-87.575043,Pizza Place,0,25
 Headys Pizzeria,4120 N 1st Ave,Evansville,US,IN,38.016596,-87.575043,Pizza Place,0,25
 Alfredos,2900 W Chester Pike,Broomall,US,PA,39.983113,-75.37139,Pizza Place,0,25
@@ -3944,18 +3944,18 @@ Milanos Pizzeria Grill,127 S 10th St,Philadelphia,US,PA,39.949006,-75.157203,"Pi
 Milanos Pizzeria Grill,127 S 10th St,Philadelphia,US,PA,39.949006,-75.157203,"Pizza,Restaurant,Pizza Place,Restaurants",0,25
 Milanos Pizzeria Grill,127 S 10th St,Philadelphia,US,PA,39.949006,-75.157203,"Pizza,Restaurant,Pizza Place,Restaurants",0,25
 Milanos Pizzeria Grill,127 S 10th St,Philadelphia,US,PA,39.949006,-75.157203,"Pizza,Restaurant,Pizza Place,Restaurants",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
-Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.49110400000001,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
+Papa Murphys,330 Palmetto Ave,Pacifica,US,CA,37.651844,-122.491104,"Restaurant,Pizza Place",0,25
 Santullos Eatery,1943 W North Ave,Chicago,US,IL,41.9105,-87.676736,"Restaurant,Pizza Place",0,25
 Papa Johns Pizza,25381 Railroad Canyon Rd,Lake Elsinore,US,CA,33.668995,-117.263902,Pizza Place,0,25
 Papa Johns Pizza,25381 Railroad Canyon Rd,Lake Elsinore,US,CA,33.668995,-117.263902,Pizza Place,0,25
@@ -5125,8 +5125,8 @@ Little Caesar's Pizza,102 New Market,Madison,US,NC,36.397847,-79.969764,"Restaur
 Little Caesar's Pizza,102 New Market,Madison,US,NC,36.397847,-79.969764,"Restaurant,Pizza Place",0,25
 Little Caesar's Pizza,211 Asheville Hwy,Hendersonville,US,NC,35.3148,-82.461079,"Restaurant,Pizza Place",0,25
 Little Caesar's Pizza,211 Asheville Hwy,Hendersonville,US,NC,35.3148,-82.461079,"Restaurant,Pizza Place",0,25
-Fat Baby's Pizza and Subs,120 Arrow Ro Suite B,Hilton Head Island,US,SC,32.159378,-80.763184999999993,"Restaurant,wich Place,Pizza Place",0,25
-Fat Baby's Pizza and Subs,120 Arrow Ro Suite B,Hilton Head Island,US,SC,32.159378,-80.763184999999993,"Restaurant,wich Place,Pizza Place",0,25
+Fat Baby's Pizza and Subs,120 Arrow Ro Suite B,Hilton Head Island,US,SC,32.159378,-80.763185,"Restaurant,wich Place,Pizza Place",0,25
+Fat Baby's Pizza and Subs,120 Arrow Ro Suite B,Hilton Head Island,US,SC,32.159378,-80.763185,"Restaurant,wich Place,Pizza Place",0,25
 Dough Boys,1B New Orleans Rd,Hilton Head Island,US,SC,32.159211,-80.752712,"Restaurant,Pizza Place",0,25
 Dough Boys,1B New Orleans Rd,Hilton Head Island,US,SC,32.159211,-80.752712,"Restaurant,Pizza Place",0,25
 Rock Creek Pizza Co.,10255 S 1300 E,Sandy,US,UT,40.565136,-111.853124,"Restaurant,Pizza Place",0,25
@@ -5722,7 +5722,7 @@ Warrington Pizza,620 Easton Rd,Warrington,US,PA,40.231531,-75.138093,"Restaurant
 Warrington Pizza,620 Easton Rd,Warrington,US,PA,40.231531,-75.138093,"Restaurant,Pizza Place",0,25
 Warrington Pizza,620 Easton Rd,Warrington,US,PA,40.231531,-75.138093,"Restaurant,Pizza Place",0,25
 Warrington Pizza,620 Easton Rd,Warrington,US,PA,40.231531,-75.138093,"Restaurant,Pizza Place",0,25
-Frank's Pizza New York Style,585 S West End Blvd,Quakertown,US,PA,40.428926,-75.349297000000007,"Restaurant,Pizza Place",0,25
+Frank's Pizza New York Style,585 S West End Blvd,Quakertown,US,PA,40.428926,-75.349297,"Restaurant,Pizza Place",0,25
 The Red Star Pizza Company,1515 E Tipton St,Seymour,US,IN,38.959601,-85.864665,"Restaurant,Pizza Place",25,40
 Grand Pizza,750 Grand Ave,Saint Paul,US,MN,44.939849,-93.131906,"Restaurant,Pizza Place",0,25
 Grand Pizza,750 Grand Ave,Saint Paul,US,MN,44.939849,-93.131906,"Restaurant,Pizza Place",0,25
@@ -5774,13 +5774,13 @@ Flippin Pizza Frederick,36 S Market St,Frederick,US,MD,39.413078,-77.41092,"Pizz
 Flippin Pizza Frederick,36 S Market St,Frederick,US,MD,39.413078,-77.41092,"Pizza,Restaurant,Pizza Place,Restaurants",0,25
 Flippin Pizza Frederick,36 S Market St,Frederick,US,MD,39.413078,-77.41092,"Pizza,Restaurant,Pizza Place,Restaurants",0,25
 Flippin Pizza Frederick,36 S Market St,Frederick,US,MD,39.413078,-77.41092,"Pizza,Restaurant,Pizza Place,Restaurants",0,25
-Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273000000004,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
-Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273000000004,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
-Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273000000004,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
-Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273000000004,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
-Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273000000004,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
-Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273000000004,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
-Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273000000004,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
+Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
+Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
+Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
+Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
+Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
+Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
+Franconia Pizza,6112 Franconia Rd,Alexandria,US,VA,38.782273,-77.147443,"Pizza,Restaurant,Greek Restaurants,Pizza Place,Restaurants",0,25
 Major League Pizza,2811 Colby Ave,Everett,US,WA,47.97977,-122.20864,"Pizza,American Restaurants,Restaurant,Pizza Place,Restaurants",0,25
 Domino's Pizza,950 Mamaroneck Ave,Mamaroneck,US,NY,40.9602,-73.73695,"Restaurant,Pizza Place",0,25
 Domino's Pizza,950 Mamaroneck Ave,Mamaroneck,US,NY,40.9602,-73.73695,"Restaurant,Pizza Place",0,25
@@ -7045,7 +7045,7 @@ New York Pizza,320 Water St,Eau Claire,US,WI,44.802303,-91.506636,Pizza Place,0,
 New York Pizza,320 Water St,Eau Claire,US,WI,44.802303,-91.506636,Pizza Place,0,25
 New York Pizza,320 Water St,Eau Claire,US,WI,44.802303,-91.506636,Pizza Place,0,25
 New York Pizza,320 Water St,Eau Claire,US,WI,44.802303,-91.506636,Pizza Place,0,25
-Papa John's Pizza,2625 Enterprise Rd,Orange City,US,FL,28.914771000000002,-81.291848,Pizza Place,0,25
+Papa John's Pizza,2625 Enterprise Rd,Orange City,US,FL,28.914771,-81.291848,Pizza Place,0,25
 Joey's Pizza,790 N Archibald Ave,Ontario,US,CA,34.071804,-117.592883,"Pizza,Restaurant,Caterers,Pizza Place",0,25
 Red Tomato,2017 University Ave,Berkeley,US,CA,37.872097,-122.270149,"Pizza Place,Pizza Place Downtown Berkeley",0,25
 Red Tomato,2017 University Ave,Berkeley,US,CA,37.872097,-122.270149,"Pizza Place,Pizza Place Downtown Berkeley",0,25
@@ -8192,11 +8192,11 @@ Rosati's Pizza,9432 S Power Rd,Higley,US,AZ,33.363197,-111.687682,"Restaurant,Pi
 Rosati's Pizza,9432 S Power Rd,Higley,US,AZ,33.363197,-111.687682,"Restaurant,Pizza Place",0,25
 Rosati's Pizza,9432 S Power Rd,Higley,US,AZ,33.363197,-111.687682,"Restaurant,Pizza Place",0,25
 Rosati's Pizza,9432 S Power Rd,Higley,US,AZ,33.363197,-111.687682,"Restaurant,Pizza Place",0,25
-Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.890860000000004,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
-Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.890860000000004,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
-Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.890860000000004,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
-Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.890860000000004,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
-Rosselli's Pizza,1667 Ooltewah Ringgold Rd,Ooltewah,US,TN,34.998925560000004,-85.09614944,Pizza Place,0,25
+Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.89086,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
+Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.89086,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
+Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.89086,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
+Salerno's Restaurant,1201 W Grand Ave,Chicago,US,IL,41.89086,-87.65759,"Pizza,Restaurant,Pizza Place Fulton Market,Pizza Place",0,25
+Rosselli's Pizza,1667 Ooltewah Ringgold Rd,Ooltewah,US,TN,34.99892556,-85.09614944,Pizza Place,0,25
 LAMP Pizzeria,8900 E Pinnacle Peak Rd,Scottsdale,US,AZ,33.70006249,-111.8886217,Pizza Place,0,25
 A & J Pizza,7137 Austin St,Forest Hills,US,NY,40.7198,-73.84328,"Pizza,Italian Restaurant,Restaurant,Pizza Place",0,25
 Dimeo's Pizzeria,1901 West St,Annapolis,US,MD,38.9798,-76.5238,"Pizza,Pizza Place,Restaurants,Italian Restaurants",0,25
@@ -8365,8 +8365,8 @@ A Brooklyn Pizzeria,6171 Mission Gorge Rd,San Diego,US,CA,32.78716,-117.09773,"P
 A Brooklyn Pizzeria,6171 Mission Gorge Rd,San Diego,US,CA,32.78716,-117.09773,"Pizza,Restaurant,Pizza Place",0,25
 A Brooklyn Pizzeria,6171 Mission Gorge Rd,San Diego,US,CA,32.78716,-117.09773,"Pizza,Restaurant,Pizza Place",0,25
 A Brooklyn Pizzeria,6171 Mission Gorge Rd,San Diego,US,CA,32.78716,-117.09773,"Pizza,Restaurant,Pizza Place",0,25
-Flippers Pizzeria,5770 W Irlo Bronson Memorial Hwy,Kissimmee,US,FL,28.331550880000002,-81.51622775,Pizza Place,25,40
-Flippers Pizzeria,5770 W Irlo Bronson Memorial Hwy,Kissimmee,US,FL,28.331550880000002,-81.51622775,Pizza Place,25,40
+Flippers Pizzeria,5770 W Irlo Bronson Memorial Hwy,Kissimmee,US,FL,28.33155088,-81.51622775,Pizza Place,25,40
+Flippers Pizzeria,5770 W Irlo Bronson Memorial Hwy,Kissimmee,US,FL,28.33155088,-81.51622775,Pizza Place,25,40
 Elliott Bay Pizza & Pub,800 164th St SE,Bothell,US,WA,47.849423,-122.220494,Pizza Place,0,25
 Three Brothers Italian Restaurant,13600 Baltimore Ave,Laurel,US,MD,39.07762549,-76.8706727,"Italian Restaurant,Pizza Place,Italian Restaurant and Pizza Place",0,25
 Dominic's 1 Pizza & Pasta,8177 Glades Rd,Boca Raton,US,FL,26.36916678,-80.17265455,"Italian Restaurant,Pizza Place,Italian Restaurant and Pizza Place",25,40
@@ -9125,20 +9125,20 @@ Passport Pizza - Midtown,4200 Woodward Ave,Detroit,US,MI,42.35168,-83.06074,Pizz
 Passport Pizza - Midtown,4200 Woodward Ave,Detroit,US,MI,42.35168,-83.06074,Pizza Place,0,25
 Passport Pizza - Midtown,4200 Woodward Ave,Detroit,US,MI,42.35168,-83.06074,Pizza Place,0,25
 Angelo's Cucina e Pizzeria,300 S Public Rd,Lafayette,US,CO,39.99624,-105.09044,"Italian Restaurant,Pizza Place",25,40
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
-Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.770079140000007,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
+Piggie Pies Pizza & Pasta,5315 Greenville Ave,Dallas,US,TX,32.85168157,-96.77007914,Pizza Place,0,25
 Mazzio's Pizza,900 SW 104th St,Oklahoma City,US,OK,35.36287727,-97.530497,Pizza Place,0,25
 Two Boots Hell's Kitchen,625 9th Ave,New York,US,NY,40.75984,-73.9916,"Pizza Place,Restaurant,Pizza",0,25
 Cafe Milano Italian Restaurant and Pizzeria,105 N Fort Harrison Ave,Clearwater,US,FL,27.96724,-82.79973,"Pizza Place,Italian Restaurant,Restaurant,Pizza Place and Italian Restaurant",0,25
@@ -9752,7 +9752,7 @@ Bob's Tu Your Door Pizza,3653 Carson Ave,Indianapolis,US,IN,39.71215533,-86.1254
 Mr. Scrib's,317 N Beacon Blvd,Grand Haven,US,MI,43.06430846,-86.22101847,Pizza Place,0,25
 Mr. Scrib's,317 N Beacon Blvd,Grand Haven,US,MI,43.06430846,-86.22101847,Pizza Place,0,25
 East Side Pies,5312 Airport Blvd Ste G,Austin,US,TX,30.31478,-97.71514,"Pizza Place,Restaurant",0,25
-Papa Murphy's,15440 E Hampden Ave,Aurora,US,CO,39.65299,-104.80809000000001,"Pizza Place,Restaurant,Pizza,Chain Restaurant",0,25
+Papa Murphy's,15440 E Hampden Ave,Aurora,US,CO,39.65299,-104.80809,"Pizza Place,Restaurant,Pizza,Chain Restaurant",0,25
 Geppetto's,4312 Ridge Rd,Cleveland,US,OH,41.43924378,-81.73568205,Pizza Place,0,25
 Geppetto's,4312 Ridge Rd,Cleveland,US,OH,41.43924378,-81.73568205,Pizza Place,0,25
 Johnny's Pizza,717 Sterlington Hwy,Farmerville,US,LA,32.77083563,-92.39532123,Pizza Place,0,25
@@ -9984,7 +9984,7 @@ Bella Italia,109-5 Capcom Ave,Wake Forest,US,NC,35.95055183,-78.5286076,"Italian
 Bella Italia,109-5 Capcom Ave,Wake Forest,US,NC,35.95055183,-78.5286076,"Italian Restaurant,Pizza Place,Italian Restaurant and Pizza Place",0,25
 Bella Italia,109-5 Capcom Ave,Wake Forest,US,NC,35.95055183,-78.5286076,"Italian Restaurant,Pizza Place,Italian Restaurant and Pizza Place",0,25
 Bella Italia,109-5 Capcom Ave,Wake Forest,US,NC,35.95055183,-78.5286076,"Italian Restaurant,Pizza Place,Italian Restaurant and Pizza Place",0,25
-Wood and Fire,59 Marble Ave,Pleasantville,US,NY,41.131494000000004,-73.790872,"Pizza Place,Restaurant",0,25
+Wood and Fire,59 Marble Ave,Pleasantville,US,NY,41.131494,-73.790872,"Pizza Place,Restaurant",0,25
 Carbone's Pizzeria,1126 E Lovejoy St,Buffalo,US,NY,42.88975893,-78.80674718,Pizza Place,0,25
 Carbone's Pizzeria,1126 E Lovejoy St,Buffalo,US,NY,42.88975893,-78.80674718,Pizza Place,0,25
 Carbone's Pizzeria,1126 E Lovejoy St,Buffalo,US,NY,42.88975893,-78.80674718,Pizza Place,0,25
