@@ -210,8 +210,8 @@ library(ggplot2)</code></pre>
 <h3>Data Preparation</h3>
 <div id="original-data-dictionary" class="section level4">
 <h4><strong>Original Data Dictionary</strong></h4>
-<div id="pizza-jared-variables" class="section level6">
-<h6><strong>Pizza Jared Variables</strong></h6>
+<div id="pizza-jared-variables" class="section level5">
+<h5><strong>Pizza Jared Variables</strong></h5>
 <table>
 <thead>
 <tr class="header">
@@ -264,8 +264,8 @@ library(ggplot2)</code></pre>
 </tbody>
 </table>
 </div>
-<div id="pizza-barstool-variables" class="section level6">
-<h6><strong>Pizza Barstool Variables</strong></h6>
+<div id="pizza-barstool-variables" class="section level5">
+<h5><strong>Pizza Barstool Variables</strong></h5>
 <table>
 <thead>
 <tr class="header">
@@ -323,8 +323,8 @@ library(ggplot2)</code></pre>
 </tbody>
 </table>
 </div>
-<div id="pizza-datafiniti-variables" class="section level6">
-<h6><strong>Pizza Datafiniti Variables</strong></h6>
+<div id="pizza-datafiniti-variables" class="section level5">
+<h5><strong>Pizza Datafiniti Variables</strong></h5>
 <table>
 <thead>
 <tr class="header">
@@ -387,6 +387,14 @@ library(ggplot2)</code></pre>
 </tbody>
 </table>
 </div>
+</div>
+<div id="setting-the-working-directory-and-reading-the-datasets-into-r" class="section level4">
+<h4><strong>Setting the Working Directory and Reading the Datasets Into R</strong></h4>
+<p>The following is the code to read the datasets in the R. You first need to set the working directory to wherever the datasets are located. Next, you need to read the file into R. Before you set the working directory and the read datasets into R, you need to install the packages mentioned in the prior tab. Also, you need to find them in the library. The following code shows you how to do these steps.</p>
+<pre class="r"><code>setwd(&quot;/Users/sidne/Documents/Data Wrangling&quot;)
+barstool &lt;- read_csv(&quot;pizza_barstool.csv&quot;)
+datafiniti &lt;- read_csv(&quot;pizza_datafiniti.csv&quot;)
+jared &lt;- read_csv(&quot;pizza_jared.csv&quot;)</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level3">

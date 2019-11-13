@@ -21,7 +21,7 @@ library(ggplot2)
 ### Data Preparation
 #### **Original Data Dictionary**
 
-###### **Pizza Jared Variables**
+##### **Pizza Jared Variables**
 Variable | Class | Description
 ---------|-------|------------
 polla_qid | integer | quiz id
@@ -33,7 +33,7 @@ time | integer | time of quiz
 total_votes | integer | total number of votes for that pizza place
 percent | double | vote percent of total for that pizza place
 
-###### **Pizza Barstool Variables**
+##### **Pizza Barstool Variables**
 Variable | Class | Description
 ---------|-------|------------
 polla_qid | integer | quiz id
@@ -46,7 +46,7 @@ time | integer | time of quiz
 total_votes | integer | total number of votes for that pizza place
 percent | double | vote percent of total for that pizza place
 
-###### **Pizza Datafiniti Variables**
+##### **Pizza Datafiniti Variables**
 Variable | Class | Description
 ---------|-------|------------
 name | character | pizza place
@@ -60,4 +60,13 @@ categories | character | restaurant category
 price_range_min | double | price range min
 price_range_max | double | price range max
 
+#### **Setting the Working Directory and Reading the Datasets Into R**
+The following is the code to read the datasets in the R. You first need to set the working directory to wherever the datasets are located. Next, you need to read the file into R. Before you set the working directory and the read datasets into R, you need to install the packages mentioned in the prior tab. Also, you need to find them in the library. The following code shows you how to do these steps. 
+
+```{r eval = FALSE}
+setwd("/Users/sidne/Documents/Data Wrangling")
+barstool <- read_csv("pizza_barstool.csv")
+datafiniti <- read_csv("pizza_datafiniti.csv")
+jared <- read_csv("pizza_jared.csv")
+```
 ### Exploratory Data Analysis 
