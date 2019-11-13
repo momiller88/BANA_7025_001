@@ -7,13 +7,13 @@
 The packages that are need for this evaluation are the readr, dplyr, and ggplot2. The readr package helps us import the datasets for this project. You can find more information on the readr package by clicking [here](https://cran.r-project.org/web/packages/readr/readr.pdf). The dplyr package helps us clean the datasets. You can find more information on the dplyr package by clicking [here](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8). The ggplot2 package helps us create visualizations for these datasets. You can find more information on the ggplot2 package by clicking [here](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf). 
 
 #### **Code to Install Packages**
-```{r eval = FALSE}
+```{r}
 install.packages("readr")
 install.packages("dplyr")
 install.packages("ggplot2")
 ```
 #### **Code to Find Packages in the Library**
-```{r eval = FALSE}
+```{r eval = TRUE}
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -63,10 +63,15 @@ price_range_max | double | price range max
 #### **Setting the Working Directory and Reading the Datasets Into R**
 The following is the code to read the datasets in the R. You first need to set the working directory to wherever the datasets are located. Next, you need to read the file into R. Before you set the working directory and the read datasets into R, you need to install the packages mentioned in the prior tab. Also, you need to find them in the library. The following code shows you how to do these steps. 
 
-```{r eval = FALSE}
+```{r eval = TRUE, results = "hide", fig.show = "hide", message = FALSE, warning = FALSE}
 setwd("/Users/sidne/Documents/Data Wrangling")
 barstool <- read_csv("pizza_barstool.csv")
 datafiniti <- read_csv("pizza_datafiniti.csv")
 jared <- read_csv("pizza_jared.csv")
+```
+####Evaluate the Column Names and Values 
+
+```{r include = FALSE}
+attributes(barstool)
 ```
 ### Exploratory Data Analysis 
