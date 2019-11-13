@@ -1,0 +1,49 @@
+
+## Pizza Project Mid-Term {.tabset .tabset-fade}
+**Author: Sidney Schaeper and Morgan Miller **
+
+### Introduction
+### Packages Required
+### Data Preparation
+#### Original Data Dictionary
+
+##### Pizza Jared Variables
+Variable | Class | Description
+---------|-------|------------
+polla_qid | integer | quiz id
+answer | character | answer (likert scale)
+votes | integer | number of votes for that question/answer combo
+pollq_id | integer | poll question id
+question | character | pizza place
+time | integer | time of quiz
+total_votes | integer | total number of votes for that pizza place
+percent | double | vote percent of total for that pizza place
+
+##### Pizza Barstool Variables
+Variable | Class | Description
+---------|-------|------------
+polla_qid | integer | quiz id
+answer | character | answer (likert scale)
+votes | integer | number of votes for that question/answer combo
+pollq_id | integer | poll question id
+question | character | question
+place | character | pizza place
+time | integer | time of quiz
+total_votes | integer | total number of votes for that pizza place
+percent | double | vote percent of total for that pizza place
+
+##### Pizza Datafiniti Variables
+Variable | Class | Description
+---------|-------|------------
+name | character | pizza place
+address | character | address
+city | character | city 
+country | character | country
+province | character | state
+latitude | double | latitude 
+longitude | double |longitude
+categories | character | restaurant category
+price_range_min | double | price range min
+price_range_max | double | price range max
+
+### Exploratory Data Analysis 
