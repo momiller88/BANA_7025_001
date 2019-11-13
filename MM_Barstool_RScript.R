@@ -47,14 +47,20 @@ apply(jared, 2, function(x) length(unique(x)))
 
 setwd("/Users/sidne/Documents/Data Wrangling")
 library(readr)
+library(dplyr)
+library(ggplot2)
 barstool <- read_csv("pizza barstool.csv")
 
 #Attributes#
 attributes(barstool)
 
 #Table#
-table(barstool$name) #checked
-table(barstool$address1) #checked
+barstool_names <- table(barstool$name)
+barstool_names[barstool_names > 1]
+
+barstool_addresses <- table(barstool$address1)
+barstool_addresses[barstool_addresses > 1]
+
 table(barstool$city) #checked
 table(barstool$zip) #checked
 table(barstool$country) #checked
