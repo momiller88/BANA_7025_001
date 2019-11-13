@@ -1,13 +1,27 @@
-
 ## Pizza Project Mid-Term {.tabset .tabset-fade}
 **Author: Sidney Schaeper and Morgan Miller **
 
 ### Introduction
 ### Packages Required
-### Data Preparation
-#### Original Data Dictionary
+#### **Packages**
+The packages that are need for this evaluation are the readr, dplyr, and ggplot2. The readr package helps us import the files for this project. You can find more information on the readr package by clicking [here](https://cran.r-project.org/web/packages/readr/readr.pdf). The dplyr package helps us clean the dataset. The ggplot2 package helps us create visualizations for this data. 
 
-##### Pizza Jared Variables
+#### **Code to Install Packages**
+```{r eval = FALSE}
+install.packages("readr")
+install.packages("dplyr")
+install.packages("ggplot2")
+```
+#### **Code to Find Packages in the Library**
+```{r eval = FALSE}
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+### Data Preparation
+#### **Original Data Dictionary**
+
+###### **Pizza Jared Variables**
 Variable | Class | Description
 ---------|-------|------------
 polla_qid | integer | quiz id
@@ -19,7 +33,7 @@ time | integer | time of quiz
 total_votes | integer | total number of votes for that pizza place
 percent | double | vote percent of total for that pizza place
 
-##### Pizza Barstool Variables
+###### **Pizza Barstool Variables**
 Variable | Class | Description
 ---------|-------|------------
 polla_qid | integer | quiz id
@@ -32,7 +46,7 @@ time | integer | time of quiz
 total_votes | integer | total number of votes for that pizza place
 percent | double | vote percent of total for that pizza place
 
-##### Pizza Datafiniti Variables
+###### **Pizza Datafiniti Variables**
 Variable | Class | Description
 ---------|-------|------------
 name | character | pizza place
