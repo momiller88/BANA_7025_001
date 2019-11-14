@@ -90,7 +90,7 @@ datafiniti <- read_csv("pizza_datafiniti.csv")
 jared <- read_csv("pizza_jared.csv")
 ```
 
-####Evaluate the Column Names and Values 
+#### **Evaluate the Column Names and Data Types** 
 The first item we wanted to evaluate was the column names and the data types for each column in the barstool dataset. The first thing you should do is to make sure you have read in the dataset. Next, you should type in the following code into R. Finally, you should run the code. The head code allows us to see a piece of the data. The names code allows us to see the name of the variables within the dataset. The attributes$spec code allows us to see the data types for each of the variables.
 
 ```{r}
@@ -119,6 +119,63 @@ barstool_data_type <- transform(barstool, zip = as.character(zip), price_level =
 
 #Check that the data types were appropriately changed#
 tibble(barstool_data_type)
+```
+
+#### **Evaluate the Values for the Variables**
+The next item we wanted to evaluate was the values for the variables in each data set. The first dataset we evaluated was the barstool data set. The first variable we evaluated was the name in the barstool dataset. The first line of code creates a table with all the values for the name variable and how many times they were repeated. We only wanted to look at the items that were listed more than the once. The second line of code allows us to do that. Run the code below to see the output. 
+
+```{r}
+#Creates a table of names and shows only the ones greater than 1#
+barstool_names <- table(barstool_data_type$name)
+barstool_names[barstool_names > 1]
+```
+
+After evaluating the output for names, we searched the internet for these places to confirm that they were the same chain restaurant. In order to search these restaurants, we need to pull in the rest of the variables to help with our search. The code below allows us to see the records where the same name was written more than once. 
+
+```{r}
+#Allows you to see the duplicate name records#
+barstool_data_type[barstool_data_type$name == "Bonanno's New York Pizzeria",]
+barstool_data_type[barstool_data_type$name == "Joe's Pizza",]
+barstool_data_type[barstool_data_type$name == "Justino's Pizzeria",]
+barstool_data_type[barstool_data_type$name == "Kiss My Slice",]
+barstool_data_type[barstool_data_type$name == "Little Italy Pizza",]
+barstool_data_type[barstool_data_type$name == "Lucali",]
+barstool_data_type[barstool_data_type$name == "Mariella Pizza",]
+barstool_data_type[barstool_data_type$name == "Patsy's Pizzeria",]
+barstool_data_type[barstool_data_type$name == "Regina Pizzeria",]
+barstool_data_type[barstool_data_type$name == "Steve's Pizza",]
+```
+
+After performing our search, we found that Joe's Pizza at 8th is not the same chain as Joe's Pizza at Broadway and Carmine. After discovering this information, we decided to change the name for Joe's Pizza at 8th to Joe's Pizza - 8th. Also, we discovered that the Little Italy records were not the same chain restaurant. We decided to change the first record of Little Italy Pizza to Little Italy Pizza - 45th, and we decided to change the second record of Little Italy Pizza to Little Italy Pizza - Fulton. Next, we discovered that the Lucali records were not the same restaurant chain. We decided to change the first record of Lucali to Lucali - Henry, and we decided to change the second record of Lucali to Lucali - Bay. Also, we found that the Mariella Pizza was not the same chain. We changed the first record to Mariella Pizza - Lexington, and we changed the second record to Mariella Pizza - 8th. Finally, we found that Patsy's Pizzeria records were not the same chain. We changed the first record to Patsy's Pizzeria - 1st, and we changed the second record to Patsy's Pizzeria - 2nd. The rest of the names that we found that had duplicate names were part of the same chain restaurant. The code below allows us to change the names of the items that were mentioned before. 
+
+```{r}
+#Changes the values of the restaurants that aren't part of the same chain#
+barstool_data_type[c(198,238,239,248,249,265,266,310,311),]$name <- c("Joe's Pizza - 8th","Little Italy Pizza - 45th", "Little Italy Pizza - Fulton","Lucali - Henry", "Lucali - Bay", "Mariella Pizza - Lexington", "Mariella Pizza - 8th", "Patsy's Pizzeria - 1st", "Patsy's Pizzeria - 2nd")
+```
+
+The second variable we evaluated was the address in the barstool dataset. The first line of code creates a table with all the values for the address variable and how many times they were repeated. We wanted to look at the items that were listed more than the once. The second line of code allows us to do that. The third line of code allows us to see addresses where they don't start off with a house number. Run the code below to see the output. 
+
+```{r}
+#Creates a table of addresses and shows only the ones greater than 1#
+barstool_addresses <- table(barstool_data_type$address)
+barstool_addresses[barstool_addresses > 1]
+
+#Shows addresses without house numbers#
+barstool_data_type[barstool_data_type$address > "989 1st Ave", 2]
+```
+
+After evaluating the output for addresses, we searched the internet for these places to confirm that they were at the same location. In order to search these restaurants, we need to pull in the rest of the variables to help with our search. The code below allows us to see the records where the same address was written more than once. 
+
+```{r}
+barstool_data_type[barstool_data_type$address == "268 W 23rd St",]
+barstool_data_type[barstool_data_type$address == "3131 Las Vegas Blvd S",]
+barstool_data_type[barstool_data_type$address == "936 8th Ave",]
+```
+
+After performing our search, we found that the restaurants at 268 W 23rd St and 3131 Las Vegas Blvd S were both located at the same place. The restaurants at 936 8th Ave were the exact same restaurant. After evaluating both records, we decided to drop the first one, because there were more reviews in each category except provider_review_count. Below is the code to drop the first record of 936 8th Ave. 
+
+```{r}
+barstool_variable_name <- barstool_data_type[-c(250),]
 ```
 
 ### Exploratory Data Analysis 

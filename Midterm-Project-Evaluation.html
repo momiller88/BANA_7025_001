@@ -466,8 +466,8 @@ barstool &lt;- read_csv(&quot;pizza_barstool.csv&quot;)
 datafiniti &lt;- read_csv(&quot;pizza_datafiniti.csv&quot;)
 jared &lt;- read_csv(&quot;pizza_jared.csv&quot;)</code></pre>
 </div>
-<div id="evaluate-the-column-names-and-values" class="section level4">
-<h4>Evaluate the Column Names and Values</h4>
+<div id="evaluate-the-column-names-and-data-types" class="section level4">
+<h4><strong>Evaluate the Column Names and Data Types</strong></h4>
 <p>The first item we wanted to evaluate was the column names and the data types for each column in the barstool dataset. The first thing you should do is to make sure you have read in the dataset. Next, you should type in the following code into R. Finally, you should run the code. The head code allows us to see a piece of the data. The names code allows us to see the name of the variables within the dataset. The attributes$spec code allows us to see the data types for each of the variables.</p>
 <pre class="r"><code>#See a snippet of the barstool data set#
 head(barstool)</code></pre>
@@ -575,6 +575,383 @@ tibble(barstool_data_type)</code></pre>
 ## #   $review_stats_critic_total_score &lt;dbl&gt;,
 ## #   $review_stats_dave_average_score &lt;dbl&gt;,
 ## #   $review_stats_dave_count &lt;int&gt;, $review_stats_dave_total_score &lt;dbl&gt;</code></pre>
+</div>
+<div id="evaluate-the-values-for-the-variables" class="section level4">
+<h4><strong>Evaluate the Values for the Variables</strong></h4>
+<p>The next item we wanted to evaluate was the values for the variables in each data set. The first dataset we evaluated was the barstool data set. The first variable we evaluated was the name in the barstool dataset. The first line of code creates a table with all the values for the name variable and how many times they were repeated. We only wanted to look at the items that were listed more than the once. The second line of code allows us to do that. Run the code below to see the output.</p>
+<pre class="r"><code>#Creates a table of names and shows only the ones greater than 1#
+barstool_names &lt;- table(barstool_data_type$name)
+barstool_names[barstool_names &gt; 1]</code></pre>
+<pre><code>## 
+## Bonanno's New York Pizzeria                 Joe's Pizza 
+##                           2                           3 
+##          Justino's Pizzeria               Kiss My Slice 
+##                           2                           2 
+##          Little Italy Pizza                      Lucali 
+##                           2                           2 
+##              Mariella Pizza            Patsy's Pizzeria 
+##                           2                           2 
+##             Regina Pizzeria               Steve's Pizza 
+##                           2                           2</code></pre>
+<p>After evaluating the output for names, we searched the internet for these places to confirm that they were the same chain restaurant. In order to search these restaurants, we need to pull in the rest of the variables to help with our search. The code below allows us to see the records where the same name was written more than once.</p>
+<pre class="r"><code>#Allows you to see the duplicate name records#
+barstool_data_type[barstool_data_type$name == &quot;Bonanno's New York Pizzeria&quot;,]</code></pre>
+<pre><code>##                           name                       address      city
+## 49 Bonanno's New York Pizzeria         3900 Las Vegas Blvd S Las Vegas
+## 50 Bonanno's New York Pizzeria MGM Hotel &amp; Casino Food Court Las Vegas
+##      zip country latitude longitude price_level provider_rating
+## 49 89109      US 36.09551 -115.1761           2               3
+## 50 89109      US 36.10258 -115.1703           2               3
+##    provider_review_count review_stats_all_average_score
+## 49                    62                       4.500000
+## 50                   115                       4.008333
+##    review_stats_all_count review_stats_all_total_score
+## 49                      5                         22.5
+## 50                     12                         48.1
+##    review_stats_community_average_score review_stats_community_count
+## 49                             4.825000                            4
+## 50                             4.081818                           11
+##    review_stats_community_total_score review_stats_critic_average_score
+## 49                               19.3                                 0
+## 50                               44.9                                 0
+##    review_stats_critic_count review_stats_critic_total_score
+## 49                         0                               0
+## 50                         0                               0
+##    review_stats_dave_average_score review_stats_dave_count
+## 49                             3.2                       1
+## 50                             3.2                       1
+##    review_stats_dave_total_score
+## 49                           3.2
+## 50                           3.2</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Joe's Pizza&quot;,]</code></pre>
+<pre><code>##            name      address         city   zip country latitude
+## 196 Joe's Pizza 111 Broadway Santa Monica 90401      US 34.01321
+## 197 Joe's Pizza 7 Carmine St     New York 10014      US 40.73059
+## 198 Joe's Pizza  211 8th Ave     New York 10011      US 40.74395
+##      longitude price_level provider_rating provider_review_count
+## 196 -118.49625           1             3.5                  1034
+## 197  -74.00214           1             4.0                  2202
+## 198  -73.99975           1             2.5                    48
+##     review_stats_all_average_score review_stats_all_count
+## 196                       7.855814                     43
+## 197                       8.297521                    121
+## 198                       6.190000                     10
+##     review_stats_all_total_score review_stats_community_average_score
+## 196                        337.8                             7.845238
+## 197                       1004.0                             8.295833
+## 198                         61.9                             6.011111
+##     review_stats_community_count review_stats_community_total_score
+## 196                           42                              329.5
+## 197                          120                              995.5
+## 198                            9                               54.1
+##     review_stats_critic_average_score review_stats_critic_count
+## 196                                 0                         0
+## 197                                 0                         0
+## 198                                 0                         0
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 196                               0                             8.3
+## 197                               0                             8.5
+## 198                               0                             7.8
+##     review_stats_dave_count review_stats_dave_total_score
+## 196                       1                           8.3
+## 197                       1                           8.5
+## 198                       1                           7.8</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Justino's Pizzeria&quot;,]</code></pre>
+<pre><code>##                   name      address     city   zip country latitude
+## 209 Justino's Pizzeria 881 10th Ave New York 10019      US 40.76956
+## 210 Justino's Pizzeria  77 Pearl St New York 10004      US 40.70403
+##     longitude price_level provider_rating provider_review_count
+## 209 -73.98862           1             3.5                   197
+## 210 -74.01048           1             3.5                   112
+##     review_stats_all_average_score review_stats_all_count
+## 209                       4.920000                      5
+## 210                       7.632258                     31
+##     review_stats_all_total_score review_stats_community_average_score
+## 209                         24.6                                 5.30
+## 210                        236.6                                 7.64
+##     review_stats_community_count review_stats_community_total_score
+## 209                            4                               21.2
+## 210                           30                              229.2
+##     review_stats_critic_average_score review_stats_critic_count
+## 209                                 0                         0
+## 210                                 0                         0
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 209                               0                             3.4
+## 210                               0                             7.4
+##     review_stats_dave_count review_stats_dave_total_score
+## 209                       1                           3.4
+## 210                       1                           7.4</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Kiss My Slice&quot;,]</code></pre>
+<pre><code>##              name       address     city   zip country latitude longitude
+## 215 Kiss My Slice 401 E 57th St New York 10022      US 40.75842 -73.96260
+## 216 Kiss My Slice 274 W 40th St New York 10018      US 40.75573 -73.99052
+##     price_level provider_rating provider_review_count
+## 215           0               4                    16
+## 216           1               4                   178
+##     review_stats_all_average_score review_stats_all_count
+## 215                       4.733333                      3
+## 216                       6.488235                     17
+##     review_stats_all_total_score review_stats_community_average_score
+## 215                         14.2                             3.550000
+## 216                        110.3                             6.466667
+##     review_stats_community_count review_stats_community_total_score
+## 215                            2                                7.1
+## 216                           15                               97.0
+##     review_stats_critic_average_score review_stats_critic_count
+## 215                                 0                         0
+## 216                                 7                         1
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 215                               0                             7.1
+## 216                               7                             6.3
+##     review_stats_dave_count review_stats_dave_total_score
+## 215                       1                           7.1
+## 216                       1                           6.3</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Little Italy Pizza&quot;,]</code></pre>
+<pre><code>##                   name      address     city   zip country latitude
+## 238 Little Italy Pizza 55 W 45th St New York 10036      US 40.75648
+## 239 Little Italy Pizza 50 Fulton St New York 10038      US 40.70820
+##     longitude price_level provider_rating provider_review_count
+## 238 -73.98147           1             4.0                   433
+## 239 -74.00480           1             3.5                    78
+##     review_stats_all_average_score review_stats_all_count
+## 238                       5.807692                     13
+## 239                       6.400000                     16
+##     review_stats_all_total_score review_stats_community_average_score
+## 238                         75.5                             5.941667
+## 239                        102.4                             6.364286
+##     review_stats_community_count review_stats_community_total_score
+## 238                           12                               71.3
+## 239                           14                               89.1
+##     review_stats_critic_average_score review_stats_critic_count
+## 238                                 0                         0
+## 239                                 7                         1
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 238                               0                             4.2
+## 239                               7                             6.3
+##     review_stats_dave_count review_stats_dave_total_score
+## 238                       1                           4.2
+## 239                       1                           6.3</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Lucali&quot;,]</code></pre>
+<pre><code>##       name      address        city   zip country latitude longitude
+## 248 Lucali 575 Henry St    Brooklyn 11231      US  40.6818 -74.00031
+## 249 Lucali  1930 Bay Rd Miami Beach 33139      US  25.7952 -80.14397
+##     price_level provider_rating provider_review_count
+## 248           2             4.5                  1280
+## 249           2             4.0                   443
+##     review_stats_all_average_score review_stats_all_count
+## 248                       9.079070                     43
+## 249                       8.809677                     31
+##     review_stats_all_total_score review_stats_community_average_score
+## 248                        390.4                             9.073810
+## 249                        273.1                             8.858621
+##     review_stats_community_count review_stats_community_total_score
+## 248                           42                              381.1
+## 249                           29                              256.9
+##     review_stats_critic_average_score review_stats_critic_count
+## 248                               0.0                         0
+## 249                               8.1                         1
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 248                             0.0                             9.3
+## 249                             8.1                             8.1
+##     review_stats_dave_count review_stats_dave_total_score
+## 248                       1                           9.3
+## 249                       1                           8.1</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Mariella Pizza&quot;,]</code></pre>
+<pre><code>##               name           address     city   zip country latitude
+## 265 Mariella Pizza 965 Lexington Ave New York 10021      US 40.76916
+## 266 Mariella Pizza       935 8th Ave New York 10019      US 40.76574
+##     longitude price_level provider_rating provider_review_count
+## 265 -73.96283           1             3.5                   101
+## 266 -73.98390           1             3.5                   206
+##     review_stats_all_average_score review_stats_all_count
+## 265                       6.883333                      6
+## 266                       5.125000                      4
+##     review_stats_all_total_score review_stats_community_average_score
+## 265                         41.3                                 6.88
+## 266                         20.5                                 5.60
+##     review_stats_community_count review_stats_community_total_score
+## 265                            5                               34.4
+## 266                            3                               16.8
+##     review_stats_critic_average_score review_stats_critic_count
+## 265                                 0                         0
+## 266                                 0                         0
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 265                               0                             6.9
+## 266                               0                             3.7
+##     review_stats_dave_count review_stats_dave_total_score
+## 265                       1                           6.9
+## 266                       1                           3.7</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Patsy's Pizzeria&quot;,]</code></pre>
+<pre><code>##                 name      address     city   zip country latitude
+## 310 Patsy's Pizzeria 2287 1st Ave New York 10035      US 40.79715
+## 311 Patsy's Pizzeria  801 2nd Ave New York 10017      US 40.75044
+##     longitude price_level provider_rating provider_review_count
+## 310 -73.93486           2             4.0                   759
+## 311 -73.97206           2             3.5                   210
+##     review_stats_all_average_score review_stats_all_count
+## 310                       8.448649                     37
+## 311                       8.373529                     34
+##     review_stats_all_total_score review_stats_community_average_score
+## 310                        312.6                             8.444444
+## 311                        284.7                             8.366667
+##     review_stats_community_count review_stats_community_total_score
+## 310                           36                              304.0
+## 311                           33                              276.1
+##     review_stats_critic_average_score review_stats_critic_count
+## 310                                 0                         0
+## 311                                 0                         0
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 310                               0                             8.6
+## 311                               0                             8.6
+##     review_stats_dave_count review_stats_dave_total_score
+## 310                       1                           8.6
+## 311                       1                           8.6</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Regina Pizzeria&quot;,]</code></pre>
+<pre><code>##                name               address         city  zip country
+## 367 Regina Pizzeria     11 1/2 Thacher St       Boston 2113      US
+## 368 Regina Pizzeria 350 Trolley Line Blvd Mashantucket 6338      US
+##     latitude longitude price_level provider_rating provider_review_count
+## 367 42.36545 -71.05707           2               4                  1743
+## 368 41.47334 -71.96000           0               3                    16
+##     review_stats_all_average_score review_stats_all_count
+## 367                       8.712755                    196
+## 368                       5.969231                     13
+##     review_stats_all_total_score review_stats_community_average_score
+## 367                       1707.7                             8.710769
+## 368                         77.6                             5.972727
+##     review_stats_community_count review_stats_community_total_score
+## 367                          195                             1698.6
+## 368                           11                               65.7
+##     review_stats_critic_average_score review_stats_critic_count
+## 367                               0.0                         0
+## 368                               5.5                         1
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 367                             0.0                             9.1
+## 368                             5.5                             6.4
+##     review_stats_dave_count review_stats_dave_total_score
+## 367                       1                           9.1
+## 368                       1                           6.4</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$name == &quot;Steve's Pizza&quot;,]</code></pre>
+<pre><code>##              name             address     city   zip country latitude
+## 424 Steve's Pizza      110 Trinity Pl New York 10006      US 40.70950
+## 425 Steve's Pizza 12101 Biscayne Blvd    Miami 33181      US 25.88774
+##     longitude price_level provider_rating provider_review_count
+## 424 -74.01204           1             3.5                   162
+## 425 -80.16395           1             3.5                   744
+##     review_stats_all_average_score review_stats_all_count
+## 424                         3.7375                      8
+## 425                         7.5000                      7
+##     review_stats_all_total_score review_stats_community_average_score
+## 424                         29.9                             3.957143
+## 425                         52.5                             7.600000
+##     review_stats_community_count review_stats_community_total_score
+## 424                            7                               27.7
+## 425                            6                               45.6
+##     review_stats_critic_average_score review_stats_critic_count
+## 424                                 0                         0
+## 425                                 0                         0
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 424                               0                             2.2
+## 425                               0                             6.9
+##     review_stats_dave_count review_stats_dave_total_score
+## 424                       1                           2.2
+## 425                       1                           6.9</code></pre>
+<p>After performing our search, we found that Joe’s Pizza at 8th is not the same chain as Joe’s Pizza at Broadway and Carmine. After discovering this information, we decided to change the name for Joe’s Pizza at 8th to Joe’s Pizza - 8th. Also, we discovered that the Little Italy records were not the same chain restaurant. We decided to change the first record of Little Italy Pizza to Little Italy Pizza - 45th, and we decided to change the second record of Little Italy Pizza to Little Italy Pizza - Fulton. Next, we discovered that the Lucali records were not the same restaurant chain. We decided to change the first record of Lucali to Lucali - Henry, and we decided to change the second record of Lucali to Lucali - Bay. Also, we found that the Mariella Pizza was not the same chain. We changed the first record to Mariella Pizza - Lexington, and we changed the second record to Mariella Pizza - 8th. Finally, we found that Patsy’s Pizzeria records were not the same chain. We changed the first record to Patsy’s Pizzeria - 1st, and we changed the second record to Patsy’s Pizzeria - 2nd. The rest of the names that we found that had duplicate names were part of the same chain restaurant. The code below allows us to change the names of the items that were mentioned before.</p>
+<pre class="r"><code>#Changes the values of the restaurants that aren't part of the same chain#
+barstool_data_type[c(198,238,239,248,249,265,266,310,311),]$name &lt;- c(&quot;Joe's Pizza - 8th&quot;,&quot;Little Italy Pizza - 45th&quot;, &quot;Little Italy Pizza - Fulton&quot;,&quot;Lucali - Henry&quot;, &quot;Lucali - Bay&quot;, &quot;Mariella Pizza - Lexington&quot;, &quot;Mariella Pizza - 8th&quot;, &quot;Patsy's Pizzeria - 1st&quot;, &quot;Patsy's Pizzeria - 2nd&quot;)</code></pre>
+<p>The second variable we evaluated was the address in the barstool dataset. The first line of code creates a table with all the values for the address variable and how many times they were repeated. We wanted to look at the items that were listed more than the once. The second line of code allows us to do that. The third line of code allows us to see addresses where they don’t start off with a house number. Run the code below to see the output.</p>
+<pre class="r"><code>#Creates a table of addresses and shows only the ones greater than 1#
+barstool_addresses &lt;- table(barstool_data_type$address)
+barstool_addresses[barstool_addresses &gt; 1]</code></pre>
+<pre><code>## 
+##         268 W 23rd St 3131 Las Vegas Blvd S           936 8th Ave 
+##                     2                     2                     2</code></pre>
+<pre class="r"><code>#Shows addresses without house numbers#
+barstool_data_type[barstool_data_type$address &gt; &quot;989 1st Ave&quot;, 2]</code></pre>
+<pre><code>## [1] &quot;MGM Hotel &amp; Casino Food Court&quot;     &quot;Home Depot Plz&quot;                   
+## [3] &quot;Pier 86 W 46th St 12th Ave&quot;        &quot;The Metlife Building&quot;             
+## [5] &quot;Broadway Between 42nd And 43rd St&quot;</code></pre>
+<p>After evaluating the output for addresses, we searched the internet for these places to confirm that they were at the same location. In order to search these restaurants, we need to pull in the rest of the variables to help with our search. The code below allows us to see the records where the same address was written more than once.</p>
+<pre class="r"><code>barstool_data_type[barstool_data_type$address == &quot;268 W 23rd St&quot;,]</code></pre>
+<pre><code>##                                       name       address     city   zip
+## 85                        Chelsea Pizza 23 268 W 23rd St New York 10011
+## 236 Lions &amp; Tigers &amp; Squares Detroit Pizza 268 W 23rd St New York 10011
+##     country latitude longitude price_level provider_rating
+## 85       US 40.74506 -73.99834           1             3.0
+## 236      US 40.74506 -73.99834           1             4.5
+##     provider_review_count review_stats_all_average_score
+## 85                     68                       5.900000
+## 236                   261                       7.517241
+##     review_stats_all_count review_stats_all_total_score
+## 85                       1                          5.9
+## 236                     29                        218.0
+##     review_stats_community_average_score review_stats_community_count
+## 85                              0.000000                            0
+## 236                             7.532143                           28
+##     review_stats_community_total_score review_stats_critic_average_score
+## 85                                 0.0                                 0
+## 236                              210.9                                 0
+##     review_stats_critic_count review_stats_critic_total_score
+## 85                          0                               0
+## 236                         0                               0
+##     review_stats_dave_average_score review_stats_dave_count
+## 85                              5.9                       1
+## 236                             7.1                       1
+##     review_stats_dave_total_score
+## 85                            5.9
+## 236                           7.1</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$address == &quot;3131 Las Vegas Blvd S&quot;,]</code></pre>
+<pre><code>##                  name               address      city   zip country
+## 126 Encore Beach Club 3131 Las Vegas Blvd S Las Vegas 89109      US
+## 459      XS Nightclub 3131 Las Vegas Blvd S Las Vegas 89109      US
+##     latitude longitude price_level provider_rating provider_review_count
+## 126 36.12711 -115.1648           3             3.5                   808
+## 459 36.12711 -115.1648           3             4.0                  3187
+##     review_stats_all_average_score review_stats_all_count
+## 126                            1.4                      1
+## 459                            5.5                      2
+##     review_stats_all_total_score review_stats_community_average_score
+## 126                          1.4                                  0.0
+## 459                         11.0                                  3.2
+##     review_stats_community_count review_stats_community_total_score
+## 126                            0                                0.0
+## 459                            1                                3.2
+##     review_stats_critic_average_score review_stats_critic_count
+## 126                                 0                         0
+## 459                                 0                         0
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 126                               0                             1.4
+## 459                               0                             7.8
+##     review_stats_dave_count review_stats_dave_total_score
+## 126                       1                           1.4
+## 459                       1                           7.8</code></pre>
+<pre class="r"><code>barstool_data_type[barstool_data_type$address == &quot;936 8th Ave&quot;,]</code></pre>
+<pre><code>##                      name     address     city   zip country latitude
+## 250 Luigi's Gourmet Grill 936 8th Ave New York 10019      US 40.76556
+## 251         Luigi's Pizza 936 8th Ave New York 10019      US 40.76556
+##     longitude price_level provider_rating provider_review_count
+## 250  -73.9834           1             3.5                   169
+## 251  -73.9834           1             3.5                    59
+##     review_stats_all_average_score review_stats_all_count
+## 250                       8.000000                      5
+## 251                       7.724324                     37
+##     review_stats_all_total_score review_stats_community_average_score
+## 250                         40.0                             7.975000
+## 251                        285.8                             7.705556
+##     review_stats_community_count review_stats_community_total_score
+## 250                            4                               31.9
+## 251                           36                              277.4
+##     review_stats_critic_average_score review_stats_critic_count
+## 250                                 0                         0
+## 251                                 0                         0
+##     review_stats_critic_total_score review_stats_dave_average_score
+## 250                               0                             8.1
+## 251                               0                             8.4
+##     review_stats_dave_count review_stats_dave_total_score
+## 250                       1                           8.1
+## 251                       1                           8.4</code></pre>
+<p>After performing our search, we found that the restaurants at 268 W 23rd St and 3131 Las Vegas Blvd S were both located at the same place. The restaurants at 936 8th Ave were the exact same restaurant. After evaluating both records, we decided to drop the first one, because there were more reviews in each category except provider_review_count. Below is the code to drop the first record of 936 8th Ave.</p>
+<pre class="r"><code>barstool_variable_name &lt;- barstool_data_type[-c(250),]</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level3">
