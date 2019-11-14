@@ -94,10 +94,12 @@ names(barstool)
 attributes(barstool)$spec
 ```
 
-After evaluating the outputs of the names and data types, there are multiple changes we believe that need to be changed. The first item we believe that needs to be changed is the name for address1. We decided to change the name to address. You should the run the code below to change the name.
+After evaluating the outputs of the names and data types, there are multiple changes we believe that need to be changed. The first item we believe that needs to be changed is the name for address1. We decided to change the name for address1 to address, because it seemed more consistent with the other variable names. We believe the rest of the names of the variables are fine, and we don't need to change their names. You should the run the code below to change the name for address1.  
 
 ```{r}
 names(barstool)[2] <- "address"
 ```
+
+The next items I wanted to change were the data types for zip, price_level, provider_review_count, review_stats_all_count, review_stats_community_count, review_stats_critic_count, and review_stats_dave_count. 
 
 ### Exploratory Data Analysis 
