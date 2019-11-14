@@ -1,5 +1,5 @@
 ## Pizza Project Mid-Term {.tabset .tabset-fade}
-**Author: Sidney Schaeper and Morgan Miller **
+**Authors: Sidney Schaeper & Morgan Miller **
 
 ### Introduction
 ### Packages Required
@@ -69,7 +69,7 @@ price_range_max | double | price range max
 The following is the code to read the datasets in the R. You first need to set the working directory to wherever the datasets are located. Next, you need to read the file into R. Before you set the working directory and the read datasets into R, you need to install the packages mentioned in the prior tab. Also, you need to find them in the library. The following code shows you how to do these steps. 
 
 ```{r eval = TRUE, results = "hide", fig.show = "hide", message = FALSE, warning = FALSE}
-setwd("/Users/sidne/Documents/Data Wrangling")
+knitr::opts_knit$set(root.dir = getwd())
 barstool <- read_csv("pizza_barstool.csv")
 datafiniti <- read_csv("pizza_datafiniti.csv")
 jared <- read_csv("pizza_jared.csv")
