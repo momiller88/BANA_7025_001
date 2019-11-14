@@ -281,7 +281,7 @@ library(ggplot2)</code></pre>
 <td>pizza place name</td>
 </tr>
 <tr class="even">
-<td>address</td>
+<td>address1</td>
 <td>character</td>
 <td>pizza place address</td>
 </tr>
@@ -463,7 +463,7 @@ jared &lt;- read_csv(&quot;pizza_jared.csv&quot;)</code></pre>
 </div>
 <div id="evaluate-the-column-names-and-values" class="section level4">
 <h4>Evaluate the Column Names and Values</h4>
-<p>The first item we wanted to evaluate was the column names and the data types for each column in the barstool dataset. The first thing you should do is to make sure you have read in the dataset. Next, you should type in the following code into R. Finally, you should run the code.</p>
+<p>The first item we wanted to evaluate was the column names and the data types for each column in the barstool dataset. The first thing you should do is to make sure you have read in the dataset. Next, you should type in the following code into R. Finally, you should run the code. The head code allows us to see a piece of the data. The names code allows us to see the name of the variables within the dataset. The attributes$spec code allows us to see the data types for each of the variables.</p>
 <pre class="r"><code>head(barstool)</code></pre>
 <pre><code>## # A tibble: 6 x 22
 ##   name  address1 city    zip country latitude longitude price_level
@@ -485,6 +485,29 @@ jared &lt;- read_csv(&quot;pizza_jared.csv&quot;)</code></pre>
 ## #   review_stats_critic_total_score &lt;dbl&gt;,
 ## #   review_stats_dave_average_score &lt;dbl&gt;, review_stats_dave_count &lt;dbl&gt;,
 ## #   review_stats_dave_total_score &lt;dbl&gt;</code></pre>
+<pre class="r"><code>names(barstool)</code></pre>
+<pre><code>##  [1] &quot;name&quot;                                
+##  [2] &quot;address1&quot;                            
+##  [3] &quot;city&quot;                                
+##  [4] &quot;zip&quot;                                 
+##  [5] &quot;country&quot;                             
+##  [6] &quot;latitude&quot;                            
+##  [7] &quot;longitude&quot;                           
+##  [8] &quot;price_level&quot;                         
+##  [9] &quot;provider_rating&quot;                     
+## [10] &quot;provider_review_count&quot;               
+## [11] &quot;review_stats_all_average_score&quot;      
+## [12] &quot;review_stats_all_count&quot;              
+## [13] &quot;review_stats_all_total_score&quot;        
+## [14] &quot;review_stats_community_average_score&quot;
+## [15] &quot;review_stats_community_count&quot;        
+## [16] &quot;review_stats_community_total_score&quot;  
+## [17] &quot;review_stats_critic_average_score&quot;   
+## [18] &quot;review_stats_critic_count&quot;           
+## [19] &quot;review_stats_critic_total_score&quot;     
+## [20] &quot;review_stats_dave_average_score&quot;     
+## [21] &quot;review_stats_dave_count&quot;             
+## [22] &quot;review_stats_dave_total_score&quot;</code></pre>
 <pre class="r"><code>attributes(barstool)$spec</code></pre>
 <pre><code>## cols(
 ##   name = col_character(),
@@ -510,6 +533,8 @@ jared &lt;- read_csv(&quot;pizza_jared.csv&quot;)</code></pre>
 ##   review_stats_dave_count = col_double(),
 ##   review_stats_dave_total_score = col_double()
 ## )</code></pre>
+<p>After evaluating the outputs of the names and data types, there are multiple changes we believe that need to be changed. The first item we believe that needs to be changed is the name for address1. We decided to change the name to address. You should the run the code below to change the name.</p>
+<pre class="r"><code>names(barstool)[2] &lt;- &quot;address&quot;</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level3">

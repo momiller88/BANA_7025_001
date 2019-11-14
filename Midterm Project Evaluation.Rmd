@@ -12,12 +12,14 @@ install.packages("readr")
 install.packages("dplyr")
 install.packages("ggplot2")
 ```
+
 #### **Code to Find Packages in the Library**
 ```{r results = "hide", warning = FALSE, message = FALSE}
 library(readr)
 library(dplyr)
 library(ggplot2)
 ```
+
 ### Data Preparation
 #### **Original Data Dictionary**
 
@@ -37,7 +39,7 @@ percent | double | vote percent of total for that pizza place
 Variable | Class | Description
 ---------|-------|------------
 name | character | pizza place name
-address | character | pizza place address
+address1 | character | pizza place address
 city | character | city
 zip | double | zip
 country | character | country
@@ -82,10 +84,20 @@ barstool <- read_csv("pizza_barstool.csv")
 datafiniti <- read_csv("pizza_datafiniti.csv")
 jared <- read_csv("pizza_jared.csv")
 ```
+
 ####Evaluate the Column Names and Values 
-The first item we wanted to evaluate was the column names and the data types for each column in the barstool dataset. The first thing you should do is to make sure you have read in the dataset. Next, you should type in the following code into R. Finally, you should run the code. 
+The first item we wanted to evaluate was the column names and the data types for each column in the barstool dataset. The first thing you should do is to make sure you have read in the dataset. Next, you should type in the following code into R. Finally, you should run the code. The head code allows us to see a piece of the data. The names code allows us to see the name of the variables within the dataset. The attributes$spec code allows us to see the data types for each of the variables.
+
 ```{r}
 head(barstool)
+names(barstool)
 attributes(barstool)$spec
 ```
+
+After evaluating the outputs of the names and data types, there are multiple changes we believe that need to be changed. The first item we believe that needs to be changed is the name for address1. We decided to change the name to address. You should the run the code below to change the name.
+
+```{r}
+names(barstool)[2] <- "address"
+```
+
 ### Exploratory Data Analysis 
