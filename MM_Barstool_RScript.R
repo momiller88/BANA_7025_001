@@ -51,7 +51,7 @@ library(dplyr)
 library(ggplot2)
 barstool <- read_csv("pizza barstool.csv")
 
-#Attributes#
+#'barstool' Attributes#
 attributes(barstool)
 
 #Table#
@@ -69,7 +69,7 @@ table(barstool$provider_rating)
 table(barstool$provider_review_count)
 table(barstool$latitude)
 table(barstool$longitude)
-table(barstool$review_stats_all_average_score)
+table(barstool$review_stats_all_average_score) #checked (could simplify to rounded 2 decimals)
 table(barstool$review_stats_all_count)
 
 #Boxplot#
@@ -90,8 +90,20 @@ summary(barstool$review_stats_all_count)
 #Read in the infiniti file#
 datafiniti <- read_csv("pizza_datafiniti.csv")
 
-#attributes#
+#'datafiniti' Attributes#
 attributes(datafiniti)
+
+#Table#
+table(datafiniti$name)
+table(datafiniti$address)
+table(datafiniti$city)
+table(datafiniti$country)
+table(datafiniti$province)
+table(datafiniti$latitude)
+table(datafiniti$longitude)
+table(datafiniti$categories)# checked (multiple values in the same column, could separate into it's own dataframe, could create binary flags for each distinct category, tbd)
+table(datafiniti$price_range_min)
+table(datafiniti$price_range_max)
 
 #remove duplicates#
 datafiniti_dup_removed <- datafiniti[!duplicated(datafiniti, nmax = 1), ]
@@ -100,6 +112,20 @@ view(datafiniti_dup_removed)
 #table#
 table(datafiniti_dup_removed$name)
 
+#read in jared file#
+jared<- read.csv("pizza_jared.csv")
 
+#'jared' Attributes#
+attributes(jared)
 
+#Table#
+table(jared$polla_qid)#checked (ID's duplicated x5, assuming it corresponds to each poll data may need reformatted)
+table(jared$answer)#checked
+table(jared$votes)#checked
+table(jared$pollq_id)#checked
+table(jared$question)#checked (might be some discrepancies with the q_id, and questions, several questions had more than 5 dups and each q_id had only 5 dups)
+table(jared$place)#checked (might have similar issue as question, but could be different locations with the same name)
+table(jared$time)#checked
+table(jared$total_votes)#checked (might want to convert time to a more readable format)
+table(jared$percent)#checked (not bad, lots of 0's compared to others, next largest is 21)
 
