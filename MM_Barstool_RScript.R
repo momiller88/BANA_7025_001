@@ -37,6 +37,7 @@ sum(duplicated(barstool$name))
 sum(duplicated(datafiniti$name))
 sum(duplicated(jared$place))
 
+############################################################
 
 # Unique values for each variable in each dataset
 
@@ -91,7 +92,7 @@ summary(barstool$provider_review_count)
 summary(barstool$review_stats_all_average_score)
 summary(barstool$review_stats_all_count)
 
-
+######################################################3
 
 #Read in the infiniti file#
 datafiniti <- read_csv("pizza_datafiniti.csv")
@@ -115,13 +116,30 @@ table(datafiniti$price_range_max)
 datafiniti_dup_removed <- datafiniti[!duplicated(datafiniti, nmax = 1), ]
 view(datafiniti_dup_removed)
 
-#table#
+#table after dedup#
 table(datafiniti_dup_removed$name)
+table(datafiniti_dup_removed$address)
+table(datafiniti_dup_removed$city)
+table(datafiniti_dup_removed$country)
+table(datafiniti_dup_removed$province)
+table(datafiniti_dup_removed$latitude)
+table(datafiniti_dup_removed$longitude)
+table(datafiniti_dup_removed$categories)# checked (multiple values in the same column, could separate into it's own dataframe, could create binary flags for each distinct category, tbd)
+table(datafiniti_dup_removed$price_range_min)
+table(datafiniti_dup_removed$price_range_max)
 
+#select name and categories from datafiniti#
+library(stringr)
+df4 <- datafiniti_dup_removed %>%
+  select(name, categories)
+#select only records containing "Pizza Place" in categories#
+df4 %>%
+  filter(str_detect(categories, "Pizza Place"))
 
+########################################################
 
 #read in jared file#
-jared<- read.csv("pizza_jared.csv")
+jared<- read_csv("pizza_jared.csv")
 
 #'jared' Attributes#
 attributes(jared)
