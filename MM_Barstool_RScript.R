@@ -55,6 +55,8 @@ barstool <- read_csv("pizza barstool.csv")
 
 #'barstool' Attributes#
 attributes(barstool)
+names(barstool)[2] <- "address"
+head(barstool)
 
 #Table#
 barstool_names <- table(barstool$name)
