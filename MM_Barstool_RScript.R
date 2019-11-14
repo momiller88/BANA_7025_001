@@ -52,17 +52,24 @@ setwd("/Users/sidne/Documents/Data Wrangling")
 library(readr)
 library(dplyr)
 library(ggplot2)
-barstool <- read_csv("pizza barstool.csv")
+barstool <- read_csv("pizza_barstool.csv")
 
 #'barstool' Attributes#
 attributes(barstool)
 names(barstool)[2] <- "address"
 head(barstool)
 
+#change data types#
+barstool_data_type <- transform(barstool, zip = as.character(zip), price_level = as.integer(price_level), provider_review_count = as.integer(provider_review_count), review_stats_all_count = as.integer(review_stats_all_count), review_stats_community_count = as.integer(review_stats_community_count), review_stats_critic_count = as.integer(review_stats_critic_count), review_stats_dave_count = as.integer(review_stats_dave_count))
+head(barstool_data_type)
+tibble(barstool_data_type)
+
 #Table#
 barstool_names <- table(barstool$name)
 barstool_names[barstool_names > 1]
-
+barstool_data_type[barstool_data_type$name == "Joe's Pizza",]
+barstool_data_type[422,]$name <- "Joe's Pizza - 8th"
+barstool_data_type[422,]$name
 barstool_addresses <- table(barstool$address1)
 barstool_addresses[barstool_addresses > 1]
 
