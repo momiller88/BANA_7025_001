@@ -89,6 +89,8 @@ summary(barstool$provider_review_count)
 summary(barstool$review_stats_all_average_score)
 summary(barstool$review_stats_all_count)
 
+
+
 #Read in the infiniti file#
 datafiniti <- read_csv("pizza_datafiniti.csv")
 
@@ -114,6 +116,8 @@ view(datafiniti_dup_removed)
 #table#
 table(datafiniti_dup_removed$name)
 
+
+
 #read in jared file#
 jared<- read.csv("pizza_jared.csv")
 
@@ -131,3 +135,26 @@ table(jared$time)#checked
 table(jared$total_votes)#checked (might want to convert time to a more readable format)
 table(jared$percent)#checked (not bad, lots of 0's compared to others, next largest is 21)
 
+#spread columns votes are labeled in each column#
+
+#select and spread responses count#
+df1 <- jared %>% 
+  select(polla_qid, answer, votes) %>%
+  spread(answer, votes, fill = 0)
+
+#select and spread responses percent#
+df2 <- jared %>%
+  select(polla_qid, answer, percent) %>%
+  spread(answer, percent, fill = 0)
+names(df2) <- c("polla_qid", "%_Average", "%_Excellent", "%_Fair", "%_Good", "%_Never_Again", "%_Poor")
+
+#merge df1 and df2
+dfm <- merge(x = df1, y = df2, by = "polla_qid", all.x = TRUE)
+
+# select remaning columns and dedup question by poll#
+df3 <- jared %>%
+  select(pollq_id, question, place, time, total_votes)
+df3 <- df3[!duplicated(df3, nmax = 1,), ]
+
+#merge votes df and question/location df
+jared_clean <- merge(x = df3, y = dfm, by.x = "pollq_id", by.y = "polla_qid", all.x = TRUE)  
