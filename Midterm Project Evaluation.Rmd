@@ -178,4 +178,13 @@ After performing our search, we found that the restaurants at 268 W 23rd St and 
 barstool_variable_name <- barstool_data_type[-c(250),]
 ```
 
+Next, we wanted to change the address for the items that don't start with a house number, except for Broadway Between 42nd And 43rd St. We decided that it would be difficult to do any geo-location analysis without the address being correct. We decided not to change Broadway Between 42nd And 43rd St, because it showed up as the right address on google. Below is the code to change these addresses that needed to be changed. 
+
+```{r}
+barstool_variable_name[barstool_variable_name$address == "MGM Hotel & Casino Food Court", ]$address <- "3799 S Las Vegas Blvd"
+barstool_variable_name[barstool_variable_name$address == "Home Depot Plz", ]$address <- "3039 NY-50"
+barstool_variable_name[barstool_variable_name$address == "Pier 86 W 46th St 12th Ave", ]$address <- "Pier 86, W 46th St"
+barstool_variable_name[barstool_variable_name$address == "The Metlife Building", ]$address <- "200 Park Ave"
+```
+
 ### Exploratory Data Analysis 

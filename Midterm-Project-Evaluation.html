@@ -952,6 +952,11 @@ barstool_data_type[barstool_data_type$address &gt; &quot;989 1st Ave&quot;, 2]</
 ## 251                       1                           8.4</code></pre>
 <p>After performing our search, we found that the restaurants at 268 W 23rd St and 3131 Las Vegas Blvd S were both located at the same place. The restaurants at 936 8th Ave were the exact same restaurant. After evaluating both records, we decided to drop the first one, because there were more reviews in each category except provider_review_count. Below is the code to drop the first record of 936 8th Ave.</p>
 <pre class="r"><code>barstool_variable_name &lt;- barstool_data_type[-c(250),]</code></pre>
+<p>Next, we wanted to change the address for the items that don’t start with a house number, except for Broadway Between 42nd And 43rd St. We decided that it would be difficult to do any geo-location analysis without the address being correct. We decided not to change Broadway Between 42nd And 43rd St, because it showed up as the right address on google. Below is the code to change these addresses that needed to be changed.</p>
+<pre class="r"><code>barstool_variable_name[barstool_variable_name$address == &quot;MGM Hotel &amp; Casino Food Court&quot;, ]$address &lt;- &quot;3799 S Las Vegas Blvd&quot;
+barstool_variable_name[barstool_variable_name$address == &quot;Home Depot Plz&quot;, ]$address &lt;- &quot;3039 NY-50&quot;
+barstool_variable_name[barstool_variable_name$address == &quot;Pier 86 W 46th St 12th Ave&quot;, ]$address &lt;- &quot;Pier 86, W 46th St&quot;
+barstool_variable_name[barstool_variable_name$address == &quot;The Metlife Building&quot;, ]$address &lt;- &quot;200 Park Ave&quot;</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level3">
