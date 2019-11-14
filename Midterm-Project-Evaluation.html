@@ -183,7 +183,7 @@ summary {
 
 <div id="pizza-project-mid-term" class="section level2 tabset tabset-fade">
 <h2>Pizza Project Mid-Term</h2>
-<p><strong>Author: Sidney Schaeper and Morgan Miller </strong></p>
+<p><strong>Authors: Sidney Schaeper &amp; Morgan Miller </strong></p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
 </div>
@@ -266,7 +266,12 @@ library(ggplot2)</code></pre>
 </div>
 <div id="pizza-barstool-variables" class="section level5">
 <h5><strong>Pizza Barstool Variables</strong></h5>
-<table>
+<table style="width:43%;">
+<colgroup>
+<col width="13%"></col>
+<col width="11%"></col>
+<col width="18%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -276,49 +281,69 @@ library(ggplot2)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>polla_qid</td>
-<td>integer</td>
-<td>quiz id</td>
-</tr>
-<tr class="even">
-<td>answer</td>
+<td>name</td>
 <td>character</td>
-<td>answer (likert scale)</td>
-</tr>
-<tr class="odd">
-<td>votes</td>
-<td>integer</td>
-<td>number of votes for that question/answer combo</td>
+<td>pizza place name</td>
 </tr>
 <tr class="even">
-<td>pollq_id</td>
-<td>integer</td>
-<td>poll question id</td>
-</tr>
-<tr class="odd">
-<td>question</td>
+<td>address1</td>
 <td>character</td>
-<td>question</td>
+<td>pizza place address</td>
 </tr>
-<tr class="even">
-<td>place</td>
+<tr class="odd">
+<td>city</td>
 <td>character</td>
-<td>pizza place</td>
-</tr>
-<tr class="odd">
-<td>time</td>
-<td>integer</td>
-<td>time of quiz</td>
+<td>city</td>
 </tr>
 <tr class="even">
-<td>total_votes</td>
-<td>integer</td>
-<td>total number of votes for that pizza place</td>
-</tr>
-<tr class="odd">
-<td>percent</td>
+<td>zip</td>
 <td>double</td>
-<td>vote percent of total for that pizza place</td>
+<td>zip</td>
+</tr>
+<tr class="odd">
+<td>country</td>
+<td>character</td>
+<td>country</td>
+</tr>
+<tr class="even">
+<td>latitude</td>
+<td>double</td>
+<td>latitude</td>
+</tr>
+<tr class="odd">
+<td>longitude</td>
+<td>double</td>
+<td>longitude</td>
+</tr>
+<tr class="even">
+<td>price_level</td>
+<td>double</td>
+<td>price rating (the lower the number the cheaper the price)</td>
+</tr>
+<tr class="odd">
+<td>provider_rating</td>
+<td>double</td>
+<td>provider review score</td>
+</tr>
+<tr class="even">
+<td>provider_review_count</td>
+<td>double</td>
+<td>provider review count</td>
+</tr>
+<tr class="odd">
+<td>review_stats_all_average_score</td>
+<td>double</td>
+<td>average score</td>
+</tr>
+<tr class="even">
+<td>review_stats_all_count</td>
+<td>double</td>
+<td>count of all reviews</td>
+</tr>
+<tr class="odd">
+<td>review_stas_all_total_score</td>
+<td>double</td>
+<td>review total score</td>
 </tr>
 </tbody>
 </table>
@@ -391,7 +416,7 @@ library(ggplot2)</code></pre>
 <div id="setting-the-working-directory-and-reading-the-datasets-into-r" class="section level4">
 <h4><strong>Setting the Working Directory and Reading the Datasets Into R</strong></h4>
 <p>The following is the code to read the datasets in the R. You first need to set the working directory to wherever the datasets are located. Next, you need to read the file into R. Before you set the working directory and the read datasets into R, you need to install the packages mentioned in the prior tab. Also, you need to find them in the library. The following code shows you how to do these steps.</p>
-<pre class="r"><code>setwd(&quot;/Users/sidne/Documents/Data Wrangling&quot;)
+<pre class="r"><code>knitr::opts_knit$set(root.dir = getwd())
 barstool &lt;- read_csv(&quot;pizza_barstool.csv&quot;)
 datafiniti &lt;- read_csv(&quot;pizza_datafiniti.csv&quot;)
 jared &lt;- read_csv(&quot;pizza_jared.csv&quot;)</code></pre>
@@ -403,12 +428,12 @@ jared &lt;- read_csv(&quot;pizza_jared.csv&quot;)</code></pre>
 <pre><code>## # A tibble: 6 x 22
 ##   name  address1 city    zip country latitude longitude price_level
 ##   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-## 1 Pugs~ 590 E 1~ Bronx 10458 US          40.9     -73.9           1
-## 2 Will~ 265 Uni~ Broo~ 11211 US          40.7     -74.0           1
-## 3 99 C~ 473 Lex~ New ~ 10017 US          40.8     -74.0           1
-## 4 Nino~ 39 W 46~ New ~ 10036 US          40.8     -74.0           2
-## 5 La P~ 31 E 20~ New ~ 10003 US          40.7     -74.0           2
-## 6 La G~ 382 8th~ New ~ 10001 US          NA        NA             1
+## 1 1000~ 45 Cour~ Bost~  2108 US          42.4     -71.1           2
+## 2 10th~ 256 10t~ New ~ 10001 US          40.7     -74.0           1
+## 3 3 Gi~ 548 Lag~ New ~ 10012 US          40.7     -74.0           2
+## 4 310 ~ 310 Bow~ New ~ 10012 US          40.7     -74.0           2
+## 5 42nd~ 647 W 4~ New ~ 10036 US          40.8     -74.0           2
+## 6 5 Bo~ 386 Can~ New ~ 10013 US          40.7     -74.0           1
 ## # ... with 14 more variables: provider_rating &lt;dbl&gt;,
 ## #   provider_review_count &lt;dbl&gt;, review_stats_all_average_score &lt;dbl&gt;,
 ## #   review_stats_all_count &lt;dbl&gt;, review_stats_all_total_score &lt;dbl&gt;,

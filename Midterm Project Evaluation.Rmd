@@ -49,7 +49,6 @@ provider_review_count | double | provider review count
 review_stats_all_average_score | double | average score
 review_stats_all_count | double | count of all reviews
 review_stas_all_total_score | double | review total score
-revi
 
 ##### **Pizza Datafiniti Variables**
 Variable | Class | Description
