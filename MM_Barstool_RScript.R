@@ -1,5 +1,7 @@
 library(tidyverse)
 library(dplyr)
+setwd("~/School papers/Graduate/Data Wrangling/BANA_7025_001")
+
 
 # import datasets
 barstool<- read.csv("pizza_barstool.csv", header = T, stringsAsFactors = FALSE)
