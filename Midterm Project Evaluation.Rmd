@@ -175,16 +175,32 @@ barstool_data_type[barstool_data_type$address == "936 8th Ave",]
 After performing our search, we found that the restaurants at 268 W 23rd St and 3131 Las Vegas Blvd S were both located at the same place. The restaurants at 936 8th Ave were the exact same restaurant. After evaluating both records, we decided to drop the first one, because there were more reviews in each category except provider_review_count. Below is the code to drop the first record of 936 8th Ave. 
 
 ```{r}
+#Remove the duplicate address#
 barstool_variable_name <- barstool_data_type[-c(250),]
 ```
 
 Next, we wanted to change the address for the items that don't start with a house number, except for Broadway Between 42nd And 43rd St. We decided that it would be difficult to do any geo-location analysis without the address being correct. We decided not to change Broadway Between 42nd And 43rd St, because it showed up as the right address on google. Below is the code to change these addresses that needed to be changed. 
 
 ```{r}
+#Change the values for the improper addresses#
 barstool_variable_name[barstool_variable_name$address == "MGM Hotel & Casino Food Court", ]$address <- "3799 S Las Vegas Blvd"
 barstool_variable_name[barstool_variable_name$address == "Home Depot Plz", ]$address <- "3039 NY-50"
 barstool_variable_name[barstool_variable_name$address == "Pier 86 W 46th St 12th Ave", ]$address <- "Pier 86, W 46th St"
 barstool_variable_name[barstool_variable_name$address == "The Metlife Building", ]$address <- "200 Park Ave"
+```
+
+The third variable we evaluated was the city in the barstool dataset. The line of code below creates a table with all the values for the city variable and how many times they were repeated. We wanted to evaluate if there were any inproper cities selected. 
+
+```{r}
+#Table of Cities#
+table(barstool_variable_name$city)
+```
+
+After evaluating the results from the table, the only city we found to have an improper value was DUMBO. The proper value should of been Brooklyn. The code below allows us to fix this improper value. 
+
+```{r}
+#Change DUMBO to Brooklyn#
+barstool_variable_name[barstool_variable_name$city == "DUMBO", ] <- "Brooklyn"
 ```
 
 ### Exploratory Data Analysis 

@@ -951,12 +951,87 @@ barstool_data_type[barstool_data_type$address &gt; &quot;989 1st Ave&quot;, 2]</
 ## 250                       1                           8.1
 ## 251                       1                           8.4</code></pre>
 <p>After performing our search, we found that the restaurants at 268 W 23rd St and 3131 Las Vegas Blvd S were both located at the same place. The restaurants at 936 8th Ave were the exact same restaurant. After evaluating both records, we decided to drop the first one, because there were more reviews in each category except provider_review_count. Below is the code to drop the first record of 936 8th Ave.</p>
-<pre class="r"><code>barstool_variable_name &lt;- barstool_data_type[-c(250),]</code></pre>
+<pre class="r"><code>#Remove the duplicate address#
+barstool_variable_name &lt;- barstool_data_type[-c(250),]</code></pre>
 <p>Next, we wanted to change the address for the items that don’t start with a house number, except for Broadway Between 42nd And 43rd St. We decided that it would be difficult to do any geo-location analysis without the address being correct. We decided not to change Broadway Between 42nd And 43rd St, because it showed up as the right address on google. Below is the code to change these addresses that needed to be changed.</p>
-<pre class="r"><code>barstool_variable_name[barstool_variable_name$address == &quot;MGM Hotel &amp; Casino Food Court&quot;, ]$address &lt;- &quot;3799 S Las Vegas Blvd&quot;
+<pre class="r"><code>#Change the values for the improper addresses#
+barstool_variable_name[barstool_variable_name$address == &quot;MGM Hotel &amp; Casino Food Court&quot;, ]$address &lt;- &quot;3799 S Las Vegas Blvd&quot;
 barstool_variable_name[barstool_variable_name$address == &quot;Home Depot Plz&quot;, ]$address &lt;- &quot;3039 NY-50&quot;
 barstool_variable_name[barstool_variable_name$address == &quot;Pier 86 W 46th St 12th Ave&quot;, ]$address &lt;- &quot;Pier 86, W 46th St&quot;
 barstool_variable_name[barstool_variable_name$address == &quot;The Metlife Building&quot;, ]$address &lt;- &quot;200 Park Ave&quot;</code></pre>
+<p>The third variable we evaluated was the city in the barstool dataset. The line of code below creates a table with all the values for the city variable and how many times they were repeated. We wanted to evaluate if there were any inproper cities selected.</p>
+<pre class="r"><code>#Table of Cities#
+table(barstool_variable_name$city)</code></pre>
+<pre><code>## 
+##         Alpharetta          Ann Arbor            Atlanta 
+##                  1                  4                  6 
+##            Augusta             Austin         Austintown 
+##                  1                  1                  1 
+##         Blacksburg             Boston          Braintree 
+##                  1                 13                  1 
+##           Brockton              Bronx           Brooklyn 
+##                  1                  3                 20 
+##            Buffalo         Charleston          Charlotte 
+##                  1                  1                  1 
+##      Chestnut Hill            Chicago           Chilmark 
+##                  1                  6                  1 
+##         Clearwater            Clifton           Columbus 
+##                  1                  1                  6 
+##         Coralville      Daytona Beach           Dearborn 
+##                  1                  1                  1 
+##        Dennis Port              DUMBO        East Meadow 
+##                  1                  1                  1 
+##    East Rutherford          Edgartown              Edina 
+##                  2                  2                  1 
+##          Elizabeth             Elmont       Elmwood Park 
+##                  1                  1                  2 
+##         Gansevoort               Gary       Hampton Bays 
+##                  1                  1                  1 
+##            Hoboken          Hopkinton       Howard Beach 
+##                  6                  1                  1 
+##         Huntington            Hyannis       Indianapolis 
+##                  1                  2                  3 
+##          Iowa City            Jackson Jacksonville Beach 
+##                  1                  1                  1 
+##        Jersey City        Kew Gardens          Lakeville 
+##                  1                  1                  1 
+##          Las Vegas      Lawrenceville          Lexington 
+##                 11                  1                  3 
+##         Louisville               Lynn    Manhattan Beach 
+##                  4                  1                  1 
+##       Mashantucket              Miami        Miami Beach 
+##                  1                  1                  2 
+##     Middle Village        Minneapolis         Morgantown 
+##                  1                  8                  3 
+##       Mount Vernon          Nantucket          New Haven 
+##                  1                  6                  4 
+##      New Hyde Park           New York      New York City 
+##                  1                250                  1 
+##    North Arlington             Nutley         Oak Bluffs 
+##                  1                  1                  1 
+##           Oak Lawn      Oklahoma City             Orange 
+##                  1                  1                  1 
+##         Palm Beach           Pembroke       Philadelphia 
+##                  1                  1                  2 
+##          Princeton             Ramsey           Randolph 
+##                  1                  1                  1 
+##             Revere         Rutherford         Saint Paul 
+##                  1                  1                  2 
+##        San Antonio          San Diego      San Francisco 
+##                  3                  3                  1 
+##           Sandwich       Santa Monica   Saratoga Springs 
+##                  1                  2                  6 
+##        Southampton           Stamford      Staten Island 
+##                  1                  2                  4 
+##          Stoughton              Tampa     Vineyard Haven 
+##                  1                  1                  1 
+##     West Melbourne    West Palm Beach       West Roxbury 
+##                  1                  1                  1 
+##             Woburn            Yonkers         Youngstown 
+##                  1                  1                  4</code></pre>
+<p>After evaluating the results from the table, the only city we found to have an improper value was DUMBO. The proper value should of been Brooklyn. The code below allows us to fix this improper value.</p>
+<pre class="r"><code>#Change DUMBO to Brooklyn#
+barstool_variable_name[barstool_variable_name$city == &quot;DUMBO&quot;, ] &lt;- &quot;Brooklyn&quot;</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level3">
