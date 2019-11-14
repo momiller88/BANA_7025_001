@@ -36,15 +36,20 @@ percent | double | vote percent of total for that pizza place
 ##### **Pizza Barstool Variables**
 Variable | Class | Description
 ---------|-------|------------
-polla_qid | integer | quiz id
-answer | character | answer (likert scale)
-votes | integer | number of votes for that question/answer combo
-pollq_id | integer | poll question id
-question | character | question
-place | character | pizza place
-time | integer | time of quiz
-total_votes | integer | total number of votes for that pizza place
-percent | double | vote percent of total for that pizza place
+name | character | pizza place name
+address1 | character | pizza place address
+city | character | city
+zip | double | zip
+country | character | country
+latitude | double | latitude
+longitude | double | longitude 
+price_level | double | price rating (the lower the number the cheaper the price)
+provider_rating | double | provider review score
+provider_review_count | double | provider review count 
+review_stats_all_average_score | double | average score
+review_stats_all_count | double | count of all reviews
+review_stas_all_total_score | double | review total score
+revi
 
 ##### **Pizza Datafiniti Variables**
 Variable | Class | Description
