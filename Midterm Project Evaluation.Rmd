@@ -37,18 +37,27 @@ percent | double | vote percent of total for that pizza place
 Variable | Class | Description
 ---------|-------|------------
 name | character | pizza place name
-address1 | character | pizza place address
+address | character | pizza place address
 city | character | city
 zip | double | zip
 country | character | country
 latitude | double | latitude
 longitude | double | longitude 
-price_level | double | price rating (the lower the number the cheaper the price)
+price_level | double | price rating (0=cheap and 3=expensive)
 provider_rating | double | provider review score
 provider_review_count | double | provider review count 
 review_stats_all_average_score | double | average score
 review_stats_all_count | double | count of all reviews
 review_stas_all_total_score | double | review total score
+review_stats_community_average_score | double | community average score
+review_stats_community_count | double | community review count
+review_stats_community_total_score | double | community review total score
+review_stats_critic_average_score | double | critic average score
+review_stats_critic_count | double | critic review count
+review_stats_critic_total_score | double | critic total score
+review_stats_dave_average_score | double | Dave (Barstool) average score
+review_stats_dave_count | double | Dave review count
+review_stats_dave_total_score | double | Dave total score
 
 ##### **Pizza Datafiniti Variables**
 Variable | Class | Description

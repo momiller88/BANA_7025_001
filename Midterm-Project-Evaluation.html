@@ -266,12 +266,7 @@ library(ggplot2)</code></pre>
 </div>
 <div id="pizza-barstool-variables" class="section level5">
 <h5><strong>Pizza Barstool Variables</strong></h5>
-<table style="width:43%;">
-<colgroup>
-<col width="13%"></col>
-<col width="11%"></col>
-<col width="18%"></col>
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th>Variable</th>
@@ -286,7 +281,7 @@ library(ggplot2)</code></pre>
 <td>pizza place name</td>
 </tr>
 <tr class="even">
-<td>address1</td>
+<td>address</td>
 <td>character</td>
 <td>pizza place address</td>
 </tr>
@@ -318,7 +313,7 @@ library(ggplot2)</code></pre>
 <tr class="even">
 <td>price_level</td>
 <td>double</td>
-<td>price rating (the lower the number the cheaper the price)</td>
+<td>price rating (0=cheap and 3=expensive)</td>
 </tr>
 <tr class="odd">
 <td>provider_rating</td>
@@ -344,6 +339,51 @@ library(ggplot2)</code></pre>
 <td>review_stas_all_total_score</td>
 <td>double</td>
 <td>review total score</td>
+</tr>
+<tr class="even">
+<td>review_stats_community_average_score</td>
+<td>double</td>
+<td>community average score</td>
+</tr>
+<tr class="odd">
+<td>review_stats_community_count</td>
+<td>double</td>
+<td>community review count</td>
+</tr>
+<tr class="even">
+<td>review_stats_community_total_score</td>
+<td>double</td>
+<td>community review total score</td>
+</tr>
+<tr class="odd">
+<td>review_stats_critic_average_score</td>
+<td>double</td>
+<td>critic average score</td>
+</tr>
+<tr class="even">
+<td>review_stats_critic_count</td>
+<td>double</td>
+<td>critic review count</td>
+</tr>
+<tr class="odd">
+<td>review_stats_critic_total_score</td>
+<td>double</td>
+<td>critic total score</td>
+</tr>
+<tr class="even">
+<td>review_stats_dave_average_score</td>
+<td>double</td>
+<td>Dave (Barstool) average score</td>
+</tr>
+<tr class="odd">
+<td>review_stats_dave_count</td>
+<td>double</td>
+<td>Dave review count</td>
+</tr>
+<tr class="even">
+<td>review_stats_dave_total_score</td>
+<td>double</td>
+<td>Dave total score</td>
 </tr>
 </tbody>
 </table>
