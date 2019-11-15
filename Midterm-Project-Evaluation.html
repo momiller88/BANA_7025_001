@@ -1029,9 +1029,93 @@ table(barstool_variable_name$city)</code></pre>
 ##                  1                  1                  1 
 ##             Woburn            Yonkers         Youngstown 
 ##                  1                  1                  4</code></pre>
-<p>After evaluating the results from the table, the only city we found to have an improper value was DUMBO. The proper value should of been Brooklyn. The code below allows us to fix this improper value.</p>
-<pre class="r"><code>#Change DUMBO to Brooklyn#
-barstool_variable_name[barstool_variable_name$city == &quot;DUMBO&quot;, ] &lt;- &quot;Brooklyn&quot;</code></pre>
+<p>After evaluating the results from the table, the cities we found to have improper values were DUMBO, Edina, New York, Mashantucket, Chilmark, and Orange. We found the proper value for these cities by searching the addresses. The code below allows us to fix this improper values.</p>
+<pre class="r"><code>#Change Improper Names of Cities#
+barstool_variable_name[barstool_variable_name$city == &quot;DUMBO&quot;, ]$city &lt;- &quot;Brooklyn&quot;
+barstool_variable_name[barstool_variable_name$city == &quot;Edina&quot;, ]$city &lt;- &quot;Minneapolis&quot;
+barstool_variable_name[barstool_variable_name$city == &quot;New York&quot;, ]$city &lt;- &quot;New York City&quot;
+barstool_variable_name[barstool_variable_name$city == &quot;Mashantucket&quot;, ]$city &lt;- &quot;Ledyard&quot;
+barstool_variable_name[barstool_variable_name$city == &quot;Chilmark&quot;, ]$city &lt;- &quot;Aquinnah&quot;
+barstool_variable_name[barstool_variable_name$city == &quot;Orange&quot;, ]$city &lt;- &quot;City of Orange&quot;</code></pre>
+<p>The fourth variable we evaluated was the zip in the barstool dataset. The line of code below creates a table with all the values for the zip variable and how many times they were repeated. We wanted to evaluate the items that didn’t have five numbers for the zip code.</p>
+<pre class="r"><code>#Zip Code Table#
+table(barstool_variable_name$zip)</code></pre>
+<pre><code>## 
+## 10001 10002 10003 10004 10005 10006 10007 10009 10010 10011 10012 10013 
+##    11     9    14     6     3     2     5     8     2    17    22    11 
+## 10014 10016 10017 10018 10019 10021 10022 10023 10024 10025 10028 10035 
+##    22     9    10     5    24     3    14     5     2     8     3     1 
+## 10036 10038 10041 10065 10075 10112 10128 10166 10168 10280 10302 10305 
+##    16     3     1     6     3     1     2     1     1     1     2     2 
+## 10458 10461 10550 10705 11003 11040 11201 11206 11211 11215 11217 11222 
+##     2     1     1     1     1     1     4     1     7     1     1     2 
+## 11223 11224 11230 11231 11238 11379 11414 11415 11554 11743 11946 11968 
+##     1     1     1     1     1     1     1     1     1     1     1     1 
+## 12831 12866 14220  1748  1801  1902 19147  2072  2108  2113  2114  2115 
+##     1     6     1     1     1     1     2     1     1     4     4     1 
+##  2116  2128  2132  2151  2184  2199  2301  2347  2359  2368 24060  2467 
+##     1     1     1     1     1     1     1     1     1     1     1     1 
+## 24740 25311  2535  2539  2554  2557  2563  2564  2568  2601  2639 26501 
+##     1     1     1     2     5     1     1     1     1     2     1     1 
+## 26505 28204 30009 30045 30303 30305 30318 30326 30342 30901 32118 32250 
+##     2     1     1     1     1     1     2     1     1     1     1     1 
+## 32904 33139 33181 33401 33480 33602 33767 38305 40202 40208 40217 40503 
+##     1     2     1     1     1     1     1     1     2     1     1     1 
+## 40507 40508 43201 43229 44471 44503 44515 46204 46406 48104 48124 52241 
+##     1     1     5     1     1     1     3     3     1     4     1     1 
+## 52246 55102 55117 55401 55404 55413 55414 55417 55439 60453 60610 60611 
+##     1     1     1     2     1     2     2     1     1     1     2     2 
+## 60614 60707  6338  6511  6902  6907  7014  7030  7031  7050  7070  7073 
+##     1     2     1     4     1     1     1     6     1     1     1     2 
+##  7110  7202  7302 73106  7407  7446 78205 78209 78222 78751 89101 89102 
+##     1     1     1     1     1     1     1     1     1     1     3     1 
+## 89109 90266 90401 90404 92101 92103 92109 94133 
+##     7     1     1     1     1     1     1     1</code></pre>
+<p>After evaluating the table and searching some of these zip codes, we found that the items that had only 4 digits for the zip code were missing a 0 in front. The code below allows us to fix this problem.</p>
+<pre class="r"><code>#Change the 4 digits zips to 5 digit zips#
+barstool_variable_name[barstool_variable_name$zip == &quot;1748&quot;, ]$zip &lt;- &quot;01748&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;1801&quot;, ]$zip &lt;- &quot;01801&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;1902&quot;, ]$zip &lt;- &quot;01902&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2072&quot;, ]$zip &lt;- &quot;02072&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2108&quot;, ]$zip &lt;- &quot;02108&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2113&quot;, ]$zip &lt;- &quot;02113&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2114&quot;, ]$zip &lt;- &quot;02114&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2115&quot;, ]$zip &lt;- &quot;02115&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2116&quot;, ]$zip &lt;- &quot;02116&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2128&quot;, ]$zip &lt;- &quot;02128&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2132&quot;, ]$zip &lt;- &quot;02132&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2151&quot;, ]$zip &lt;- &quot;02151&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2184&quot;, ]$zip &lt;- &quot;02184&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2199&quot;, ]$zip &lt;- &quot;02199&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2301&quot;, ]$zip &lt;- &quot;02301&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2347&quot;, ]$zip &lt;- &quot;02347&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2359&quot;, ]$zip &lt;- &quot;02359&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2368&quot;, ]$zip &lt;- &quot;02368&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2467&quot;, ]$zip &lt;- &quot;02467&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2535&quot;, ]$zip &lt;- &quot;02535&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2539&quot;, ]$zip &lt;- &quot;02539&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2554&quot;, ]$zip &lt;- &quot;02554&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2557&quot;, ]$zip &lt;- &quot;02557&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2563&quot;, ]$zip &lt;- &quot;02563&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2564&quot;, ]$zip &lt;- &quot;02564&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2568&quot;, ]$zip &lt;- &quot;02568&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2601&quot;, ]$zip &lt;- &quot;02601&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;2639&quot;, ]$zip &lt;- &quot;02639&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;6338&quot;, ]$zip &lt;- &quot;06338&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;6511&quot;, ]$zip &lt;- &quot;06511&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;6902&quot;, ]$zip &lt;- &quot;06902&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;6907&quot;, ]$zip &lt;- &quot;06907&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7014&quot;, ]$zip &lt;- &quot;07014&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7030&quot;, ]$zip &lt;- &quot;07030&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7031&quot;, ]$zip &lt;- &quot;07031&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7050&quot;, ]$zip &lt;- &quot;07050&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7070&quot;, ]$zip &lt;- &quot;07070&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7073&quot;, ]$zip &lt;- &quot;07073&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7110&quot;, ]$zip &lt;- &quot;07110&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7202&quot;, ]$zip &lt;- &quot;07202&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7302&quot;, ]$zip &lt;- &quot;07302&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7407&quot;, ]$zip &lt;- &quot;07407&quot;
+barstool_variable_name[barstool_variable_name$zip == &quot;7446&quot;, ]$zip &lt;- &quot;07446&quot;</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level3">

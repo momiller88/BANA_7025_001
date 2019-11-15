@@ -196,11 +196,72 @@ The third variable we evaluated was the city in the barstool dataset. The line o
 table(barstool_variable_name$city)
 ```
 
-After evaluating the results from the table, the only city we found to have an improper value was DUMBO. The proper value should of been Brooklyn. The code below allows us to fix this improper value. 
+After evaluating the results from the table, the cities we found to have improper values were DUMBO, Edina, New York, Mashantucket, Chilmark, and Orange. We found the proper value for these cities by searching the addresses. The code below allows us to fix this improper values. 
 
 ```{r}
-#Change DUMBO to Brooklyn#
-barstool_variable_name[barstool_variable_name$city == "DUMBO", ] <- "Brooklyn"
+#Change Improper Names of Cities#
+barstool_variable_name[barstool_variable_name$city == "DUMBO", ]$city <- "Brooklyn"
+barstool_variable_name[barstool_variable_name$city == "Edina", ]$city <- "Minneapolis"
+barstool_variable_name[barstool_variable_name$city == "New York", ]$city <- "New York City"
+barstool_variable_name[barstool_variable_name$city == "Mashantucket", ]$city <- "Ledyard"
+barstool_variable_name[barstool_variable_name$city == "Chilmark", ]$city <- "Aquinnah"
+barstool_variable_name[barstool_variable_name$city == "Orange", ]$city <- "City of Orange"
+```
+
+The fourth variable we evaluated was the zip in the barstool dataset. The line of code below creates a table with all the values for the zip variable and how many times they were repeated. We wanted to evaluate the items that didn't have five numbers for the zip code.
+
+```{r}
+#Zip Code Table#
+table(barstool_variable_name$zip)
+```
+
+After evaluating the table and searching some of these zip codes, we found that the items that had only 4 digits for the zip code were missing a 0 in front. The code below allows us to fix this problem.
+
+```{r}
+#Change the 4 digits zips to 5 digit zips#
+barstool_variable_name[barstool_variable_name$zip == "1748", ]$zip <- "01748"
+barstool_variable_name[barstool_variable_name$zip == "1801", ]$zip <- "01801"
+barstool_variable_name[barstool_variable_name$zip == "1902", ]$zip <- "01902"
+barstool_variable_name[barstool_variable_name$zip == "2072", ]$zip <- "02072"
+barstool_variable_name[barstool_variable_name$zip == "2108", ]$zip <- "02108"
+barstool_variable_name[barstool_variable_name$zip == "2113", ]$zip <- "02113"
+barstool_variable_name[barstool_variable_name$zip == "2114", ]$zip <- "02114"
+barstool_variable_name[barstool_variable_name$zip == "2115", ]$zip <- "02115"
+barstool_variable_name[barstool_variable_name$zip == "2116", ]$zip <- "02116"
+barstool_variable_name[barstool_variable_name$zip == "2128", ]$zip <- "02128"
+barstool_variable_name[barstool_variable_name$zip == "2132", ]$zip <- "02132"
+barstool_variable_name[barstool_variable_name$zip == "2151", ]$zip <- "02151"
+barstool_variable_name[barstool_variable_name$zip == "2184", ]$zip <- "02184"
+barstool_variable_name[barstool_variable_name$zip == "2199", ]$zip <- "02199"
+barstool_variable_name[barstool_variable_name$zip == "2301", ]$zip <- "02301"
+barstool_variable_name[barstool_variable_name$zip == "2347", ]$zip <- "02347"
+barstool_variable_name[barstool_variable_name$zip == "2359", ]$zip <- "02359"
+barstool_variable_name[barstool_variable_name$zip == "2368", ]$zip <- "02368"
+barstool_variable_name[barstool_variable_name$zip == "2467", ]$zip <- "02467"
+barstool_variable_name[barstool_variable_name$zip == "2535", ]$zip <- "02535"
+barstool_variable_name[barstool_variable_name$zip == "2539", ]$zip <- "02539"
+barstool_variable_name[barstool_variable_name$zip == "2554", ]$zip <- "02554"
+barstool_variable_name[barstool_variable_name$zip == "2557", ]$zip <- "02557"
+barstool_variable_name[barstool_variable_name$zip == "2563", ]$zip <- "02563"
+barstool_variable_name[barstool_variable_name$zip == "2564", ]$zip <- "02564"
+barstool_variable_name[barstool_variable_name$zip == "2568", ]$zip <- "02568"
+barstool_variable_name[barstool_variable_name$zip == "2601", ]$zip <- "02601"
+barstool_variable_name[barstool_variable_name$zip == "2639", ]$zip <- "02639"
+barstool_variable_name[barstool_variable_name$zip == "6338", ]$zip <- "06338"
+barstool_variable_name[barstool_variable_name$zip == "6511", ]$zip <- "06511"
+barstool_variable_name[barstool_variable_name$zip == "6902", ]$zip <- "06902"
+barstool_variable_name[barstool_variable_name$zip == "6907", ]$zip <- "06907"
+barstool_variable_name[barstool_variable_name$zip == "7014", ]$zip <- "07014"
+barstool_variable_name[barstool_variable_name$zip == "7030", ]$zip <- "07030"
+barstool_variable_name[barstool_variable_name$zip == "7031", ]$zip <- "07031"
+barstool_variable_name[barstool_variable_name$zip == "7050", ]$zip <- "07050"
+barstool_variable_name[barstool_variable_name$zip == "7070", ]$zip <- "07070"
+barstool_variable_name[barstool_variable_name$zip == "7073", ]$zip <- "07073"
+barstool_variable_name[barstool_variable_name$zip == "7110", ]$zip <- "07110"
+barstool_variable_name[barstool_variable_name$zip == "7202", ]$zip <- "07202"
+barstool_variable_name[barstool_variable_name$zip == "7302", ]$zip <- "07302"
+barstool_variable_name[barstool_variable_name$zip == "7407", ]$zip <- "07407"
+barstool_variable_name[barstool_variable_name$zip == "7446", ]$zip <- "07446"
 ```
 
 ### Exploratory Data Analysis 
