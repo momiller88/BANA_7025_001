@@ -173,7 +173,7 @@ df1 <- jared %>%
 df2 <- jared %>%
   select(polla_qid, answer, percent) %>%
   spread(answer, percent, fill = 0)
-names(df2) <- c("polla_qid", "%_Average", "%_Excellent", "%_Fair", "%_Good", "%_Never_Again", "%_Poor")
+names(df2) <- c("polla_qid", "Pct_Average", "Pct_Excellent", "Pct_Fair", "Pct_Good", "Pct_Never_Again", "Pct_Poor")
 
 #merge df1 and df2
 dfm <- merge(x = df1, y = df2, by = "polla_qid", all.x = TRUE)
@@ -185,3 +185,110 @@ df3 <- df3[!duplicated(df3, nmax = 1,), ]
 
 #merge votes df and question/location df
 jared_clean <- merge(x = df3, y = dfm, by.x = "pollq_id", by.y = "polla_qid", all.x = TRUE)  
+jared_clean <- select(jared_clean, 
+                      place, 
+                      question, 
+                      total_votes, 
+                      `Never Again`, 
+                      Poor, Fair, 
+                      Average, 
+                      Good, 
+                      Excellent, 
+                      Pct_Never_Again, 
+                      Pct_Poor, 
+                      Pct_Fair, 
+                      Pct_Average, 
+                      Pct_Good, 
+                      Pct_Excellent)
+
+head(jared_clean)
+
+#Table jared_clean#
+table(jared_clean$pollq_id)
+table(jared_clean$question)
+table(jared_clean$place)
+table(jared_clean$time)
+table(jared_clean$total_votes)
+table(jared_clean$Average)
+table(jared_clean$Excellent)
+table(jared_clean$Fair)
+table(jared_clean$Good)
+table(jared_clean$`Never Again`)
+table(jared_clean$Poor)
+table(jared_clean$`%_Average`)
+table(jared_clean$`%_Excellent`)
+table(jared_clean$`%_Fair`)
+table(jared_clean$`%_Average`)
+table(jared_clean$`%_Never_Again`)
+table(jared_clean$`%_Poor`)
+
+#identifying columns that have duplicated names in jared_clean#
+jared_dups <- data.frame(table(jared_clean$place))
+
+#shorten list to only dup records#
+jared_dups[jared_dups$Freq > 1, ]
+jared_dups <- arrange(jared_clean[jared_clean$place %in% jared_dups$Var1[jared_dups$Freq > 1], ], desc(place))
+jared_dups
+
+#sum duplicate records votes#
+jared_dups_combined <- 
+  jared_dups %>%
+    group_by(place, question) %>%
+    summarise(total_votes = sum(total_votes), 
+              `Never Again` = sum(`Never Again`),
+              Poor = sum(Poor),
+              Fair = sum(Fair),
+              Average = sum(Average),
+              Good = sum(Good),
+              Excellent = sum(Excellent))
+jared_dups_combined
+
+#recalculate percents columns
+jared_dups_pct <- 
+  jared_dups_combined %>%
+  mutate( Pct_Never_Again = `Never Again` / total_votes, 
+          Pct_Poor = Poor / total_votes,
+          Pct_Fair = Fair / total_votes,
+          Pct_Average = Average / total_votes,
+          Pct_Good = Good / total_votes,
+          Pct_Excellent = Excellent / total_votes)
+jared_dups_pct <- as_data_frame(jared_dups_pct)
+colnames(jared_dups_pct)[4] <- "Never Again"
+jared_dups_pct
+
+#remove duplicated records from jared_clean#
+jd_dup_names <- jared_dups_pct$place
+
+jc_wo_dupnames <- jared_clean[ ! jared_clean$place %in% jd_dup_names, ]
+
+head(jc_wo_dupnames)
+head(jared_dups_pct)
+
+jared2 <- rbind(jc_wo_dupnames, jared_dups_pct)
+jared2
+
+
+
+#test on inner joining jared2 with barstool by place = name#
+merge <- merge(x = jared2, y = barstool, by.x = "place", by.y = "name")
+  #27 matches, with 5 duplicated names w/ different addresses
+
+dup <- duplicated(merge[,1])
+merge[dup,]
+
+#test on inner joining jared2 with datafiniti by place = name#
+merge2 <- merge(x = jared2, y = datafiniti_dup_removed, by.x = "place", by.y = "name")
+merge2
+  #9 results all unique
+
+#test on inner joining datafiniti with datafiniti by name = name#
+merge3 <- merge(x = datafiniti_dup_removed, y = datafiniti_dup_removed, by.x = "name", by.y = "name")
+str(merge3)
+merge3
+  #7698 results, 5862 duplicated names, 5411 duplicated addresses
+dup2 <- duplicated(merge3[,1])
+dups2
+str(merge3[dup2, ])
+dup3 <- duplicated(merge3[ ,2])
+dup3
+str(merge3[dup3, ])
