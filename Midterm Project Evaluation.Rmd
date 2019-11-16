@@ -7,6 +7,9 @@ runtime: shiny
 
 ### Introduction
 
+#### **Do You Love Pizza?**
+
+
 ### Packages Required
 #### **Packages**
 The packages that are need for this evaluation are the readr, dplyr, ggplot2, and DT. The readr package helps us import the datasets for this project. You can find more information on the readr package by clicking [here](https://cran.r-project.org/web/packages/readr/readr.pdf). The dplyr package helps us clean the datasets. You can find more information on the dplyr package by clicking [here](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8). The ggplot2 package helps us create visualizations for these datasets. You can find more information on the ggplot2 package by clicking [here](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf). The DT package helps us create data tables from the R output. You can find more information on the DT package by clicking [here](https://rstudio.github.io/DT/). The shiny package helps us create interactive data visualizations. You can find more information on the shiny package by clicking [here](https://cran.r-project.org/web/packages/shiny/index.html). The first section of code allows you to install the packages. The second section of code allows you to load the packages into R. You need to run both of these sections of code in order to get these packages into R. 
@@ -111,8 +114,7 @@ datatable(head(jared))
 ```
 
 #### **Evaluate Missing Values**
-The first item we wanted to evaluate was the missing items in the datasets. The code below allows us to see the percentage of missing items from each of the datasets. 
-
+The first item we wanted to evaluate was the missing items in the datasets. The website for the source data didn't mention missing items or how they were recorded. We decided that we needed to do this on our own through R. The code below allows us to see the percentage of missing items from each of the datasets. 
 ```{r}
 #Evaluate the percentage of missing items for barstool#
 (colSums(is.na(barstool))/463)*100
@@ -122,7 +124,7 @@ The first item we wanted to evaluate was the missing items in the datasets. The 
 (colSums(is.na(jared))/375)*100
 ```
 
-For the barstool dataset, longitude and latitude have missing items. The percentage of missing items for longitude and latitude is 0.43%. For the datafiniti dataset, there were no missing items from the dataset. For the jared dataset, percent is the only variable to have missing items. The percentage of missing items for percent is 1.33%. After evaluating the missing items, we decided to drop the rows that were missing, because there was such a small percentage of missing items. Below is the code to remove these missing items. 
+For the barstool dataset, longitude and latitude have missing items. The percentage of missing items for longitude and latitude is 0.43%. For the datafiniti dataset, there were no missing items from the dataset. For the jared dataset, percent is the only variable to have missing items. The percentage of missing items for percent is 1.33%. Once we realized there were missing items, we looked through the dataset to see how the missing values were recorded. We saw that all the missing items were recorded with an NA. After evaluating the missing items, we decided to drop the rows that were missing, because there was such a small percentage of missing items. Below is the code to remove these missing items. 
 
 ```{r}
 barstool_miss <- na.omit(barstool)
@@ -302,8 +304,7 @@ barstool_variable_name[barstool_variable_name$zip == "7407", ]$zip <- "07407"
 barstool_variable_name[barstool_variable_name$zip == "7446", ]$zip <- "07446"
 ```
 
-
-The rest of the variables in the barstool we evaulated. We found them to be fine after looking at their tables and the histograms. 
+Next, we evaluated the rest of the variables. We found them to be fine after looking at their tables and the histograms. If you would like to see these values, please run the code below. 
 
 ```{r eval = TRUE, results = "hide", fig.show = "hide", message = FALSE, warning = FALSE}
 table(barstool_variable_name$country)
@@ -320,13 +321,17 @@ table(barstool_variable_name$review_stats_community_count)
 table(barstool_variable_name$review_stats_community_total_score)
 table(barstool_variable_name$review_stats_critic_average_score)
 table(barstool_variable_name$review_stats_critic_count)
+table(barstool_variable_name$review_stats_dave_average_score)
 
 ```
 
-###### **Histogram of Numeric Barstool Variables**
-Choose a variable to evaluate: 
+##### **Histogram of Numeric Barstool Variables**
+Next, we wanted to evaluate the histogram of the barstool variables to see the outliers of the dataset and the skewness of the dataset. The code below allows us to evaluate the histograms of the numeric variables from the barstool dataset. We didn't include longitude and latitude, because there is too much variety between these variables. Also, we didn't include review_stats_dave_count, because the variable has the same value all the way throughout. Run the code below and choose the variable you would like to evaluate. 
+
 ```{r}
-barstool_for_histogram <- barstool_variable_name[ , c(8:22)]
+#Creates a new dataset for the items that we want evaluated by a histogram#
+barstool_for_histogram <- barstool_variable_name[ , c(8:20,22)]
+#Creates the interactive histogram#
 shinyApp(
   ui = fluidPage(
     varSelectInput("variable", "Variable:", barstool_for_histogram),
@@ -335,6 +340,38 @@ shinyApp(
 server = function(input, output) {
   output$data <- renderPlot({
     ggplot(barstool_for_histogram, aes(!!input$variable)) + geom_histogram()})
+}
+)
+```
+
+```{r}
+#Creates a new dataset for the items that we want evaluated by a histogram#
+jared_for_histogram <- jared_miss[ , c(1,3,8,9)]
+#Creates the interactive histogram#
+shinyApp(
+  ui = fluidPage(
+    varSelectInput("variable", "Variable:", jared_for_histogram),
+    plotOutput("data" , height = 300, width = 700)
+),
+server = function(input, output) {
+  output$data <- renderPlot({
+    ggplot(jared_for_histogram, aes(!!input$variable)) + geom_histogram()})
+}
+)
+```
+
+```{r}
+#Creates a new dataset for the items that we want evaluated by a histogram#
+datafiniti_for_histogram <- datafiniti_miss[ , c(9,10)]
+#Creates the interactive histogram#
+shinyApp(
+  ui = fluidPage(
+    varSelectInput("variable", "Variable:", datafiniti_for_histogram),
+    plotOutput("data" , height = 300, width = 700)
+),
+server = function(input, output) {
+  output$data <- renderPlot({
+    ggplot(datafiniti_for_histogram, aes(!!input$variable)) + geom_histogram()})
 }
 )
 ```
