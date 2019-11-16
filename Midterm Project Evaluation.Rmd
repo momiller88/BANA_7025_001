@@ -6,6 +6,7 @@ runtime: shiny
 **Authors: Sidney Schaeper & Morgan Miller **
 
 ### Introduction
+
 ### Packages Required
 #### **Packages**
 The packages that are need for this evaluation are the readr, dplyr, ggplot2, and DT. The readr package helps us import the datasets for this project. You can find more information on the readr package by clicking [here](https://cran.r-project.org/web/packages/readr/readr.pdf). The dplyr package helps us clean the datasets. You can find more information on the dplyr package by clicking [here](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8). The ggplot2 package helps us create visualizations for these datasets. You can find more information on the ggplot2 package by clicking [here](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf). The DT package helps us create data tables from the R output. You can find more information on the DT package by clicking [here](https://rstudio.github.io/DT/). The shiny package helps us create interactive data visualizations. You can find more information on the shiny package by clicking [here](https://cran.r-project.org/web/packages/shiny/index.html). The first section of code allows you to install the packages. The second section of code allows you to load the packages into R. You need to run both of these sections of code in order to get these packages into R. 
@@ -322,14 +323,14 @@ table(barstool_variable_name$review_stats_critic_count)
 
 ```
 
-###### **Histogram of Numeric Barstool Variables
+###### **Histogram of Numeric Barstool Variables**
 Choose a variable to evaluate: 
 ```{r}
 barstool_for_histogram <- barstool_variable_name[ , c(8:22)]
 shinyApp(
   ui = fluidPage(
     varSelectInput("variable", "Variable:", barstool_for_histogram),
-    plotOutput("data" , height = 500, width = 500)
+    plotOutput("data" , height = 300, width = 700)
 ),
 server = function(input, output) {
   output$data <- renderPlot({
