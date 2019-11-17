@@ -6,7 +6,6 @@ runtime: shiny
 **Authors: Sidney Schaeper & Morgan Miller **
 
 ### Introduction
-
 ![](/Users/sidne/Pictures/pizza_1.jpg)
 
 #### **Do You Love Pizza?**
@@ -44,7 +43,6 @@ library(tibble)
 ```
 
 ### Source Data and Importing Dataset
-
 #### **Source Data**
 The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. The pizza barstool data was created by Tyler Richards. Tyler Richards orginial use for the data was to find the best pizza in New York, because he thought other search tools weren't that clean. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. 
 
@@ -312,7 +310,6 @@ datatable(barstool_variable_name)
 ```
 
 ### Summary of Variables
-
 #### **Summary of Barstool Variables**
 Next, we wanted to evaluate the summary of the barstool variables by character and numeric variables. The first table lets us see the summary of the character variables. We summarized the character variables by the variable name, data type, length, and number of unqiue variables. See below for the table.
 
@@ -380,7 +377,5 @@ server = function(input, output) {
 }
 )
 ```
-
-
 
 ### Exploratory Data Analysis 
