@@ -47,10 +47,123 @@ library(tibble)
 ### Source Data and Importing Dataset
 
 #### **Source Data**
-The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. The pizza barstool data was created by Tyler Richards. Tyler Richards orginial use for the data was to find the best pizza in New York, because he thought other search tools weren't that clean. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. The variables that he included in his dataset are: 
-* distance
-* address1
-* address 2
+The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. These datasets were uploaded to this github on September 30, 2019. 
+
+The pizza barstool data was created by Tyler Richards on May 11, 2019. Tyler Richards orginial use for the data was to find the best pizza places in New York, because he thought other search tools weren't that clean. Also, he had just moved to New York. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. The variables that he included in his dataset are: 
+
+* _distance 
+* address1 
+* address2categories
+* city
+* country
+* createdAt
+* deleted
+* featuredMedia.__t
+* featuredMedia.__v
+* featuredMedia._id
+* featuredMedia.assetId
+* featuredMedia.createdAt
+* featuredMedia.deleted
+* featuredMedia.id
+* featuredMedia.metadata.aspectRatio
+* featuredMedia.metadata.duration
+* featuredMedia.metadata.frameRate
+* featuredMedia.metadata.resolution
+* featuredMedia.modifiedAt
+* featuredMedia.playbackId
+* featuredMedia.reviewId
+* featuredMedia.sourceUrl
+* featuredMedia.status
+* featuredMedia.streams.hls
+* featuredMedia.streams.mp4
+* featuredMedia.thumbnails.large
+* featuredMedia.thumbnails.medium
+* featuredMedia.thumbnails.small
+* featuredMedia.type
+* featuredMedia.user
+* id
+* imageUrl
+* loc.coordinates
+* loc.type
+* modifiedAt
+* name
+* openHours
+* orderProvider
+* orderProvider.checkoutUrl
+* orderProvider.internalId
+* orderProvider.logo
+* orderProvider.name
+* phoneNumber
+* photos
+* placeId
+* priceLevel
+* providerRating
+* providerReviewCount
+* providerTransactions
+* providerUrl
+* refreshDate
+* reviewStats.all.averageScore
+* reviewStats.all.count
+* reviewStats.all.totalScore
+* reviewStats.community.averageScore
+* reviewStats.community.count
+* reviewStats.community.totalScore'
+* reviewStats.critic.averageScore
+* reviewStats.critic.count
+* reviewStats.critic.totalScore
+* reviewStats.dave.averageScore
+* reviewStats.dave.count
+* reviewStats.dave.totalScore
+* slug
+* state
+* timeZone
+* type
+* zip
+* address_total
+* accuracy
+* formatted_address
+* google_place_id
+* input_string
+* latitude
+* longitude
+* number_of_results
+* postcode
+* response.error_message
+* response.results
+* response.status
+* status
+* type.1
+* string_concat
+* dave_score_int
+* review_number
+
+These variables were not the same as the github provided to us for our source data. The variables that were provided to us from the github are below in the data dictionary. You can see Tyler Richards analysis at this [website](https://towardsdatascience.com/adventures-in-barstools-pizza-data-9b8ae6bb6cd1) and you can see his dataset at this [website](https://github.com/tylerjrichards/Barstool_Pizza). 
+
+The next dataset is the datafinit dataset. This dataset was provided by Datafiniti's Business Database. We pulled our source data from the following [github](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The github that we pulled our source data from got their data from kaggle at the following [link](https://www.kaggle.com/datafiniti/pizza-restaurants-and-the-pizza-they-sell#Datafiniti_Pizza_Restaurants_and_the_Pizza_They_Sell_May19.csv). Datafiniti uploaded this dataset on May 29, 2019 from the Datafiniti Business Database. You find information about datafiniti at the following [link](https://datafiniti.co/). The variables that are included in this dataset on kaggle are:
+
+* id
+* address
+* categories
+* city
+* country
+* keys
+* latitude
+* longitude
+* menuPageURL
+* menus.amountMax
+* menus.amountMin
+* menus.currency
+* menus.dateSeen
+* menus.description
+* menus.name
+* name
+* postalCode
+* priceRangeCurrency
+* priceRangeMin
+* priceRangeMax
+* province
+
+The variables that were found in the dataset on kaggle are not the same as what we found in github, The variables that were found in the source data on github are below. 
 
 #### **Original Data Dictionary**
 ##### Pizza Jared Variables
