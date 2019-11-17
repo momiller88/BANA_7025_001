@@ -1,19 +1,21 @@
 ---
-output: html_document
+output: 
+  rmarkdown::html_document:
+    theme: lumen
 runtime: shiny
 ---
-## Pizza Project Mid-Term {.tabset .tabset-fade}
+## Pizza Project Midterm {.tabset .tabset-fade .tabset-pills}
 **Authors: Sidney Schaeper & Morgan Miller **
 
 ### Introduction
 
-![](/Users/sidne/Pictures/pizza_1.jpg)
+![](/Users/sidne/Documents/GitHub/BANA_7025_001/pizza_1.jpg)
 
 #### **Do You Love Pizza?**
 
 We would say most people love pizza. Also, most people want to try a new pizza when they travel or move somewhere new. This is the problem we are hoping to help answer through our analysis. Yelp and other food review sites are great for finding new food locations to eat at, but what they lack is the ability to tell you upfront what is the actual price range of the restaurant. They only provide you 5 scale rating of the price range, and this can be interpreted very differently based on the person. Our goal is to show you the top 5 pizza places by price range, zip, and type of rating. Our analysis will provide you with a more concrete number of the price range of a pizza place. We are planning to create a table of the the top rated pizza places by zip code, price range, and type of review. We are planning to make this interactive, so the user can select a zip code, price range, and type of review. After this selection, the table would automatically fill with the top 5 best pizza places based on their selections. We are planning to complete this analysis through the use of the shiny, because shiny creates interactive tables. Also, we plan to combine the barstool and datafiniti datasets, so we can have reviews and price ranges. Also, the table will contain the name, address, price range, and rating of the pizza place. This table will help the user find the best pizza place they can afford to eat at whenever they are traveling or want to try a new pizza place.
 
-The next question we are hpoing to answer is what leads to a pizza place attaining a high rating. As an owner of a restaurant, you want to know what you might want to change to increase your rating, or you might want to know what you need to maintain to keep a high rating. This is the information we are hoping to provide to pizza place owners. We plan to answer this question by combining all three datasets. Also, We plan to answer this question through analysis of the correlation between variables, and performing regression analysis. We hope that these two analytical techniques will allow us to determine the relationship between certain varibles and the rating of pizza place. We believe that knowing these relationships will help an owner have a better awareness of what they need to focus on at their restaurants. 
+The next question we are hoping to answer is what leads to a pizza place attaining a high rating. As an owner of a restaurant, you want to know what you might want to change to increase your rating, or you might want to know what you need to maintain to keep a high rating. This is the information we are hoping to provide to pizza place owners. We plan to answer this question by combining all three datasets. Also, We plan to answer this question through analysis of the correlation between variables, and performing regression analysis. We hope that these two analytical techniques will allow us to determine the relationship between certain varibles and the rating of pizza place. We believe that knowing these relationships will help an owner have a better awareness of what they need to focus on at their restaurants. 
 
 ### Packages Required
 
@@ -47,7 +49,7 @@ library(tibble)
 ### Source Data and Importing Dataset
 
 #### **Source Data**
-The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. These datasets were uploaded to this github on September 30, 2019. 
+The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. These datasets were uploaded to this github on September 30, 2019 by Thomas Mock. 
 
 The pizza barstool data was created by Tyler Richards on May 11, 2019. Tyler Richards orginial use for the data was to find the best pizza places in New York, because he thought other search tools weren't that clean. Also, he had just moved to New York. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. The variables that he included in his dataset are: 
 
@@ -165,7 +167,21 @@ The next dataset is the datafinit dataset. This dataset was provided by Datafini
 
 The variables that were found in the dataset on kaggle are not the same as what we found in github, The variables that were found in the source data on github are below. 
 
-#### **Original Data Dictionary**
+The final dataset is the jared dataset. This dataset was pulled from [Jared Lander's twitter](https://twitter.com/jaredlander/status/1178122846419193858?s=20). He provided Thomas the [json](https://jaredlander.com/data/PizzaPollData.php) from his database on various pizza ratings he collected. He provided this data on September 28, 2019. His database contained the following variables: 
+
+* PollaQid
+* Answer
+* Votes
+* pollq_id
+* question
+* place
+* time 
+* totalvotes
+* percent
+
+The variables that Jared had orginally populated were not all used on the github page. The variables used on the [github page](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01) are below. 
+
+#### **Original Data Dictionary from Github**
 ##### Pizza Jared Variables
 Variable | Class | Description
 ---------|-------|------------
@@ -400,7 +416,7 @@ fixed_zip <- unlist(lapply(zip_edit, function(x){if(nchar(x)<5){paste0(0,x)}else
 barstool_variable_name$zip <- fixed_zip
 ```
 
-Next, we evaluated the rest of the variables. We found them to be fine after looking at their tables. We noticed that there were outliers with the some of the numeric variables. We didn't want to remove any, because certain locations could receive more votes due to popularity. Also, the outliers were still reasonable numbers. If you would like to see these values, please run the code below. Also, you can see some of the ouliers in the histograms in the next section.  
+Next, we evaluated the rest of the variables. We found them to be fine after looking at their tables. We noticed that there were outliers with the some of the numeric variables. We didn't want to remove any, because certain locations could receive more votes due to popularity. Also, the outliers were still reasonable numbers. If you would like to see these values, please run the code below. Also, you can see some of the ouliers in the histograms in the next tab.  
 
 ```{r eval = TRUE, results = "hide", fig.show = "hide", message = FALSE, warning = FALSE}
 #Creates the tables for the other values in the dataset we didn't fix a value for#
@@ -426,6 +442,8 @@ Below is the code and a snippet of the final cleaned dataset for barstool.
 ```{r}
 #Final cleaned dataset for barstool#
 datatable(head(barstool_variable_name,50))
+
+barstool_dup_clean <- barstool_variable_name[!duplicated(barstool_variable_name, nmax = 1), ]
 ```
 
 ### Summary of Variables
@@ -498,3 +516,11 @@ server = function(input, output) {
 )
 ```
 
+### Exploratory Data Analysis
+
+#### **Uncover New Information**
+We plan to uncover new information by combining the datafiniti and barstool to answer the question about finding the top 5 pizza places by zip, price, and type of rating. Also, we plan to uncover new information by combining the datafiniti, barstool, and jared datasets in order to answer the question about what makes a pizza place receive a high rating. In all of these combinations, we hope to find matches between the datasets in order to answer these questions. We need to do more research in order to peform these techniques properly. 
+
+There are a variety of plots and tables we plan to use to answer these questions. We plan to use a shiny data table to answer the question about what are the top five pizza places based on zip, price range, and rating type. We need to learn a little bit more about shiny to form this table through r code. In addition, we plan to use scatter plots to evaluate the correlations between variables in order to see what might possibly have an assocation with rating. Also, we plan to use tables to show the summary statistics for the linear regression models we create.
+
+As mentioned prior, we plan on using the machine learning technique of linear regression analysis. We plan to use this technique to determine what variables have the greatest impact on the rating of a pizza place. Also, we plan to use this technique to determine what variables have a positive and negative relationship with the rating of a pizza place. In addition, we plan to use this technique to determine what variables are significant to the rating of a pizza place. 
