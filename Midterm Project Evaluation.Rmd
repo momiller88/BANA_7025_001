@@ -308,11 +308,11 @@ table(barstool_variable_name$review_stats_critic_count)
 table(barstool_variable_name$review_stats_dave_average_score)
 ```
 
-Below is the code and the final cleaned dataset for barstool. 
+Below is the code and a snippet of the final cleaned dataset for barstool. 
 
 ```{r}
 #Final cleaned dataset for barstool#
-datatable(barstool_variable_name)
+datatable(head(barstool_variable_name,50))
 ```
 
 ### Summary of Variables
