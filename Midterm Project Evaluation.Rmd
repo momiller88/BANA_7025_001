@@ -43,9 +43,12 @@ library(pastecs)
 library(tibble)
 ```
 
-### Data Preparation
-#### **Original Data Dictionary**
+### Source Data and Importing Dataset
 
+#### **Source Data**
+The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. The pizza barstool data was created by Tyler Richards. Tyler Richards orginial use for the data was to find the best pizza in New York, because he thought other search tools weren't that clean. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. 
+
+#### **Original Data Dictionary**
 ##### **Pizza Jared Variables**
 Variable | Class | Description
 ---------|-------|------------
@@ -115,15 +118,16 @@ The first thing you should do is to make sure you have read in the dataset. Belo
 
 ```{r}
 #See a snippet of the barstool dataset#
-datatable(head(barstool))
+datatable(barstool)
 
 #See a snippet of the datafiniti dataset#
-datatable(head(datafiniti))
+datatable(datafiniti)
 
 #See a snippet of the jared dataset#
-datatable(head(jared))
+datatable(jared)
 ```
 
+### Data Cleaning
 #### **Evaluate Missing Values**
 The first item we wanted to evaluate was the missing items in the datasets. The website for the source data didn't mention missing items or how they were recorded. We decided that we needed to do this on our own through R. The code below allows us to see the percentage of missing items from each of the datasets. 
 ```{r}
@@ -307,7 +311,9 @@ Below is the code and the final cleaned dataset for barstool.
 datatable(barstool_variable_name)
 ```
 
-##### **Summary of Barstool Variables**
+### Summary of Variables
+
+#### **Summary of Barstool Variables**
 Next, we wanted to evaluate the summary of the barstool variables by character and numeric variables. The first table lets us see the summary of the character variables. We summarized the character variables by the variable name, data type, length, and number of unqiue variables. See below for the table.
 
 ```{r}
@@ -326,7 +332,6 @@ This table lets us see a summary of the numeric variables for the barstool datas
 sum_num_bar <- stat.desc(barstool_variable_name[ , -c(1:5)])
 datatable(round(sum_num_bar, 2))
 ```
-
 
 ```{r}
 #Creates a new dataset for the items that we want evaluated by a histogram#
