@@ -6,6 +6,7 @@ runtime: shiny
 **Authors: Sidney Schaeper & Morgan Miller **
 
 ### Introduction
+
 ![](/Users/sidne/Pictures/pizza_1.jpg)
 
 #### **Do You Love Pizza?**
@@ -15,6 +16,7 @@ We would say most people love pizza. Also, most people want to try a new pizza w
 The next question we are hpoing to answer is what leads to a pizza place attaining a high rating. As an owner of a restaurant, you want to know what you might want to change to increase your rating, or you might want to know what you need to maintain to keep a high rating. This is the information we are hoping to provide to pizza place owners. We plan to answer this question by combining all three datasets. Also, We plan to answer this question through analysis of the correlation between variables, and performing regression analysis. We hope that these two analytical techniques will allow us to determine the relationship between certain varibles and the rating of pizza place. We believe that knowing these relationships will help an owner have a better awareness of what they need to focus on at their restaurants. 
 
 ### Packages Required
+
 #### **Packages**
 The packages that are need for this evaluation are the readr, dplyr, ggplot2, and DT. The readr package helps us import the datasets for this project. You can find more information on the readr package by clicking [here](https://cran.r-project.org/web/packages/readr/readr.pdf). The tidyr package helps us reorganize the datasets. You can find more information on the tidyr package by clicking [here](https://www.rdocumentation.org/packages/tidyr/versions/0.8.3). The ggplot2 package helps us create visualizations for these datasets. You can find more information on the ggplot2 package by clicking [here](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf). The DT package helps us create data tables from the R output. You can find more information on the DT package by clicking [here](https://rstudio.github.io/DT/). The shiny package helps us create interactive data visualizations. You can find more information on the shiny package by clicking [here](https://cran.r-project.org/web/packages/shiny/index.html). The pastecs package helps us summarize the numeric values from the datasets. You can find more information on the pastecs package by clicking [here](https://www.rdocumentation.org/packages/pastecs/versions/1.3.21). The tibble package helps us add row.names to the character variable summary. You can find more information on the tibble package by clicking [here](https://tibble.tidyverse.org/reference/tibble-package.html). The first section of code allows you to install the packages. The second section of code allows you to load the packages into R. You need to run both of these sections of code in order to get these packages into R. 
 
@@ -43,10 +45,15 @@ library(tibble)
 ```
 
 ### Source Data and Importing Dataset
+
 #### **Source Data**
-The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. The pizza barstool data was created by Tyler Richards. Tyler Richards orginial use for the data was to find the best pizza in New York, because he thought other search tools weren't that clean. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. 
+The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. The pizza barstool data was created by Tyler Richards. Tyler Richards orginial use for the data was to find the best pizza in New York, because he thought other search tools weren't that clean. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. The variables that he included in his dataset are: 
+* distance
+* address1
+* address 2
 
 #### **Original Data Dictionary**
+
 ##### **Pizza Jared Variables**
 Variable | Class | Description
 ---------|-------|------------
@@ -310,6 +317,7 @@ datatable(barstool_variable_name)
 ```
 
 ### Summary of Variables
+
 #### **Summary of Barstool Variables**
 Next, we wanted to evaluate the summary of the barstool variables by character and numeric variables. The first table lets us see the summary of the character variables. We summarized the character variables by the variable name, data type, length, and number of unqiue variables. See below for the table.
 
@@ -378,4 +386,3 @@ server = function(input, output) {
 )
 ```
 
-### Exploratory Data Analysis 
