@@ -122,13 +122,13 @@ The first thing you should do is to make sure you have read in the dataset. Belo
 
 ```{r}
 #See a snippet of the barstool dataset#
-datatable(head(barstool, 10))
+datatable(barstool)
 
 #See a snippet of the datafiniti dataset#
-datatable(head(datafiniti, 10))
+datatable(datafiniti)
 
 #See a snippet of the jared dataset#
-datatable(head(jared, 10))
+datatable(jared)
 ```
 
 ### Data Cleaning
