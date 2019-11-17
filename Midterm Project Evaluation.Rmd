@@ -17,7 +17,7 @@ The next question we are hpoing to answer is what leads to a pizza place attaini
 
 ### Packages Required
 #### **Packages**
-The packages that are need for this evaluation are the readr, dplyr, ggplot2, and DT. The readr package helps us import the datasets for this project. You can find more information on the readr package by clicking [here](https://cran.r-project.org/web/packages/readr/readr.pdf). The tidyr package helps us reorganize the datasets. You can find more information on the tidyr package by clicking [here](https://www.rdocumentation.org/packages/tidyr/versions/0.8.3). The ggplot2 package helps us create visualizations for these datasets. You can find more information on the ggplot2 package by clicking [here](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf). The DT package helps us create data tables from the R output. You can find more information on the DT package by clicking [here](https://rstudio.github.io/DT/). The shiny package helps us create interactive data visualizations. You can find more information on the shiny package by clicking [here](https://cran.r-project.org/web/packages/shiny/index.html). The first section of code allows you to install the packages. The second section of code allows you to load the packages into R. You need to run both of these sections of code in order to get these packages into R. 
+The packages that are need for this evaluation are the readr, dplyr, ggplot2, and DT. The readr package helps us import the datasets for this project. You can find more information on the readr package by clicking [here](https://cran.r-project.org/web/packages/readr/readr.pdf). The tidyr package helps us reorganize the datasets. You can find more information on the tidyr package by clicking [here](https://www.rdocumentation.org/packages/tidyr/versions/0.8.3). The ggplot2 package helps us create visualizations for these datasets. You can find more information on the ggplot2 package by clicking [here](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf). The DT package helps us create data tables from the R output. You can find more information on the DT package by clicking [here](https://rstudio.github.io/DT/). The shiny package helps us create interactive data visualizations. You can find more information on the shiny package by clicking [here](https://cran.r-project.org/web/packages/shiny/index.html). The pastecs package helps us summarize the numeric values from the datasets. You can find more information on the pastecs package by clicking [here](https://www.rdocumentation.org/packages/pastecs/versions/1.3.21). The tibble package helps us add row.names to the character variable summary. You can find more information on the tibble package by clicking [here](https://tibble.tidyverse.org/reference/tibble-package.html). The first section of code allows you to install the packages. The second section of code allows you to load the packages into R. You need to run both of these sections of code in order to get these packages into R. 
 
 ##### **Code to Install Packages**
 ```{r eval=FALSE}
@@ -311,17 +311,12 @@ datatable(barstool_variable_name)
 Next, we wanted to evaluate the summary of the barstool variables by character and numeric variables. The first table lets us see the summary of the character variables. We summarized the character variables by the variable name, data type, length, and number of unqiue variables. See below for the table.
 
 ```{r}
-#Creates summary data frame of the character variables for barstool#
+#Creates summary data table of the character variables for barstool#
 sum_char_bar <- barstool_variable_name[ , c(1:5)]
 fun_bar <- function(sum_char_bar){list(typeof(sum_char_bar), length(sum_char_bar), length(unique(sum_char_bar)))}
 app_char_bar <- sapply(sum_char_bar, fun_bar)
 row.names(app_char_bar) <- c("Data Type", "Length", "Number of Unique Values")
 datatable(app_char_bar)
-```
-
-```{r}
-#Creates summary data table for the character variables for the barstool dataset#
-
 ```
 
 This table lets us see a summary of the numeric variables for the barstool dataset. We summarized this dataset by variable, number of values, number of zero values, number of missing values, minimum, maximum, range, sum, median, mean, standard error mean, confidence interval mean, variance, standard deviation, and coefficient variance. Also, we wanted to summarize the numeric variables through a histogram. We didn't include the longitude, latitude, and review_stats_dave_count. We didn't include the longitude and latitude, because there is too much variablity with these variables. Also, we didn't include the review_stats_dave_count, because it is the same value all the way through the dataset. See below for the table and histogram. Select the appropriate variable you would like to evaluate through a histogram. 
