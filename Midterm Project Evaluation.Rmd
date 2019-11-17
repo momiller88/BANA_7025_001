@@ -1,7 +1,7 @@
 ---
 output: 
   rmarkdown::html_document:
-    theme: lumen
+    theme: yeti
 runtime: shiny
 ---
 ## Pizza Project Midterm {.tabset .tabset-fade .tabset-pills}
