@@ -7,8 +7,13 @@ runtime: shiny
 
 ### Introduction
 
+![](/Users/sidne/Pictures/pizza_1.jpg)
+
 #### **Do You Love Pizza?**
 
+We would say most people love pizza. Also, most people want to try a new pizza when they travel or move somewhere new. This is the problem we are hoping to help answer through our analysis. Yelp and other food review sites are great for finding new food locations to eat at, but what they lack is the ability to tell you upfront what is the actual price range of the restaurant. They only provide you 5 scale rating of the price range, and this can be interpreted very differently based on the person. Our goal is to show you the top 5 pizza places by price range, zip, and type of rating. Our analysis will provide you with a more concrete number of the price range of a pizza place. We are planning to create a table of the the top rated pizza places by zip code, price range, and type of review. We are planning to make this interactive, so the user can select a zip code, price range, and type of review. After this selection, the table would automatically fill with the top 5 best pizza places based on their selections. We are planning to complete this analysis through the use of the shiny, because shiny creates interactive tables. Also, we plan to combine the barstool and datafiniti datasets, so we can have reviews and price ranges. Also, the table will contain the name, address, price range, and rating of the pizza place. This table will help the user find the best pizza place they can afford to eat at whenever they are traveling or want to try a new pizza place.
+
+The next question we are hpoing to answer is what leads to a pizza place attaining a high rating. As an owner of a restaurant, you want to know what you might want to change to increase your rating, or you might want to know what you need to maintain to keep a high rating. This is the information we are hoping to provide to pizza place owners. We plan to answer this question by combining all three datasets. Also, We plan to answer this question through analysis of the correlation between variables, and performing regression analysis. We hope that these two analytical techniques will allow us to determine the relationship between certain varibles and the rating of pizza place. We believe that knowing these relationships will help an owner have a better awareness of what they need to focus on at their restaurants. 
 
 ### Packages Required
 #### **Packages**
@@ -22,7 +27,8 @@ install.packages("tidyr")
 install.packages("ggplot2")
 install.packages("DT")
 install.packages("shiny")
-install.packages("dplyr")
+install.packeges("pastecs")
+install.packages("tibble")
 ```
 
 ##### **Code to Find Packages in the Library**
@@ -33,7 +39,8 @@ library(tidyr)
 library(ggplot2)
 library(DT)
 library(shiny)
-library(dplyr)
+library(pastecs)
+library(tibble)
 ```
 
 ### Data Preparation
@@ -109,8 +116,10 @@ The first thing you should do is to make sure you have read in the dataset. Belo
 ```{r}
 #See a snippet of the barstool dataset#
 datatable(head(barstool))
+
 #See a snippet of the datafiniti dataset#
 datatable(head(datafiniti))
+
 #See a snippet of the jared dataset#
 datatable(head(jared))
 ```
@@ -119,16 +128,19 @@ datatable(head(jared))
 The first item we wanted to evaluate was the missing items in the datasets. The website for the source data didn't mention missing items or how they were recorded. We decided that we needed to do this on our own through R. The code below allows us to see the percentage of missing items from each of the datasets. 
 ```{r}
 #Evaluate the percentage of missing items for barstool#
-(colSums(is.na(barstool))/463)*100
+(colSums(is.na(barstool)) / 463) * 100
+
 #Evaluate the percentage of missing items for datafiniti#
-(colSums(is.na(datafiniti))/10000)*100
+(colSums(is.na(datafiniti)) / 10000) * 100
+
 #Evaluate the percentage of missing items for jared#
-(colSums(is.na(jared))/375)*100
+(colSums(is.na(jared)) / 375) * 100
 ```
 
 For the barstool dataset, longitude and latitude have missing items. The percentage of missing items for longitude and latitude is 0.43%. For the datafiniti dataset, there were no missing items from the dataset. For the jared dataset, percent is the only variable to have missing items. The percentage of missing items for percent is 1.33%. Once we realized there were missing items, we looked through the dataset to see how the missing values were recorded. We saw that all the missing items were recorded with an NA. After evaluating the missing items, we decided to drop the rows that were missing, because there was such a small percentage of missing items. Below is the code to remove these missing items. 
 
 ```{r}
+#Removes the missing values for each of the datasets#
 barstool_miss <- na.omit(barstool)
 datafiniti_miss <- na.omit(datafiniti)
 jared_miss <- na.omit(jared)
@@ -191,7 +203,7 @@ After performing our search, we found that Joe's Pizza at 8th is not the same ch
 
 ```{r}
 #Changes the values of the restaurants that aren't part of the same chain#
-barstool_data_type[c(198,238,239,248,249,265,266,310,311),]$name <- c("Joe's Pizza - 8th","Little Italy Pizza - 45th", "Little Italy Pizza - Fulton","Lucali - Henry", "Lucali - Bay", "Mariella Pizza - Lexington", "Mariella Pizza - 8th", "Patsy's Pizzeria - 1st", "Patsy's Pizzeria - 2nd")
+barstool_data_type[c(198, 238, 239, 248, 249, 265, 266, 310, 311),]$name <- c("Joe's Pizza - 8th","Little Italy Pizza - 45th", "Little Italy Pizza - Fulton","Lucali - Henry", "Lucali - Bay", "Mariella Pizza - Lexington", "Mariella Pizza - 8th", "Patsy's Pizzeria - 1st", "Patsy's Pizzeria - 2nd")
 ```
 
 The second variable we evaluated was the address in the barstool dataset. The first line of code creates a table with all the values for the address variable and how many times they were repeated. We wanted to look at the items that were listed more than the once. The second line of code allows us to do that. The third line of code allows us to see addresses where they don't start off with a house number. Run the code below to see the output. 
@@ -208,6 +220,7 @@ barstool_data_type[barstool_data_type$address > "989 1st Ave", 2]
 After evaluating the output for addresses, we searched the internet for these places to confirm that they were at the same location. In order to search these restaurants, we need to pull in the rest of the variables to help with our search. The code below allows us to see the records where the same address was written more than once. 
 
 ```{r}
+#Creates data table for the addresses we needed to search for#
 datatable(barstool_data_type[barstool_data_type$address == "268 W 23rd St",])
 datatable(barstool_data_type[barstool_data_type$address == "3131 Las Vegas Blvd S",])
 datatable(barstool_data_type[barstool_data_type$address == "936 8th Ave",])
@@ -257,58 +270,19 @@ barstool_zip <- barstool_variable_name[as.numeric(barstool_variable_name$zip) < 
 barstool_zip
 ```
 
-After evaluating the table and searching some of these zip codes, we found that the items that had only 4 digits for the zip code were missing a 0 in front. The code below allows us to fix this problem.
+After evaluating the table and searching some of these zip codes, we found that the items that had only 4 digits for the zip code were missing a 0 in front. The zip code should always be 5 digits. The code below allows us to fix this problem.
 
 ```{r}
-#Change the 4 digits zips to 5 digit zips#
-barstool_variable_name[barstool_variable_name$zip == "1748", ]$zip <- "01748"
-barstool_variable_name[barstool_variable_name$zip == "1801", ]$zip <- "01801"
-barstool_variable_name[barstool_variable_name$zip == "1902", ]$zip <- "01902"
-barstool_variable_name[barstool_variable_name$zip == "2072", ]$zip <- "02072"
-barstool_variable_name[barstool_variable_name$zip == "2108", ]$zip <- "02108"
-barstool_variable_name[barstool_variable_name$zip == "2113", ]$zip <- "02113"
-barstool_variable_name[barstool_variable_name$zip == "2114", ]$zip <- "02114"
-barstool_variable_name[barstool_variable_name$zip == "2115", ]$zip <- "02115"
-barstool_variable_name[barstool_variable_name$zip == "2116", ]$zip <- "02116"
-barstool_variable_name[barstool_variable_name$zip == "2128", ]$zip <- "02128"
-barstool_variable_name[barstool_variable_name$zip == "2132", ]$zip <- "02132"
-barstool_variable_name[barstool_variable_name$zip == "2151", ]$zip <- "02151"
-barstool_variable_name[barstool_variable_name$zip == "2184", ]$zip <- "02184"
-barstool_variable_name[barstool_variable_name$zip == "2199", ]$zip <- "02199"
-barstool_variable_name[barstool_variable_name$zip == "2301", ]$zip <- "02301"
-barstool_variable_name[barstool_variable_name$zip == "2347", ]$zip <- "02347"
-barstool_variable_name[barstool_variable_name$zip == "2359", ]$zip <- "02359"
-barstool_variable_name[barstool_variable_name$zip == "2368", ]$zip <- "02368"
-barstool_variable_name[barstool_variable_name$zip == "2467", ]$zip <- "02467"
-barstool_variable_name[barstool_variable_name$zip == "2535", ]$zip <- "02535"
-barstool_variable_name[barstool_variable_name$zip == "2539", ]$zip <- "02539"
-barstool_variable_name[barstool_variable_name$zip == "2554", ]$zip <- "02554"
-barstool_variable_name[barstool_variable_name$zip == "2557", ]$zip <- "02557"
-barstool_variable_name[barstool_variable_name$zip == "2563", ]$zip <- "02563"
-barstool_variable_name[barstool_variable_name$zip == "2564", ]$zip <- "02564"
-barstool_variable_name[barstool_variable_name$zip == "2568", ]$zip <- "02568"
-barstool_variable_name[barstool_variable_name$zip == "2601", ]$zip <- "02601"
-barstool_variable_name[barstool_variable_name$zip == "2639", ]$zip <- "02639"
-barstool_variable_name[barstool_variable_name$zip == "6338", ]$zip <- "06338"
-barstool_variable_name[barstool_variable_name$zip == "6511", ]$zip <- "06511"
-barstool_variable_name[barstool_variable_name$zip == "6902", ]$zip <- "06902"
-barstool_variable_name[barstool_variable_name$zip == "6907", ]$zip <- "06907"
-barstool_variable_name[barstool_variable_name$zip == "7014", ]$zip <- "07014"
-barstool_variable_name[barstool_variable_name$zip == "7030", ]$zip <- "07030"
-barstool_variable_name[barstool_variable_name$zip == "7031", ]$zip <- "07031"
-barstool_variable_name[barstool_variable_name$zip == "7050", ]$zip <- "07050"
-barstool_variable_name[barstool_variable_name$zip == "7070", ]$zip <- "07070"
-barstool_variable_name[barstool_variable_name$zip == "7073", ]$zip <- "07073"
-barstool_variable_name[barstool_variable_name$zip == "7110", ]$zip <- "07110"
-barstool_variable_name[barstool_variable_name$zip == "7202", ]$zip <- "07202"
-barstool_variable_name[barstool_variable_name$zip == "7302", ]$zip <- "07302"
-barstool_variable_name[barstool_variable_name$zip == "7407", ]$zip <- "07407"
-barstool_variable_name[barstool_variable_name$zip == "7446", ]$zip <- "07446"
+#Fixes the zip codes with only 4 digits, add a beginning 0#
+zip_edit <- barstool_variable_name$zip
+fixed_zip <- unlist(lapply(zip_edit, function(x){if(nchar(x)<5){paste0(0,x)}else{x}}))
+barstool_variable_name$zip <- fixed_zip
 ```
 
 Next, we evaluated the rest of the variables. We found them to be fine after looking at their tables. We noticed that there were outliers with the some of the numeric variables. We didn't want to remove any, because certain locations could receive more votes due to popularity. Also, the outliers were still reasonable numbers. If you would like to see these values, please run the code below. Also, you can see some of the ouliers in the histograms in the next section.  
 
 ```{r eval = TRUE, results = "hide", fig.show = "hide", message = FALSE, warning = FALSE}
+#Creates the tables for the other values in the dataset we didn't fix a value for#
 table(barstool_variable_name$country)
 table(barstool_variable_name$latitude)
 table(barstool_variable_name$longitude)
@@ -324,39 +298,40 @@ table(barstool_variable_name$review_stats_community_total_score)
 table(barstool_variable_name$review_stats_critic_average_score)
 table(barstool_variable_name$review_stats_critic_count)
 table(barstool_variable_name$review_stats_dave_average_score)
-
 ```
 
 Below is the code and the final cleaned dataset for barstool. 
 
 ```{r}
+#Final cleaned dataset for barstool#
 datatable(barstool_variable_name)
 ```
 
 ##### **Summary of Barstool Variables**
-Next, we wanted to evaluate the summary of the barstool variables by character and numeric variables. The first table lets us see the summary of the character variables. We summarized the character variables by the variable name, data type, length, and number of unqiue variables. See below for the table
+Next, we wanted to evaluate the summary of the barstool variables by character and numeric variables. The first table lets us see the summary of the character variables. We summarized the character variables by the variable name, data type, length, and number of unqiue variables. See below for the table.
 
-```{r include = FALSE, results = "hide", fig.show = "hide", message = FALSE, warning = FALSE}
+```{r}
 #Creates summary data frame of the character variables for barstool#
-summary_barstool_char <- data.frame("Variable"= c("Name", "Address", "City", "Zip", "Country"), "Data_Type" = c(typeof(barstool_variable_name$name), typeof(barstool_variable_name$address), typeof(barstool_variable_name$city), typeof(barstool_variable_name$zip), typeof(barstool_variable_name$country)),"Length" = c(length(barstool_variable_name$name), length(barstool_variable_name$address), length(barstool_variable_name$city), length(barstool_variable_name$zip), length(barstool_variable_name$country)), "Number_of_Unique_Values" = c(length(unique(barstool_variable_name$name)), length(unique(barstool_variable_name$address)), length(unique(barstool_variable_name$city)), length(unique(barstool_variable_name$zip)), length(unique(barstool_variable_name$country))))
+sum_char_bar <- barstool_variable_name[ , c(1:5)]
+fun_bar <- function(sum_char_bar){list(typeof(sum_char_bar), length(sum_char_bar), length(unique(sum_char_bar)))}
+app_char_bar <- sapply(sum_char_bar, fun_bar)
+row.names(app_char_bar) <- c("Data Type", "Length", "Number of Unique Values")
+datatable(app_char_bar)
 ```
 
 ```{r}
 #Creates summary data table for the character variables for the barstool dataset#
-datatable(summary_barstool_char)
+
 ```
 
-This table lets us see a summary of the numeric variables for the barstool dataset. We summarized this dataset by variable name, data type, length, number of unique values, minimum, mean, maximum, first quartile, third quartile, and mean. Also, we wanted to summarize the numeric variables through a histogram. We didn't include the longitude, latitude, and review_stats_dave_count. We didn't include the longitude and latitude, because there is too much variablity with these variables. Also, we didn't include the review_stats_dave_count, because it is the same value all the way through the dataset. See below for the table and histogram. Select the appropriate variable you would like to evaluate through a histogram. 
-
-```{r include = FALSE, results = "hide", fig.show = "hide", message = FALSE, warning = FALSE}
-#Creates summary data frame of the numeric variables for barstool#
-summary_barstool_num <- data.frame("Variable"= c("Latitude", "Longitude", "Price_Level", "Provider_Rating", "Provider_Review_Count", "Review_Stats_All_Average_Score", "Review_Stats_All_Count", "Review_Stats_All_Total_Score", "Review_Stats_Community_Average_Score", "Review_Stats_Community_Count", "Review_Stats_Community_Total_Score", "Review_Stats_Critic_Average_Score", "Review_Stats_Critic_Count", "Review_Stats_Critic_Total_Score", "Review_Stats_Dave_Count", "Review_Stats_Dave_Total_Score"), "Data_Type" = c(typeof(barstool_variable_name$latitude), typeof(barstool_variable_name$longitude), typeof(barstool_variable_name$price_level), typeof(barstool_variable_name$provider_rating), typeof(barstool_variable_name$provider_review_count), typeof(barstool_variable_name$review_stats_all_average_score), typeof(barstool_variable_name$review_stats_all_count), typeof(barstool_variable_name$review_stats_all_total_score), typeof(barstool_variable_name$review_stats_community_average_score), typeof(barstool_variable_name$review_stats_community_count), typeof(barstool_variable_name$review_stats_community_total_score), typeof(barstool_variable_name$review_stats_critic_average_score), typeof(barstool_variable_name$review_stats_critic_count), typeof(barstool_variable_name$review_stats_critic_total_score), typeof(barstool_variable_name$review_stats_dave_count), typeof(barstool_variable_name$review_stats_dave_total_score)), "Length" = c(length(barstool_variable_name$latitude), length(barstool_variable_name$longtitude), length(barstool_variable_name$price_level), length(barstool_variable_name$provider_rating), length(barstool_variable_name$provider_review_count), length(barstool_variable_name$review_stats_all_average_score), length(barstool_variable_name$review_stats_all_count), length(barstool_variable_name$review_stats_all_total_score), length(barstool_variable_name$review_stats_community_average_score), length(barstool_variable_name$review_stats_community_count), length(barstool_variable_name$review_stats_community_total_score), length(barstool_variable_name$review_stats_critic_average_score), length(barstool_variable_name$review_stats_critic_count), length(barstool_variable_name$review_stats_critic_total_score), length(barstool_variable_name$review_stats_dave_count), length(barstool_variable_name$review_stats_dave_total_score)), "Number_of_Unique_values" = c(length(unique(barstool_variable_name$latitude)), length(unique(barstool_variable_name$longitude)), length(unique(barstool_variable_name$price_level)), length(unique(barstool_variable_name$provider_rating)), length(unique(barstool_variable_name$provider_review_count)), length(unique(barstool_variable_name$review_stats_all_average_score)), length(unique(barstool_variable_name$review_stats_all_count)), length(unique(barstool_variable_name$review_stats_all_total_score)), length(unique(barstool_variable_name$review_stats_community_average_score)), length(unique(barstool_variable_name$review_stats_community_count)), length(unique(barstool_variable_name$review_stats_community_total_score)), length(unique(barstool_variable_name$review_stats_critic_average_score)), length(unique(barstool_variable_name$review_stats_critic_count)), length(unique(barstool_variable_name$review_stats_critic_total_score)), length(unique(barstool_variable_name$review_stats_dave_count)), length(unique(barstool_variable_name$review_stats_dave_total_score))), "Min" = c(min(barstool_variable_name$latitude), min(barstool_variable_name$longitude), min(barstool_variable_name$price_level), min(barstool_variable_name$provider_rating), min(barstool_variable_name$provider_review_count), min(barstool_variable_name$review_stats_all_average_score), min(barstool_variable_name$review_stats_all_count), min(barstool_variable_name$review_stats_all_total_score), min(barstool_variable_name$review_stats_community_average_score), min(barstool_variable_name$review_stats_community_count), min(barstool_variable_name$review_stats_community_total_score), min(barstool_variable_name$review_stats_critic_average_score), min(barstool_variable_name$review_stats_critic_count), min(barstool_variable_name$review_stats_critic_total_score), min(barstool_variable_name$review_stats_dave_count), min(barstool_variable_name$review_stats_dave_total_score)), "Mean" =c(mean(barstool_variable_name$latitude), mean(barstool_variable_name$longitude), mean(barstool_variable_name$price_level), mean(barstool_variable_name$provider_rating), mean(barstool_variable_name$provider_review_count), mean(barstool_variable_name$review_stats_all_average_score), mean(barstool_variable_name$review_stats_all_count), mean(barstool_variable_name$review_stats_all_total_score), mean(barstool_variable_name$review_stats_community_average_score), mean(barstool_variable_name$review_stats_community_count), mean(barstool_variable_name$review_stats_community_total_score), mean(barstool_variable_name$review_stats_critic_average_score), mean(barstool_variable_name$review_stats_critic_count), mean(barstool_variable_name$review_stats_critic_total_score), mean(barstool_variable_name$review_stats_dave_count), mean(barstool_variable_name$review_stats_dave_total_score)), "Max" = c(max(barstool_variable_name$latitude), max(barstool_variable_name$longitude), max(barstool_variable_name$price_level), max(barstool_variable_name$provider_rating), max(barstool_variable_name$provider_review_count), max(barstool_variable_name$review_stats_all_average_score), max(barstool_variable_name$review_stats_all_count), max(barstool_variable_name$review_stats_all_total_score), max(barstool_variable_name$review_stats_community_average_score), max(barstool_variable_name$review_stats_community_count), max(barstool_variable_name$review_stats_community_total_score), max(barstool_variable_name$review_stats_critic_average_score), max(barstool_variable_name$review_stats_critic_count), max(barstool_variable_name$review_stats_critic_total_score), max(barstool_variable_name$review_stats_dave_count), max(barstool_variable_name$review_stats_dave_total_score)), "First_Quantile" = c(quantile(barstool_variable_name$latitude, 0.25), quantile(barstool_variable_name$longitude, 0.25), quantile(barstool_variable_name$price_level, 0.25), quantile(barstool_variable_name$provider_rating, 0.25), quantile(barstool_variable_name$provider_review_count, 0.25), quantile(barstool_variable_name$review_stats_all_average_score, 0.25), quantile(barstool_variable_name$review_stats_all_count, 0.25), quantile(barstool_variable_name$review_stats_all_total_score, 0.25), quantile(barstool_variable_name$review_stats_community_average_score, 0.25), quantile(barstool_variable_name$review_stats_community_count, 0.25), quantile(barstool_variable_name$review_stats_community_total_score, 0.25), quantile(barstool_variable_name$review_stats_critic_average_score, 0.25), quantile(barstool_variable_name$review_stats_critic_count, 0.25), quantile(barstool_variable_name$review_stats_critic_total_score, 0.25), quantile(barstool_variable_name$review_stats_dave_count, 0.25), quantile(barstool_variable_name$review_stats_dave_total_score, 0.25)), "Third_Quantile" = c(quantile(barstool_variable_name$latitude, 0.75), quantile(barstool_variable_name$longitude, 0.75), quantile(barstool_variable_name$price_level, 0.75), quantile(barstool_variable_name$provider_rating, 0.75), quantile(barstool_variable_name$provider_review_count, 0.75), quantile(barstool_variable_name$review_stats_all_average_score, 0.75), quantile(barstool_variable_name$review_stats_all_count, 0.75), quantile(barstool_variable_name$review_stats_all_total_score, 0.75), quantile(barstool_variable_name$review_stats_community_average_score, 0.75), quantile(barstool_variable_name$review_stats_community_count, 0.75), quantile(barstool_variable_name$review_stats_community_total_score, 0.75), quantile(barstool_variable_name$review_stats_critic_average_score, 0.75), quantile(barstool_variable_name$review_stats_critic_count, 0.75), quantile(barstool_variable_name$review_stats_critic_total_score, 0.75), quantile(barstool_variable_name$review_stats_dave_count, 0.75), quantile(barstool_variable_name$review_stats_dave_total_score, 0.75)),"Median" = c(median(barstool_variable_name$latitude), max(barstool_variable_name$longitude), median(barstool_variable_name$price_level), median(barstool_variable_name$provider_rating), median(barstool_variable_name$provider_review_count), median(barstool_variable_name$review_stats_all_average_score), median(barstool_variable_name$review_stats_all_count), median(barstool_variable_name$review_stats_all_total_score), median(barstool_variable_name$review_stats_community_average_score), median(barstool_variable_name$review_stats_community_count), median(barstool_variable_name$review_stats_community_total_score), median(barstool_variable_name$review_stats_critic_average_score), median(barstool_variable_name$review_stats_critic_count), median(barstool_variable_name$review_stats_critic_total_score), median(barstool_variable_name$review_stats_dave_count), median(barstool_variable_name$review_stats_dave_total_score)))
-```
+This table lets us see a summary of the numeric variables for the barstool dataset. We summarized this dataset by variable, number of values, number of zero values, number of missing values, minimum, maximum, range, sum, median, mean, standard error mean, confidence interval mean, variance, standard deviation, and coefficient variance. Also, we wanted to summarize the numeric variables through a histogram. We didn't include the longitude, latitude, and review_stats_dave_count. We didn't include the longitude and latitude, because there is too much variablity with these variables. Also, we didn't include the review_stats_dave_count, because it is the same value all the way through the dataset. See below for the table and histogram. Select the appropriate variable you would like to evaluate through a histogram. 
 
 ```{r}
-#Creates summary data table for the barstool numeric variables#
-datatable(summary_barstool_num)
+#Creates summary data table for the numeric variables for barstool#
+sum_num_bar <- stat.desc(barstool_variable_name[ , -c(1:5)])
+datatable(round(sum_num_bar, 2))
 ```
+
 
 ```{r}
 #Creates a new dataset for the items that we want evaluated by a histogram#
@@ -373,7 +348,6 @@ server = function(input, output) {
 }
 )
 ```
-
 
 ```{r}
 #Creates a new dataset for the items that we want evaluated by a histogram#
