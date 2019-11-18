@@ -139,15 +139,19 @@ table(datafiniti_dup_removed$price_range_max)
 df4 <- datafiniti_dup_removed %>%
   select(name, categories)
 
-#split df4 into columns by category#
-separate(df4, categories, into, sep = )
 #select only records containing "Pizza Place" in categories#
 df4 %>%
   filter(str_detect(categories, "Pizza Place"))
 str(df4)
 str(datafiniti_dup_removed)
 
+#remove 'categories' column#
+datafiniti_dup_removed[-c(8)]
+
 ###############################################################################
+
+#import 'tidyverse' library#
+library(tidyverse)
 
 #read in jared file#
 jared<- read_csv("pizza_jared.csv")
@@ -166,7 +170,7 @@ table(jared$time)#checked
 table(jared$total_votes)#checked (might want to convert time to a more readable format)
 table(jared$percent)#checked (not bad, lots of 0's compared to others, next largest is 21)
 
-#spread columns votes are labeled in each column#
+#spread columns to display number of votes labeled by column#
 
 #select and spread responses count#
 df1 <- jared %>% 
@@ -182,7 +186,7 @@ names(df2) <- c("polla_qid", "Pct_Average", "Pct_Excellent", "Pct_Fair", "Pct_Go
 #merge df1 and df2
 dfm <- merge(x = df1, y = df2, by = "polla_qid", all.x = TRUE)
 
-# select remaning columns and dedup question by poll#
+# select remaining columns and dedup question by poll#
 df3 <- jared %>%
   select(pollq_id, question, place, time, total_votes)
 df3 <- df3[!duplicated(df3, nmax = 1,), ]
