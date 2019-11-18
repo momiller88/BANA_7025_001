@@ -9,7 +9,9 @@ runtime: shiny
 
 ### Introduction
 
-![](/Users/sidne/Documents/GitHub/BANA_7025_001/pizza_1.jpg)
+
+![](pizza_1.jpg)
+
 
 #### **Do You Love Pizza?**
 
