@@ -92,6 +92,8 @@ boxplot(barstool$provider_review_count)
 boxplot(barstool$review_stats_all_average_score)
 boxplot(barstool$review_stats_all_count)
 
+###
+
 #Summary#
 summary(barstool$price_level)
 summary(barstool$provider_rating)
@@ -146,7 +148,21 @@ str(df4)
 str(datafiniti_dup_removed)
 
 #remove 'categories' column#
-datafiniti_dup_removed[-c(8)]
+datafiniti_dup_removed <- datafiniti_dup_removed[-c(8)]
+
+
+###
+
+#Summary#
+summary(datafiniti_dup_removed$name)
+summary(datafiniti_dup_removed$address)
+summary(datafiniti_dup_removed$city)
+summary(datafiniti_dup_removed$country)
+summary(datafiniti_dup_removed$province)
+summary(datafiniti_dup_removed$latitude)
+summary(datafiniti_dup_removed$longitude)
+summary(datafiniti_dup_removed$price_range_min)
+summary(datafiniti_dup_removed$price_range_max)
 
 ###############################################################################
 
@@ -275,7 +291,12 @@ head(jared_dups_pct)
 jared2 <- rbind(jc_wo_dupnames, jared_dups_pct)
 jared2
 
+###
 
+#Summary#
+summary(datafiniti_dup_removed$name)
+
+###############################################################################################
 
 #test on inner joining jared2 with barstool by place = name#
 merge <- merge(x = jared2, y = barstool, by.x = "place", by.y = "name")
