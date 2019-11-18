@@ -37,7 +37,7 @@ sum(duplicated(barstool$name))
 sum(duplicated(datafiniti$name))
 sum(duplicated(jared$place))
 
-############################################################
+#####################################################################################
 
 # Unique values for each variable in each dataset
 
@@ -99,7 +99,7 @@ summary(barstool$provider_review_count)
 summary(barstool$review_stats_all_average_score)
 summary(barstool$review_stats_all_count)
 
-######################################################3
+#########################################################################################
 
 #Read in the infiniti file#
 datafiniti <- read_csv("pizza_datafiniti.csv")
@@ -136,14 +136,18 @@ table(datafiniti_dup_removed$price_range_min)
 table(datafiniti_dup_removed$price_range_max)
 
 #select name and categories from datafiniti#
-library(stringr)
 df4 <- datafiniti_dup_removed %>%
   select(name, categories)
+
+#split df4 into columns by category#
+separate(df4, categories, into, sep = )
 #select only records containing "Pizza Place" in categories#
 df4 %>%
   filter(str_detect(categories, "Pizza Place"))
+str(df4)
+str(datafiniti_dup_removed)
 
-########################################################
+###############################################################################
 
 #read in jared file#
 jared<- read_csv("pizza_jared.csv")
