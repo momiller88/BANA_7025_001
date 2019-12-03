@@ -738,7 +738,7 @@ server = function(input, output) {
 
 #### **Barstool Exploratory Data Analysis Results**
 
-The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on zip code, price level, and type of rating. Also, it is to allow users to see where the top rated pizza places are on a map based on the type of rating selected. In addition, it is to allow users to see which zip code has the highest average rating score based on the type of rating selected.
+The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on zip code, price level, and type of rating. Also, it is to allow users to see where the top rated pizza places are on a map based on the type of rating selected. In addition, it is to allow users to see which zip code has the highest average rating score based on the type of rating selected. Finally, we are hoping to show users which pizza place received the highest rating based on the average of all the rankings. 
 
 This first part allows users to find the best pizza place for them based on zip code, price, level, and type of rating. In this part, we first needed to edit the final dataset for barstool in order to make visualizations for it. The first new dataset we created from the barstool dataset was to help us create a shiny table and histogram. A user should be able to select the zip, price level, and type of rating that they would like to evaluate for barstool. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, zip, price level, type of rating, and rating score. The table will be sorted in descending order by rating_score. Below is the code to create the dataset. 
 
@@ -803,37 +803,46 @@ server = function(input, output) {
 options = list(height = 500))
 ```
 
+In this part, our goal is to allow users to see which zip code has the highest average rating score based on the type of rating selected. We decided that we thought we would achieve this goal through a shiny table. The first item we needed to do before we created the table was to create a dataset for it. The code below allows us to calculate the average rating score by zip and type of rating. Also, we arranged the average rating score average rating score. We thought this dataset would help us in creating the table to show which zips had the highest average rating based on type of rating selected. Below is the code to create this dataset. 
+
 ```{r}
-#This
+#Creates dataset to help us create a shiny table to show which zips had the highest average rating based on the type of rating selected#
 barstool_zip_1 <- barstool_for_table %>%
   group_by(zip, type_of_rating) %>%
   summarise(average_rating_score = mean(rating_score, na.rm = TRUE)) %>% 
   arrange(desc(average_rating_score)) 
+datatable(head(barstool_zip_1))
 ```
 
+The following code allows us to create the shiny table that was mentioned prior. Please make sure to select the type of rating you want to evaluate before you start evaluating the table. 
+
 ```{r}
+#Creates shiny table showing which zips had the highest average rating based on type of rating selected#
 shinyApp(
   ui = fluidPage(selectInput("type_of_rating", "Select the type of rating you want to evaluate:", choices =  sort(unique(barstool_zip_1$type_of_rating)), multiple = FALSE),
-                DT::dataTableOutput('tbl')),
+                 DT::dataTableOutput('tbl')),
   server = function(input, output) {selected_data_tab_6 <- reactive({
     req(input$type_of_rating)
     barstool_zip_1 %>% dplyr::filter(type_of_rating %in% input$type_of_rating)})
     output$tbl = DT::renderDataTable(
       selected_data_tab_6(), options = list(lengthChange = FALSE), caption = "This shows the average rating score by zip and type of rating sorted by the highest average rating score. Select the rating you want to evaluate above.")},
-  
   options = list(height = 700))
 ```
 
+The final part we wanted to do for our exploratory analysis was to allow users to see which pizza place had the highest average rating across all the type of ratings. The code below allows us to achieve this goal. In this code, we first need to group the data by name, address, and zip. Next, we created a calculation to find the mean of all the ratings. Finally, we sorted the data in descending order by average score. The last piece of code allows us to see the top 10 results for pizza places in data table. 
+
 ```{r}
+#Creates dataset and data table to see the top 10 pizza places on average for all the ratings#
 barstool_rate <- barstool_for_table %>%
   group_by(name, address, zip) %>%
   summarise(average_score = mean(rating_score, na.rm = TRUE)) %>% 
   arrange(desc(average_score))
-
-datatable(head(barstool_rate))
+datatable(head(barstool_rate, 10))
 ```
 
-### Combined Datasets
+#### **Summary of Barstool Exploratory Analysis**
+
+### Datafiniti Exploratory Data Analysis
 
 ```{r}
 datafiniti_map <- datafiniti_dup_removed %>%
