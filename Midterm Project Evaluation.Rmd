@@ -4,20 +4,20 @@ output:
     theme: yeti
 runtime: shiny
 ---
-## Pizza Project Midterm {.tabset .tabset-fade .tabset-pills}
+## Pizza Project Final {.tabset .tabset-fade .tabset-pills}
 **Authors: Sidney Schaeper & Morgan Miller **
 
 ### Introduction
 
 
-![](pizza_1.jpg)
+![](https://i.ibb.co/tPSCbDf/pizza-1.jpg)
 
 
 #### **Do You Love Pizza?**
 
-We would say most people love pizza. Also, most people want to try a new pizza when they travel or move somewhere new. This is the problem we are hoping to help answer through our analysis. Yelp and other food review sites are great for finding new food locations to eat at, but what they lack is the ability to tell you upfront what is the actual price range of the restaurant. They only provide you 5 scale rating of the price range, and this can be interpreted very differently based on the person. Our goal is to show you the top 5 pizza places by price range, zip, and type of rating. Our analysis will provide you with a more concrete number of the price range of a pizza place. We are planning to create a table of the the top rated pizza places by zip code, price range, and type of review. We are planning to make this interactive, so the user can select a zip code, price range, and type of review. After this selection, the table would automatically fill with the top 5 best pizza places based on their selections. We are planning to complete this analysis through the use of the shiny, because shiny creates interactive tables. Also, we plan to combine the barstool and datafiniti datasets, so we can have reviews and price ranges. Also, the table will contain the name, address, price range, and rating of the pizza place. This table will help the user find the best pizza place they can afford to eat at whenever they are traveling or want to try a new pizza place.
+We would say most people love pizza. Also, most people want to try a new pizza when they travel or move somewhere new. This is the problem we are hoping to help answer through our analysis. Yelp and other food review sites are great for finding new food locations to eat at, but what they lack is the ability to tell you upfront what is the actual price range of the restaurant. They only provide you a 5 scale rating of the price range, and this can be interpreted very differently based on the person. Our goal is to show you the top 5 pizza places by price range, zip, and type of rating. Our analysis will provide you with a more concrete number of the price range of a pizza place. We are planning to create a table of the the top rated pizza places by zip code, price range, and type of review. We are planning to make this interactive, so the user can select a zip code, price range, and type of review. After this selection, the table would automatically fill with the top 5 best pizza places based on their selections. We are planning to complete this analysis through the use of the shiny, because shiny creates interactive tables. Also, we plan to combine the barstool and datafiniti datasets, so we can have reviews and price ranges. Also, the table will contain the name, address, price range, and rating of the pizza place. This table will help the user find the best pizza place they can afford to eat at whenever they are traveling or want to try a new pizza place.
 
-The next question we are hoping to answer is what leads to a pizza place attaining a high rating. As an owner of a restaurant, you want to know what you might want to change to increase your rating, or you might want to know what you need to maintain to keep a high rating. This is the information we are hoping to provide to pizza place owners. We plan to answer this question by combining all three datasets. Also, We plan to answer this question through analysis of the correlation between variables, and performing regression analysis. We hope that these two analytical techniques will allow us to determine the relationship between certain varibles and the rating of pizza place. We believe that knowing these relationships will help an owner have a better awareness of what they need to focus on at their restaurants. 
+The next question we are hoping to answer is what leads to a pizza place attaining a high rating. As an owner of a restaurant, you want to know what will possibly increase your rating as a pizza place, or you might want to know what you need to maintain to keep a high rating. This is the information we are hoping to provide to pizza place owners. We plan to answer this question by combining all three datasets. Also, We plan to answer this question through analysis of the correlation between variables, and performing regression analysis. We hope that these two analytical techniques will allow us to determine the relationship between certain varibles and the rating of pizza place. We believe that knowing these relationships will help an owner have a better awareness of what they need to focus on at their restaurants. Also, it will hopefully help them increase the amount of business they receive.
 
 ### Packages Required
 
@@ -53,9 +53,9 @@ library(tibble)
 ### Source Data and Importing Dataset
 
 #### **Source Data**
-The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this were called pizza_barastool, pizza_datafiniti, and pizza_jared. These datasets were uploaded to this github on September 30, 2019 by Thomas Mock. 
+The source data link we were provided for these datasets was found on github at the following [link](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The three datasets that were on this github were called pizza_barastool, pizza_datafiniti, and pizza_jared. These datasets were uploaded to this github on September 30, 2019 by Thomas Mock. 
 
-The pizza barstool data was created by Tyler Richards on May 11, 2019. Tyler Richards orginial use for the data was to find the best pizza places in New York, because he thought other search tools weren't that clean. Also, he had just moved to New York. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that help Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. The variables that he included in his dataset are: 
+The pizza barstool data was created by Tyler Richards on May 11, 2019. Tyler Richards orginial use for the data was to find the best pizza places in New York, because he thought other search tools weren't that clean. Also, he had just moved to New York. Tyler Richards got his data from Barstool's Dave Portnoy's Instagram and One Bite. The way Tyler pulled in this data was by reverse engineering the API from charles. Charles is an application that held Dave's review score. Also, he pulled in the longitude and latitude using Google maps reverse geocoder. The variables that he included in his dataset are: 
 
 * _distance 
 * address1 
@@ -143,7 +143,7 @@ The pizza barstool data was created by Tyler Richards on May 11, 2019. Tyler Ric
 * dave_score_int
 * review_number
 
-These variables were not the same as the github provided to us for our source data. The variables that were provided to us from the github are below in the data dictionary. You can see Tyler Richards analysis at this [website](https://towardsdatascience.com/adventures-in-barstools-pizza-data-9b8ae6bb6cd1) and you can see his dataset at this [website](https://github.com/tylerjrichards/Barstool_Pizza). 
+These variables were not the same as github provided to us for our source data. The variables that were provided to us from the github are below in the data dictionary. You can see Tyler Richards analysis at this [website](https://towardsdatascience.com/adventures-in-barstools-pizza-data-9b8ae6bb6cd1) and you can see his dataset at this [website](https://github.com/tylerjrichards/Barstool_Pizza). 
 
 The next dataset is the datafinit dataset. This dataset was provided by Datafiniti's Business Database. We pulled our source data from the following [github](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01). The github that we pulled our source data from got their data from kaggle at the following [link](https://www.kaggle.com/datafiniti/pizza-restaurants-and-the-pizza-they-sell#Datafiniti_Pizza_Restaurants_and_the_Pizza_They_Sell_May19.csv). Datafiniti uploaded this dataset on May 29, 2019 from the Datafiniti Business Database. You find information about datafiniti at the following [link](https://datafiniti.co/). The variables that are included in this dataset on kaggle are:
 
@@ -169,7 +169,7 @@ The next dataset is the datafinit dataset. This dataset was provided by Datafini
 * priceRangeMax
 * province
 
-The variables that were found in the dataset on kaggle are not the same as what we found in github, The variables that were found in the source data on github are below. 
+The variables that were found in the dataset on kaggle are not the same as what we found in github, The variables that were found in the source data on github are below in the data dictionary. 
 
 The final dataset is the jared dataset. This dataset was pulled from [Jared Lander's twitter](https://twitter.com/jaredlander/status/1178122846419193858?s=20). He provided Thomas the [json](https://jaredlander.com/data/PizzaPollData.php) from his database on various pizza ratings he collected. He provided this data on September 28, 2019. His database contained the following variables: 
 
@@ -183,7 +183,7 @@ The final dataset is the jared dataset. This dataset was pulled from [Jared Land
 * totalvotes
 * percent
 
-The variables that Jared had orginally populated were not all used on the github page. The variables used on the [github page](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01) are below. 
+The variables that Jared had orginally populated were not all included on github. The variables used on the [github page](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-10-01) are below. 
 
 #### **Original Data Dictionary from Github**
 ##### Pizza Jared Variables
@@ -266,7 +266,7 @@ datatable(head(jared, 10))
 
 ### Data Cleaning
 #### **Evaluate Missing Values**
-The first item we wanted to evaluate was the missing items in the datasets. The website for the source data didn't mention missing items or how they were recorded. We decided that we needed to do this on our own through R. The code below allows us to see the percentage of missing items from each of the datasets. 
+The first item we wanted to evaluate was the missing items in the datasets. The website for the source data didn't mention missing items or how they were recorded. We decided that we needed to do this on our own through R. The code below allows us to see the percentage of missing items for each of the datasets. 
 
 ```{r}
 #Evaluate the percentage of missing items for barstool#
@@ -279,7 +279,7 @@ The first item we wanted to evaluate was the missing items in the datasets. The 
 (colSums(is.na(jared)) / 375) * 100
 ```
 
-For the barstool dataset, longitude and latitude have missing items. The percentage of missing items for longitude and latitude is 0.43%. For the datafiniti dataset, there were no missing items from the dataset. For the jared dataset, percent is the only variable to have missing items. The percentage of missing items for percent is 1.33%. Once we realized there were missing items, we looked through the dataset to see how the missing values were recorded. We saw that all the missing items were recorded with an NA. After evaluating the missing items, we decided to drop the rows that were missing, because there was such a small percentage of missing items. Below is the code to remove these missing items. 
+For the barstool dataset, longitude and latitude have missing items. The percentage of missing items for longitude and latitude is 0.43%. For the datafiniti dataset, there were no missing items for the dataset. For the jared dataset, percent is the only variable to have missing items. The percentage of missing items for percent is 1.33%. Once we realized there were missing items, we looked through the dataset to see how the missing values were recorded. We saw that all the missing items were recorded with an NA. After evaluating the missing items, we decided to drop the rows that were missing, because there was such a small percentage of missing items. Below is the code to remove these missing items. 
 
 ```{r}
 #Removes the missing values for each of the datasets#
@@ -289,26 +289,26 @@ jared_miss <- na.omit(jared)
 ```
 
 #### **Remove Deduplicates and Drop Unneccessary Columns**
-For the datafiniti dataset, we noticed there were a lot of duplicate values. After removing the duplicates the dataset went from 10,000 records to 2,285 unique records. Both, the barstool and jared, datasets didn't contain true duplicates. Additionally, we decided to remove the categories column of the datafiniti dataset. We did this because it didn't add significant value to our end evaluation. All the records contained the category of "Pizza Place", so without additional descriptions of each of the other possible categories we decided it wasn't needed. 
+For the datafiniti dataset, we noticed there were a lot of duplicate values. After removing the duplicates of the dataset, we went from 10,000 records to 2,285 unique records. Both, the barstool and jared, datasets didn't contain true duplicates. Additionally, we decided to remove the categories column of the datafiniti dataset. We did this because it didn't add significant value to our end evaluation. All the records contained the category of "Pizza Place", so without additional descriptions of each of the other possible categories we decided it wasn't needed. 
 
 ```{r}
-#remove duplicates#
+#Remove duplicates#
 nrow(datafiniti)
 datafiniti_dup_removed <- datafiniti[!duplicated(datafiniti, nmax = 1), ]
 nrow(datafiniti_dup_removed)
 ```
 
 ```{r}
-#remove 'categories' column#
+#Remove 'categories' column#
 datafiniti_dup_removed <- datafiniti_dup_removed[-c(8)]
 names(datafiniti_dup_removed)
 ```
 
-#### **Reformat 'jared' dataset**
-Upon an innitial look at the jared dataset it appears that each poll taken was then recorded based on the reponses that were given. This duplicated the poll_id for each instance 5 times. In order to fix this we need to flatten out the responses and make them their own columns and correlate the listed response values with the appropriate response column. Additionally, we would then have to ensure that the totals and calculated percentages were flattened out as well and associated with the correct poll. In doing this we also noticed that some of the some of the resturants could have been recorded across multiple polls. This could have been a poll on two seperate locations with the same name. However, without location information associated with each poll, we could only assume that the same resturant was polled more than once. So, we decided to combine the values of the duplicated polls and recalculate the associated percentages and vote totals. In order to do this you will need to use the code below.
+#### **Reformat Dataset**
+Upon an innitial look at the jared dataset it appears that each poll taken was then recorded based on the reponses that were given. This duplicated the poll_id for each instance 5 times. In order to fix this we need to flatten out the responses and make them their own columns and correlate the listed response values with the appropriate response column. Additionally, we would then have to ensure that the totals and calculated percentages were flattened out as well and associated with the correct poll. In doing this, we also noticed that some of the some of the resturants could have been recorded across multiple polls. This could have been a poll on two seperate locations with the same name. However, without location information associated with each poll, we could only assume that the same resturant was polled more than once. We decided to combine the values of the duplicated polls and recalculate the associated percentages and vote totals. In order to do this, you will need to use the code below.
 
 ```{r}
-#'jared' Attributes#
+#'Jared' Attributes#
 attributes(jared)
 
 #Table to see the duplicated results for each attribute#
@@ -326,41 +326,41 @@ table(jared$percent)
 Here we are creating a separate dataframe to flatten out each response and display the count of votes under the respective resoponse. 
 
 ```{r}
-#select and spread responses count#
+#Select and spread responses count#
 df1 <- jared %>% 
   select(polla_qid, answer, votes) %>%
   spread(answer, votes, fill = 0)
-head(df1)
+datatable(head(df1))
 ```
 
 Here we are doing the same for the percentage results for each of the responses and renaming the percentage columns appropriately.
 
 ```{r}
-#select and spread responses percent#
+#Select and spread responses percent#
 df2 <- jared %>%
   select(polla_qid, answer, percent) %>%
   spread(answer, percent, fill = 0)
 names(df2) <- c("polla_qid", "Pct_Average", "Pct_Excellent", "Pct_Fair", "Pct_Good", "Pct_Never_Again", "Pct_Poor")
-head(df2)
+datatable(head(df2))
 ```
 
-Then we are joining the two new dataframes on 'polla_qid' into a new dataframe named 'dfm'.
+We are joining the two new dataframes on 'polla_qid' into a new dataframe named 'dfm'.
 
 ```{r}
-#merge df1 and df2
+#Merge df1 and df2
 dfm <- merge(x = df1, y = df2, by = "polla_qid", all.x = TRUE)
-head(dfm)
+datatable(head(dfm))
 ```
 
 Now that we have a single dataframe ('dfm') that contains all of the flattened responses and associated percentages, we need to remerge the responses with their associated question, place, time, and total votes. We can do that by deduplacting a dataframe generated by selecting only those columns with the 'pollq_id'. 'pollq_id' will be used to merge results with the appropriate question. 
 
 ```{r}
-# select remaining columns and dedup question by poll#
+#Select remaining columns and dedup question by poll#
 df3 <- jared %>%
   select(pollq_id, question, place, time, total_votes)
 df3 <- df3[!duplicated(df3, nmax = 1,), ]
-head(df3)
-#merge votes df and question/location df
+datatable(head(df3))
+#Merge votes df and question/location df#
 jared_clean <- merge(x = df3, y = dfm, by.x = "pollq_id", by.y = "polla_qid", all.x = TRUE)  
 jared_clean <- select(jared_clean, 
                       place, 
@@ -380,22 +380,22 @@ jared_clean <- select(jared_clean,
 head(jared_clean)
 ```
 
-Now that our dataset is reformatted we can combine the duplicate values and resummarize the voting statistics. We start by identifying the records that still contain duplicate values. We do this by creating a dataframe, 'jared_dups', that counts the frequency of each place in the dataset. Then we remove all names from that list that only occur once. 
+Now that our dataset is reformatted, we can combine the duplicate values and resummarize the voting statistics. We start by identifying the records that still contain duplicate values. We do this by creating a dataframe, 'jared_dups', that counts the frequency of each place in the dataset. Next, we remove all names from that list that only occur once. 
 
 ```{r}
-#identifying columns that have duplicated names in jared_clean#
+#Identifying columns that have duplicated names in jared_clean#
 jared_dups <- data.frame(table(jared_clean$place))
 
-#shorten list to only dup records#
+#Shorten list to only dup records#
 jared_dups[jared_dups$Freq > 1, ]
 jared_dups <- arrange(jared_clean[jared_clean$place %in% jared_dups$Var1[jared_dups$Freq > 1], ], desc(place))
-jared_dups
+datatable(head(jared_dups))
 ```
 
-Now that we have a complete list of only the duplicated records we can sum the duplicated values voting stats. We do this by grouping the records by place and question and using the summarise() function we total the sum of each of the vote count columns. We then save this to the datafram 'jared_dups_combined'. In this dataframe we dropped the existing percentage values because they will need to be recalculated based on our new totals. 
+Now that we have a complete list of only the duplicated records, we can sum the duplicated values voting stats. We do this by grouping the records by place and question and using the summarise() function we total the sum of each of the vote count columns. We then save this to the dataframe 'jared_dups_combined'. In this dataframe, we dropped the existing percentage values, because they will need to be recalculated based on our new totals. 
 
 ```{r}
-#sum duplicate records votes#
+#Sum duplicate records votes#
 jared_dups_combined <- 
   jared_dups %>%
     group_by(place, question) %>%
@@ -406,14 +406,14 @@ jared_dups_combined <-
               Average = sum(Average),
               Good = sum(Good),
               Excellent = sum(Excellent))
-jared_dups_combined
+datatable(head(jared_dups_combined))
 
 ```
 
-This is where we do our recalculations of the percentages. Using the 'jared_dups_combined' dataset we use the mutate() function to recreate our percentage columns calculating the percentage of each response category. We had some issues editing the column name of the 'Never Again' column when it was saved as a tibble becuase it was named 'Never.Again'. So, we resaved it as a dataframe and renamed the column correctly so we could remerge it with the original dataset. 
+This is where we do our recalculations of the percentages. Using the 'jared_dups_combined' dataset, we use the mutate() function to recreate our percentage columns calculating the percentage of each response category. We had some issues editing the column name of the 'Never Again' column when it was saved as a tibble becuase it was named 'Never.Again'. So, we resaved it as a dataframe and renamed the column correctly so we could remerge it with the original dataset. 
 
 ```{r, warning = FALSE}
-#recalculate percents columns
+#Recalculate percents columns#
 jared_dups_pct <- 
   jared_dups_combined %>%
   mutate( Pct_Never_Again = `Never Again` / total_votes, 
@@ -424,24 +424,22 @@ jared_dups_pct <-
           Pct_Excellent = Excellent / total_votes)
 jared_dups_pct <- as_data_frame(jared_dups_pct)
 colnames(jared_dups_pct)[4] <- "Never Again"
-jared_dups_pct
+datatable(head(jared_dups_pct))
 
 ```
 
 Here we are removing all the records we had previously pulled out and combined. We do this by saving the list of places that were duplicated as 'jd_dup_names'. We then save our dataset as 'jc_wo_dupnames' by excluding records that have the same name as any of those in our saved list. We then save our final cleaned version of the jared dataset by using the rbind() function to merge our 'jc_wo_dupnames' dataset and 'jared_dups_pct' dataset and we save that as 'jared2'. 
 
 ```{r}
-#remove duplicated records from jared_clean#
+#Remove duplicated records from jared_clean#
 jd_dup_names <- jared_dups_pct$place
 
 jc_wo_dupnames <- jared_clean[ ! jared_clean$place %in% jd_dup_names, ]
 
-head(jc_wo_dupnames)
-head(jared_dups_pct)
-#remerge the two datasets to coplete the final cleaned version of the jared dataset#
+datatable(head(jc_wo_dupnames))
+datatable(head(jared_dups_pct))
+#Remerge the two datasets to coplete the final cleaned version of the jared dataset#
 jared2 <- rbind(jc_wo_dupnames, jared_dups_pct)
-head(jared2)
-
 ```
 
 
@@ -459,14 +457,14 @@ names(barstool_miss)
 tibble(barstool_miss)
 ```
 
-After evaluating the outputs of the names and data types, there are multiple changes we believe that need to be changed. The first item we believe that needs to be changed is the name for address1. We decided to change the name for address1 to address, because it seemed more consistent with the other variable names. We believe the rest of the names of the variables are fine, and we don't need to change their names. You should the run the code below to change the name for address1.  
+After evaluating the outputs of the names and data types, there are multiple changes we believe that need to be happen. The first item we believe that needs to be changed is the name for address1. We decided to change the name for address1 to address, because it seemed more consistent with the other variable names. We believe the rest of the names of the variables are fine, and we don't need to change their names. You should the run the code below to change the name for address1.  
 
 ```{r}
 #Change the name of address 1 to address for the barstool data set#
 names(barstool_miss)[2] <- "address"
 ```
 
-The next items I wanted to change were the data types for zip, price_level, provider_review_count, review_stats_all_count, review_stats_community_count, review_stats_critic_count, and review_stats_dave_count. We decided to change zip from a double to a character, because we wanted to maintain the zeros in front of some of the zip codes. We decided to change price_level, provider_review_count, review_stats_all_count, review_stats_community_count, review_stats_critic_count, and review_stats_dave_count from a double to integer, because there should be no decimals with these numbers. Below is the code to change these data types. 
+The next item we wanted to change was the data types for zip, price_level, provider_review_count, review_stats_all_count, review_stats_community_count, review_stats_critic_count, and review_stats_dave_count. We decided to change zip from a double to a character, because we wanted to maintain the zeros in front of some of the zip codes. We decided to change price_level, provider_review_count, review_stats_all_count, review_stats_community_count, review_stats_critic_count, and review_stats_dave_count from a double to integer, because there should be no decimals with these numbers. Below is the code to change these data types. 
 
 ```{r}
 #Change the data type of the items mentioned above#
@@ -477,7 +475,7 @@ tibble(barstool_data_type)
 ```
 
 #### **Evaluate the Values for the Variables**
-The next item we wanted to evaluate was the values for the variables in each data set. The first dataset we evaluated was the barstool data set. The first variable we evaluated was the name in the barstool dataset. The first line of code creates a table with all the values for the name variable and how many times they were repeated. We only wanted to look at the items that were listed more than the once. The second line of code allows us to do that. Run the code below to see the output. 
+The next item we wanted to evaluate was the values for the variables in the barstool dataset. The first variable we evaluated was the name in the barstool dataset. The first line of code creates a table with all the values for the name variable and how many times they were repeated. We only wanted to look at the items that were listed more than the once. The second line of code allows us to do that. Run the code below to see the output. 
 
 ```{r}
 #Creates a table of names and shows only the ones greater than 1#
@@ -485,7 +483,7 @@ barstool_names <- table(barstool_data_type$name)
 barstool_names[barstool_names > 1]
 ```
 
-After evaluating the output for names, we searched the internet for these places to confirm that they were the same chain restaurant. In order to search these restaurants, we need to pull in the rest of the variables to help with our search. The code below allows us to see the records where the same name was written more than once. 
+After evaluating the output for names, we searched the internet for these places to confirm that they were the same chain restaurant. In order to search these restaurants, we needed to pull in the rest of the variables to help with our search. The code below allows us to see the records where the same name was written more than once. 
 
 ```{r}
 #Allows you to see the duplicate name records#
@@ -501,7 +499,7 @@ datatable(barstool_data_type[barstool_data_type$name == "Regina Pizzeria",])
 datatable(barstool_data_type[barstool_data_type$name == "Steve's Pizza",])
 ```
 
-After performing our search, we found that Joe's Pizza at 8th is not the same chain as Joe's Pizza at Broadway and Carmine. After discovering this information, we decided to change the name for Joe's Pizza at 8th to Joe's Pizza - 8th. Also, we discovered that the Little Italy records were not the same chain restaurant. We decided to change the first record of Little Italy Pizza to Little Italy Pizza - 45th, and we decided to change the second record of Little Italy Pizza to Little Italy Pizza - Fulton. Next, we discovered that the Lucali records were not the same restaurant chain. We decided to change the first record of Lucali to Lucali - Henry, and we decided to change the second record of Lucali to Lucali - Bay. Also, we found that the Mariella Pizza was not the same chain. We changed the first record to Mariella Pizza - Lexington, and we changed the second record to Mariella Pizza - 8th. Finally, we found that Patsy's Pizzeria records were not the same chain. We changed the first record to Patsy's Pizzeria - 1st, and we changed the second record to Patsy's Pizzeria - 2nd. The rest of the names that we found that had duplicate names were part of the same chain restaurant. The code below allows us to change the names of the items that were mentioned before. 
+After performing our search, we found that Joe's Pizza at 8th is not the same chain as Joe's Pizza at Broadway and Carmine. After discovering this information, we decided to change the name for Joe's Pizza at 8th to Joe's Pizza - 8th. Also, we discovered that the Little Italy records were not the same chain restaurant. We decided to change the first record of Little Italy Pizza to Little Italy Pizza - 45th, and we decided to change the second record of Little Italy Pizza to Little Italy Pizza - Fulton. Next, we discovered that the Lucali records were not the same restaurant chain. We decided to change the first record of Lucali to Lucali - Henry, and we decided to change the second record of Lucali to Lucali - Bay. Also, we found that the Mariella Pizza was not the same chain. We changed the first record to Mariella Pizza - Lexington, and we changed the second record to Mariella Pizza - 8th. Finally, we found that Patsy's Pizzeria records were not the same chain. We changed the first record to Patsy's Pizzeria - 1st, and we changed the second record to Patsy's Pizzeria - 2nd. The rest of the names that we found that had duplicate names were part of the same chain restaurant. The code below allows us to change the names of the items that were mentioned before.
 
 ```{r}
 #Changes the values of the restaurants that aren't part of the same chain#
@@ -602,13 +600,26 @@ table(barstool_variable_name$review_stats_critic_count)
 table(barstool_variable_name$review_stats_dave_average_score)
 ```
 
-Below is the code and a snippet of the final cleaned dataset for barstool. 
+### Final Cleaned Datasets
 
+The code below allows us to see a snippet of the final cleaned dataset for barstool. 
 ```{r}
 #Final cleaned dataset for barstool#
-datatable(head(barstool_variable_name,50))
+datatable(head(barstool_variable_name, 50))
+```
 
-barstool_dup_clean <- barstool_variable_name[!duplicated(barstool_variable_name, nmax = 1), ]
+The code below allows us to see a snippet of the final cleaned dataset for datafiniti. 
+
+```{r}
+#Final cleaned dataset for datafiniti#
+datatable(head(datafiniti_dup_removed, 50))
+```
+
+The code below allos us to see a snippet of the final cleaned dataset for jared. 
+
+```{r}
+#Final cleaned dataset for jared#
+datatable(head(jared2, 50))
 ```
 
 ### Summary of Variables
@@ -661,11 +672,17 @@ row.names(app_char_dat) <- c("Data Type", "Length", "Number of Unique Values")
 datatable(app_char_dat)
 ```
 
-This table lets us see a summary of the numeric variables for the barstool dataset. We summarized this dataset by variable, number of values, number of zero values, number of missing values, minimum, maximum, range, sum, median, mean, standard error mean, confidence interval mean, variance, standard deviation, and coefficient variance. Also, we wanted to summarize the numeric variables through a histogram. We didn't include the longitude, latitude, and review_stats_dave_count. We didn't include the longitude and latitude, because there is too much variablity with these variables. Also, we didn't include the review_stats_dave_count, because it is the same value all the way through the dataset. See below for the table and histogram. Select the appropriate variable you would like to evaluate through a histogram. 
+This table lets us see a summary of the numeric variables for the datafiniti dataset. We summarized this dataset by variable, number of values, number of zero values, number of missing values, minimum, maximum, range, sum, median, mean, standard error mean, confidence interval mean, variance, standard deviation, and coefficient variance. Also, we wanted to summarize the numeric variables through a histogram. We didn't include the longitude, latitude, and review_stats_dave_count. We didn't include the longitude and latitude, because there is too much variablity with these variables. See below for the table and histogram. Select the appropriate variable you would like to evaluate through a histogram. 
+
+```{r}
+#Creates summary data table for the numeric variables for datafiniti#
+sum_num_data <- stat.desc(datafiniti_dup_removed[ , -c(1:5)])
+datatable(round(sum_num_data, 2))
+```
 
 ```{r}
 #Creates a new dataset for the items that we want evaluated by a histogram#
-datafiniti_for_histogram <- datafiniti_dup_removed[ , c(6:9)]
+datafiniti_for_histogram <- datafiniti_dup_removed[ , c(8:9)]
 #Creates the interactive histogram#
 shinyApp(
   ui = fluidPage(
@@ -691,7 +708,13 @@ row.names(app_char_jar) <- c("Data Type", "Length", "Number of Unique Values")
 datatable(app_char_jar)
 ```
 
-This table lets us see a summary of the numeric variables for the barstool dataset. We summarized this dataset by variable, number of values, number of zero values, number of missing values, minimum, maximum, range, sum, median, mean, standard error mean, confidence interval mean, variance, standard deviation, and coefficient variance. Also, we wanted to summarize the numeric variables through a histogram. We didn't include the longitude, latitude, and review_stats_dave_count. We didn't include the longitude and latitude, because there is too much variablity with these variables. Also, we didn't include the review_stats_dave_count, because it is the same value all the way through the dataset. See below for the table and histogram. Select the appropriate variable you would like to evaluate through a histogram. 
+This next table lets us see a summary of the numeric variables for the jared dataset. We summarized this dataset by variable, number of values, number of zero values, number of missing values, minimum, maximum, range, sum, median, mean, standard error mean, confidence interval mean, variance, standard deviation, and coefficient variance. Also, we wanted to summarize the numeric variables through a histogram. See below for the table and histogram. Select the appropriate variable you would like to evaluate through a histogram. 
+
+```{r}
+#Creates summary data table for the numeric variables for jared#
+sum_num_jar <- stat.desc(jared2[ , -c(1:2)])
+datatable(round(sum_num_jar, 2))
+```
 
 ```{r}
 #Creates a new dataset for the items that we want evaluated by a histogram#
@@ -709,13 +732,98 @@ server = function(input, output) {
 )
 ```
 
-
-
 ### Exploratory Data Analysis
 
-#### **Uncover New Information**
-We plan to uncover new information by combining the datafiniti and barstool to answer the question about finding the top 5 pizza places by zip, price, and type of rating. Also, we plan to uncover new information by combining the datafiniti, barstool, and jared datasets in order to answer the question about what makes a pizza place receive a high rating. In all of these combinations, we hope to find matches between the datasets in order to answer these questions. We need to do more research in order to peform these techniques properly. 
+#### **Proposed Exploratory Data Analysis**
+We plan to uncover new information by combining the datafiniti and barstool datasets to answer the question about finding the top 5 pizza places by zip, price, and type of rating. Also, we plan to uncover new information by combining the datafiniti, barstool, and jared datasets in order to answer the question about what makes a pizza place receive a high rating. In all of these combinations, we hope to find matches between the datasets in order to answer these questions. We need to do more research in order to peform these techniques properly. 
 
 There are a variety of plots and tables we plan to use to answer these questions. We plan to use a shiny data table to answer the question about what are the top five pizza places based on zip, price range, and rating type. We need to learn a little bit more about shiny to form this table through r code. In addition, we plan to use scatter plots to evaluate the correlations between variables in order to see what might possibly have an assocation with rating. Also, we plan to use tables to show the summary statistics for the linear regression models we create.
 
 As mentioned prior, we plan on using the machine learning technique of linear regression analysis. We plan to use this technique to determine what variables have the greatest impact on the rating of a pizza place. Also, we plan to use this technique to determine what variables have a positive and negative relationship with the rating of a pizza place. In addition, we plan to use this technique to determine what variables are significant to the rating of a pizza place. 
+
+### Combined Datasets
+```{r}
+#Combined Dataset for Shiny Table for NY Pizza Places#
+bar_data_comb <- barstool_variable_name %>% 
+                  inner_join(datafiniti_dup_removed, by = "address") %>%
+                  filter(city.x == "New York City") %>%
+                  dplyr::select("name.x", "address", "zip", "provider_rating", "review_stats_all_average_score", "review_stats_community_average_score", "review_stats_critic_average_score", "review_stats_dave_average_score", "price_range_min", "price_range_max") 
+bar_data_comb_rank <- bar_data_comb %>%
+                        mutate(prov_rat_rank = min_rank(-provider_rating)) %>%
+                        mutate(rev_stats_all_avg_sco_rank = min_rank(-review_stats_all_average_score)) %>%
+                        mutate(rev_stats_com_avg_sco_rank = min_rank(-review_stats_community_average_score)) %>%
+                        mutate(rev_stats_crit_avg_sco_rank = min_rank(-review_stats_critic_average_score)) %>% 
+                        mutate(rev_stats_dave_avg_sco_rank = min_rank(-review_stats_dave_average_score))
+datatable(head(bar_data_comb_rank))
+```
+
+```{r}
+bar_data_jared_comb <- barstool_variable_name %>%
+                        inner_join(datafiniti_dup_removed, by = "name") %>% 
+                        inner_join(jared2, by = c("name" = "place"))
+bar_data_jared_comb
+#Need to look at the tables for names and see if any need to be changed to match#                       
+```
+
+```{r}
+#Check names across
+
+```
+
+```{r}
+barstool_for_table <-  barstool_variable_name %>%
+                        dplyr::select("name", "address", "zip", "longitude", "latitude", "price_level", "provider_rating", "review_stats_all_average_score", "review_stats_community_average_score", "review_stats_critic_average_score", "review_stats_dave_average_score") %>%
+                        mutate(prov_rat_rank = min_rank(-provider_rating)) %>%
+                        mutate(rev_stats_all_avg_sco_rank = min_rank(-review_stats_all_average_score)) %>%
+                        mutate(rev_stats_com_avg_sco_rank = min_rank(-review_stats_community_average_score)) %>%
+                        mutate(rev_stats_crit_avg_sco_rank = min_rank(-review_stats_critic_average_score)) %>% 
+                        mutate(rev_stats_dave_avg_sco_rank = min_rank(-review_stats_dave_average_score)) %>%
+                        gather(type_of_rating, rating_score, 7:11) %>%
+                        gather(type_of_rank, rank, 7:11) %>%
+                        arrange(rank)
+                        
+                        
+                        
+
+datatable(head(barstool_for_table, 50))
+```
+
+### Shiny Table
+
+```{r}
+#Doesn't work yet but want to create a table to show barstool data and select the type of rating you want to see
+library(ggplot2)
+library(shiny)
+barstool_tab <- barstool_for_table[ , c(1:4,6:8)]
+
+shinyApp(
+ui = fluidPage(
+  selectInput("zip", "Zip:", choices = sort(unique(barstool_tab$zip)), multiple = FALSE),
+  selectInput("price_level", "Price Level:", choices =  sort(unique(barstool_tab$price_level)), multiple = FALSE),
+  selectInput("type_of_rank", "Type of Rank:", choices = sort(unique(barstool_tab$type_of_rank)), multiple = FALSE),
+  DTOutput('table')),
+server =function(input, output) 
+{
+  output$tbl = renderDT(datatable(barstool_for_table))
+})
+```
+
+```{r}
+library(mapdata)
+library(ggplot2)
+library(shiny)
+usa <- ggplot2::map_data("world", "usa")
+ggplot(usa, aes(long, lat)) + 
+   geom_polygon(aes(group=group)) + geom_point(data= barstool_for_table, aes(x = (longitude), y = latitude, colour = rating_score, shape = type_of_rank)) + coord_cartesian(xlim=c(-180, -50), ylim = c(20, 78))
+
+
+shinyApp(ui = fluidPage(
+  selectInput("type_of_rank", "Type of Rank:", choices = sort(unique(barstool_tab$type_of_rank)), multiple = FALSE),
+  plotOutput("bar", height = 300, width = 700)
+),
+server = function(input, output) {
+  output$bar <- renderPlot({
+  map + ggplot(data = !!input$type_of_rank)+ geom_point(aes(colour = factor(input$type_of_rank)))})
+}
+)
+```
