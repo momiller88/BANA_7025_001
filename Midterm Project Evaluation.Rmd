@@ -813,17 +813,22 @@ library(mapdata)
 library(ggplot2)
 library(shiny)
 usa <- ggplot2::map_data("world", "usa")
-ggplot(usa, aes(long, lat)) + 
-   geom_polygon(aes(group=group)) + geom_point(data= barstool_for_table, aes(x = (longitude), y = latitude, colour = rating_score, shape = type_of_rank)) + coord_cartesian(xlim=c(-180, -50), ylim = c(20, 78))
-
-
 shinyApp(ui = fluidPage(
-  selectInput("type_of_rank", "Type of Rank:", choices = sort(unique(barstool_tab$type_of_rank)), multiple = FALSE),
-  plotOutput("bar", height = 300, width = 700)
+  selectInput("type_of_rank", "Type of Rank:", choices = sort(unique(barstool_for_table$type_of_rank)), multiple = FALSE),
+  plotOutput("bar", height = 300, width = 800)
 ),
 server = function(input, output) {
+  selected_data <- reactive({
+    req(input$type_of_rank)
+    barstool_for_table %>% dplyr::filter(type_of_rank %in% input$type_of_rank)})
   output$bar <- renderPlot({
-  map + ggplot(data = !!input$type_of_rank)+ geom_point(aes(colour = factor(input$type_of_rank)))})
+ if (require("maps")) {
+  data(us.cities)
+  capitals <- subset(us.cities, capital == 2)
+  ggplot(capitals, aes(long, lat)) +
+    borders("state") + 
+    geom_point(data= selected_data(), aes(x = (longitude), y = latitude, colour = rating_score)) + 
+    coord_cartesian(xlim=c(-130, -60), ylim = c(20, 50))}})
 }
 )
 ```
