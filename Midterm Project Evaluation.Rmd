@@ -735,7 +735,7 @@ server = function(input, output) {
 
 ### Barstool Exploratory Data Analysis
 
-#### **Barstool Formulating Datasets for Analysis**
+#### **Barstool Exploratory Data Analysis Results**
 
 The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on zip code, price level, and type of rating. Also, it is to allow users to see where the top rated pizza places are on a map based on the type of rating selected. In addition, it is to allow users to see which zip code has the highest average rating score based on the type of rating selected.
 
@@ -748,6 +748,8 @@ barstool_for_table <-  barstool_variable_name %>%
   gather(type_of_rating, rating_score, 7:11) %>% 
   arrange(desc(rating_score)) 
 barstool_tab <- barstool_for_table[ , c(1:3,6:8)]
+#Allows us to see a snippet of the final dataset for the shiny data table and histogram#
+datatable(head(barstool_tab))
 ```
 
 The code below creates the shiny table and histogram. Please make the selections below in order to see the data table and histogram. You can select multiple zip codes and price levels. 
@@ -772,7 +774,32 @@ shinyApp(
         geom_histogram() + 
         scale_x_continuous(name = "rating score") +
         ggtitle("Histogram of Barstool Items Selected", subtitle = "Select the zip, price level, and type of rating you would like to evaluate through a histogram")})},
-  options = list(height = 800))
+  options = list(height = 1200))
+```
+
+This part of the analysis allows users to see where the top rated pizza places are on a map based on the type of rating selected. We used the barstool_for_table dataset from above to plot points on the map. We decided to use a shiny map to allow users to see where the top rate pizza places are. A user will be able to select type of rating they would like to see on the map. Below is the code to create this shiny map. 
+
+```{r}
+#Creates shiny map to allow users to see where the top rated pizza places are located#
+shinyApp(ui = fluidPage(
+  selectInput("type_of_rating", "Select the type of rating you want to see on the map:", choices = sort(unique(barstool_for_table$type_of_rating)), multiple = FALSE),
+  plotOutput("bar", height = 400, width = 800)),
+server = function(input, output) {
+  selected_data <- reactive({
+    req(input$type_of_rating)
+    barstool_for_table %>% dplyr::filter(type_of_rating %in%
+                                           input$type_of_rating)})
+  output$bar <- renderPlot({
+    if (require("maps")) {
+      data(us.cities)
+      capitals <- subset(us.cities, capital == 2)
+      ggplot(capitals, aes(long, lat)) +
+        borders("state") + 
+        geom_point(data= selected_data(), aes(x = (longitude), y = latitude, colour = rating_score)) +
+        ggtitle("Barstool Map Showing the Rating Score by Rating Type", subtitle = "Select the type of rating you want to evaluate") + 
+        scale_x_continuous(name = "longitude")+ scale_y_continuous(name = "latitude") + 
+        coord_cartesian(xlim=c(-130, -60), ylim = c(20, 50))}})}, 
+options = list(height = 500))
 ```
 
 ```{r}
@@ -781,6 +808,19 @@ barstool_zip_1 <- barstool_for_table %>%
   group_by(zip, type_of_rating) %>%
   summarise(average_rating_score = mean(rating_score, na.rm = TRUE)) %>% 
   arrange(desc(average_rating_score)) 
+```
+
+```{r}
+shinyApp(
+  ui = fluidPage(selectInput("type_of_rating", "Select the type of rating you want to evaluate:", choices =  sort(unique(barstool_zip_1$type_of_rating)), multiple = FALSE),
+                DT::dataTableOutput('tbl')),
+  server = function(input, output) {selected_data_tab_6 <- reactive({
+    req(input$type_of_rating)
+    barstool_zip_1 %>% dplyr::filter(type_of_rating %in% input$type_of_rating)})
+    output$tbl = DT::renderDataTable(
+      selected_data_tab_6(), options = list(lengthChange = FALSE), caption = "This shows the average rating score by zip and type of rating sorted by the highest average rating score. Select the rating you want to evaluate above.")},
+  
+  options = list(height = 700))
 ```
 
 ```{r}
@@ -836,42 +876,9 @@ datatable(data_combine)
 
 
 
-```{r}
-usa <- ggplot2::map_data("world", "usa")
-shinyApp(ui = fluidPage(
-  selectInput("type_of_rating", "Select the type of rating you want to see on the map:", choices = sort(unique(barstool_for_table$type_of_rating)), multiple = FALSE),
-  plotOutput("bar", height = 400, width = 800)
-),
-server = function(input, output) {
-  selected_data <- reactive({
-    req(input$type_of_rating)
-    barstool_for_table %>% dplyr::filter(type_of_rating %in% input$type_of_rating)})
-  output$bar <- renderPlot({
- if (require("maps")) {
-  data(us.cities)
-  capitals <- subset(us.cities, capital == 2)
-  ggplot(capitals, aes(long, lat)) +
-    borders("state") + 
-    geom_point(data= selected_data(), aes(x = (longitude), y = latitude, colour = rating_score)) +
-    ggtitle("Barstool Map Showing the Rating Score by Rating Type", subtitle = "Select the type of rating you want to evaluate") + 
-    scale_x_continuous(name = "longitude")+ scale_y_continuous(name = "latitude")+ 
-    coord_cartesian(xlim=c(-130, -60), ylim = c(20, 50))}})
-}, 
-options = list(height = 500))
-```
 
-```{r}
-shinyApp(
-  ui = fluidPage(selectInput("type_of_rating", "Select the type of rating you want to evaluate:", choices =  sort(unique(barstool_zip_1$type_of_rating)), multiple = FALSE),
-                DT::dataTableOutput('tbl')),
-  server = function(input, output) {selected_data_tab_6 <- reactive({
-    req(input$type_of_rating)
-    barstool_zip_1 %>% dplyr::filter(type_of_rating %in% input$type_of_rating)})
-    output$tbl = DT::renderDataTable(
-      selected_data_tab_6(), options = list(lengthChange = FALSE), caption = "This shows the average rating score by zip and type of rating sorted by the highest average rating score. Select the rating you want to evaluate above.")},
-  
-  options = list(height = 700))
-```
+
+
 
 ```{r}
 shinyApp(ui = fluidPage(
