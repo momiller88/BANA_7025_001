@@ -733,38 +733,66 @@ server = function(input, output) {
 )
 ```
 
-### Exploratory Data Analysis
+### Barstool Exploratory Data Analysis
 
-#### **Proposed Exploratory Data Analysis**
-We plan to uncover new information by combining the datafiniti and barstool datasets to answer the question about finding the top 5 pizza places by zip, price, and type of rating. Also, we plan to uncover new information by combining the datafiniti, barstool, and jared datasets in order to answer the question about what makes a pizza place receive a high rating. In all of these combinations, we hope to find matches between the datasets in order to answer these questions. We need to do more research in order to peform these techniques properly. 
+#### **Barstool Formulating Datasets for Analysis**
 
-There are a variety of plots and tables we plan to use to answer these questions. We plan to use a shiny data table to answer the question about what are the top five pizza places based on zip, price range, and rating type. We need to learn a little bit more about shiny to form this table through r code. In addition, we plan to use scatter plots to evaluate the correlations between variables in order to see what might possibly have an assocation with rating. Also, we plan to use tables to show the summary statistics for the linear regression models we create.
+The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on zip code, price level, and type of rating. Also, it is to allow users to see where the top rated pizza places are on a map based on the type of rating selected. In addition, it is to allow users to see which zip code has the highest average rating score based on the type of rating selected.
 
-As mentioned prior, we plan on using the machine learning technique of linear regression analysis. We plan to use this technique to determine what variables have the greatest impact on the rating of a pizza place. Also, we plan to use this technique to determine what variables have a positive and negative relationship with the rating of a pizza place. In addition, we plan to use this technique to determine what variables are significant to the rating of a pizza place. 
+This first part allows users to find the best pizza place for them based on zip code, price, level, and type of rating. In this part, we first needed to edit the final dataset for barstool in order to make visualizations for it. The first new dataset we created from the barstool dataset was to help us create a shiny table and histogram. A user should be able to select the zip, price level, and type of rating that they would like to evaluate for barstool. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, zip, price level, type of rating, and rating score. The table will be sorted in descending order by rating_score. Below is the code to create the dataset. 
+
+```{r}
+#Creates final dataset for barstool shiny table and histogram#
+barstool_for_table <-  barstool_variable_name %>%
+  dplyr::select("name", "address", "zip", "longitude", "latitude", "price_level", "provider_rating", "review_stats_all_average_score", "review_stats_community_average_score", "review_stats_critic_average_score", "review_stats_dave_average_score") %>% 
+  gather(type_of_rating, rating_score, 7:11) %>% 
+  arrange(desc(rating_score)) 
+barstool_tab <- barstool_for_table[ , c(1:3,6:8)]
+```
+
+The code below creates the shiny table and histogram. Please make the selections below in order to see the data table and histogram. You can select multiple zip codes and price levels. 
+
+```{r}
+#Creates shiny table and histogram#
+shinyApp(
+  ui = fluidPage(selectInput("zip", "Select the zip you want to evaluate:", choices = sort(unique(barstool_tab$zip)), multiple = TRUE),
+                 selectInput("price_level", "Select the price level you want to evaluate:", choices =  sort(unique(barstool_tab$price_level)), multiple = TRUE),
+                 selectInput("type_of_rating", "Select the type of rating you want to evaluate:", choices = sort(unique(barstool_tab$type_of_rating)), multiple = FALSE), DT::dataTableOutput('tbl'), 
+                 plotOutput("hist" , height = 300, width = 700)),
+  server = function(input, output) {selected_data_tab <- reactive({
+    req(input$zip)
+    req(input$price_level)
+    req(input$type_of_rating)
+    barstool_tab %>% 
+      dplyr::filter(type_of_rating %in% input$type_of_rating & zip %in% input$zip & price_level %in% input$price_level)})
+    output$tbl = DT::renderDataTable(
+      selected_data_tab(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order of highest rating score.")
+    output$hist <- renderPlot({
+    ggplot(selected_data_tab(), aes(rating_score)) + 
+        geom_histogram() + 
+        scale_x_continuous(name = "rating score") +
+        ggtitle("Histogram of Barstool Items Selected", subtitle = "Select the zip, price level, and type of rating you would like to evaluate through a histogram")})},
+  options = list(height = 800))
+```
+
+```{r}
+#This
+barstool_zip_1 <- barstool_for_table %>%
+  group_by(zip, type_of_rating) %>%
+  summarise(average_rating_score = mean(rating_score, na.rm = TRUE)) %>% 
+  arrange(desc(average_rating_score)) 
+```
+
+```{r}
+barstool_rate <- barstool_for_table %>%
+  group_by(name, address, zip) %>%
+  summarise(average_score = mean(rating_score, na.rm = TRUE)) %>% 
+  arrange(desc(average_score))
+
+datatable(head(barstool_rate))
+```
 
 ### Combined Datasets
-```{r}
-#Combined Dataset for Shiny Table for NY Pizza Places#
-bar_data_comb <- barstool_variable_name %>% 
-                  inner_join(datafiniti_dup_removed, by = "address") %>%
-                  filter(city.x == "New York City") %>%
-                  dplyr::select("name.x", "address", "zip", "provider_rating", "review_stats_all_average_score", "review_stats_community_average_score", "review_stats_critic_average_score", "review_stats_dave_average_score", "price_range_min", "price_range_max") 
-bar_data_comb_rank <- bar_data_comb %>%
-                        mutate(prov_rat_rank = min_rank(-provider_rating)) %>%
-                        mutate(rev_stats_all_avg_sco_rank = min_rank(-review_stats_all_average_score)) %>%
-                        mutate(rev_stats_com_avg_sco_rank = min_rank(-review_stats_community_average_score)) %>%
-                        mutate(rev_stats_crit_avg_sco_rank = min_rank(-review_stats_critic_average_score)) %>% 
-                        mutate(rev_stats_dave_avg_sco_rank = min_rank(-review_stats_dave_average_score))
-datatable(head(bar_data_comb_rank))
-```
-
-```{r}
-bar_data_jared_comb <- barstool_variable_name %>%
-                        inner_join(datafiniti_dup_removed, by = "name") %>% 
-                        inner_join(jared2, by = c("name" = "place"))
-bar_data_jared_comb
-#Need to look at the tables for names and see if any need to be changed to match#                       
-```
 
 ```{r}
 datafiniti_map <- datafiniti_dup_removed %>%
@@ -774,43 +802,45 @@ datatable(head(datafiniti_map))
 ```
 
 ```{r}
-barstool_for_table <-  barstool_variable_name %>%
-                        dplyr::select("name", "address", "zip", "longitude", "latitude", "price_level", "provider_rating", "review_stats_all_average_score", "review_stats_community_average_score", "review_stats_critic_average_score", "review_stats_dave_average_score") %>% 
-                        gather(type_of_rating, rating_score, 7:11) %>% 
-                        arrange(desc(rating_score)) 
+datafiniti_state <- datafiniti_map %>%
+                      group_by(province, price_type) %>%
+                      summarise(average_price_value = mean(price_range_value, na.rm = TRUE)) %>% arrange(average_price_value) 
+```
+
+```{r}
+datafiniti_price <- datafiniti_map %>%
+  group_by(name, address, city) %>%
+  summarise(average_price = mean(price_range_value, na.rm = TRUE)) %>%
+  arrange(average_price)
+datatable(datafiniti_price)
+```
+
+```{r}
+datafiniti_state_2 <- datafiniti_state %>% 
+  arrange(desc(average_price_value))
+```
+
+
+
+
+```{r}
+data_combine <- barstool_for_table %>%
+  inner_join(datafiniti_map, by = "address") %>%
+  dplyr::select("name.x", "address", "zip", "longitude.x", "latitude.x", "type_of_rating", "rating_score", "price_type", "price_range_value") %>%
+  arrange(desc(rating_score))
+
+datatable(data_combine)
 ```
 
 ### Shiny Table
 
-```{r}
-#Doesn't work yet but want to create a table to show barstool data and select the type of rating you want to see
-library(ggplot2)
-library(shiny)
-library(shinyWidgets)
-barstool_tab <- barstool_for_table[ , c(1:3,6,8,7)]
-head(barstool_tab)
 
-shinyApp(
-  ui = fluidPage(selectInput("zip", "Zip:", choices = sort(unique(barstool_tab$zip)), multiple = TRUE),
-                 selectInput("price_level", "Price Level:", choices =  sort(unique(barstool_tab$price_level)), multiple = TRUE),
-                 selectInput("type_of_rating", "Type of Rating:", choices = sort(unique(barstool_tab$type_of_rating)), multiple = FALSE), DT::dataTableOutput('tbl'), plotOutput("hist" , height = 300, width = 700)),
-  server = function(input, output) {selected_data_tab <- reactive({
-    req(input$zip)
-    req(input$price_level)
-    req(input$type_of_rating)
-    barstool_tab %>% dplyr::filter(type_of_rating %in% input$type_of_rating & zip %in% input$zip & price_level %in% input$price_level)})
-    output$tbl = DT::renderDataTable(
-      selected_data_tab(), options = list(lengthChange = FALSE))
-    output$hist <- renderPlot({
-    ggplot(selected_data_tab(), aes(rating_score)) + geom_histogram()})
-  })
-```
 
 ```{r}
 usa <- ggplot2::map_data("world", "usa")
 shinyApp(ui = fluidPage(
   selectInput("type_of_rating", "Select the type of rating you want to see on the map:", choices = sort(unique(barstool_for_table$type_of_rating)), multiple = FALSE),
-  plotOutput("bar", height = 300, width = 800)
+  plotOutput("bar", height = 400, width = 800)
 ),
 server = function(input, output) {
   selected_data <- reactive({
@@ -822,16 +852,31 @@ server = function(input, output) {
   capitals <- subset(us.cities, capital == 2)
   ggplot(capitals, aes(long, lat)) +
     borders("state") + 
-    geom_point(data= selected_data(), aes(x = (longitude), y = latitude, colour = rating_score)) + 
+    geom_point(data= selected_data(), aes(x = (longitude), y = latitude, colour = rating_score)) +
+    ggtitle("Barstool Map Showing the Rating Score by Rating Type", subtitle = "Select the type of rating you want to evaluate") + 
+    scale_x_continuous(name = "longitude")+ scale_y_continuous(name = "latitude")+ 
     coord_cartesian(xlim=c(-130, -60), ylim = c(20, 50))}})
-}
-)
+}, 
+options = list(height = 500))
+```
+
+```{r}
+shinyApp(
+  ui = fluidPage(selectInput("type_of_rating", "Select the type of rating you want to evaluate:", choices =  sort(unique(barstool_zip_1$type_of_rating)), multiple = FALSE),
+                DT::dataTableOutput('tbl')),
+  server = function(input, output) {selected_data_tab_6 <- reactive({
+    req(input$type_of_rating)
+    barstool_zip_1 %>% dplyr::filter(type_of_rating %in% input$type_of_rating)})
+    output$tbl = DT::renderDataTable(
+      selected_data_tab_6(), options = list(lengthChange = FALSE), caption = "This shows the average rating score by zip and type of rating sorted by the highest average rating score. Select the rating you want to evaluate above.")},
+  
+  options = list(height = 700))
 ```
 
 ```{r}
 shinyApp(ui = fluidPage(
   selectInput("price_type", "Select the price type you want to see on the map:", choices = sort(unique(datafiniti_map$price_type)), multiple = FALSE),
-  plotOutput("bar", height = 300, width = 800)
+  plotOutput("bar", height = 400, width = 800)
 ),
 server = function(input, output) {
   selected_data_2 <- reactive({
@@ -843,24 +888,19 @@ server = function(input, output) {
   capitals <- subset(us.cities, capital == 2)
   ggplot(capitals, aes(long, lat)) +
     borders("state") + 
-    geom_point(data= selected_data_2(), aes(x = (longitude), y = latitude, colour = price_range_value)) + 
+    geom_point(data= selected_data_2(), aes(x = (longitude), y = latitude, colour = price_range_value)) +
+    ggtitle("Datfiniti Map Showing the Price Range Value by Price Type", subtitle = "Select the price type you want to evaluate") + 
+    scale_x_continuous(name = "longitude") + scale_y_continuous(name = "latitude") +
     coord_cartesian(xlim=c(-130, -60), ylim = c(20, 50))}})
-}
-)
-
+}, 
+options = list(height = 500))
 ```
 
 ```{r}
-#Doesn't work yet but want to create a table to show barstool data and select the type of rating you want to see
-library(ggplot2)
-library(shiny)
-library(shinyWidgets)
 datafiniti_tab <- datafiniti_map[ , c(1:3,5,8:9)]
-head(barstool_tab)
-
 shinyApp(
-  ui = fluidPage(selectInput("province", "Province:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
-                 selectInput("price_type", "Price Type:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = FALSE),
+  ui = fluidPage(selectInput("province", "Select the state you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
+                 selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = FALSE),
                 DT::dataTableOutput('tbl'),
   plotOutput("data_2" , height = 300, width = 700)),
   server = function(input, output) {selected_data_tab_2 <- reactive({
@@ -868,11 +908,60 @@ shinyApp(
     req(input$price_type)
     datafiniti_tab %>% dplyr::filter(province %in% input$province & price_type %in% input$price_type)})
     output$tbl = DT::renderDataTable(
-      selected_data_tab_2(), options = list(lengthChange = FALSE))
+      selected_data_tab_2(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order based on the lowest price range value.")
     output$data_2 <- renderPlot({
-    ggplot(selected_data_tab_2(), aes(price_range_value)) + geom_histogram()
+    ggplot(selected_data_tab_2(), aes(price_range_value)) + geom_histogram() + scale_x_continuous(name = "price range value") + ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the state and price type you want to evaluate")
   }
 )
-  }
+  },
+  
+  options = list(height = 1000)
 )
+```
+
+```{r}
+shinyApp(
+  ui = fluidPage(selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_state$price_type)), multiple = FALSE),
+                DT::dataTableOutput('tbl')),
+  server = function(input, output) {selected_data_tab_3 <- reactive({
+    req(input$price_type)
+    datafiniti_state %>% dplyr::filter(price_type %in% input$price_type)})
+    output$tbl = DT::renderDataTable(
+      selected_data_tab_3(), options = list(lengthChange = FALSE), caption = "This shows the average price value by state and price_type. This is sorted by the lowest average price value. Select the price type you want to evaluate.")},
+  
+  options = list(height = 700))
+```
+
+```{r}
+data_tab <- data_combine[, c(1:3, 6:9)]
+shinyApp(
+  ui = fluidPage(selectInput("zip", "Select the zip you want to evaluate:", choices = sort(unique(data_tab$zip)), multiple = TRUE),
+                 selectInput("price_range_value", "Select the price range value you want to evaluate:", choices =  sort(unique(data_tab$price_range_value)), multiple = TRUE),
+                 selectInput("type_of_rating", "Select the type of rating you want to evaluate:", choices = sort(unique(data_tab$type_of_rating)), multiple = FALSE), DT::dataTableOutput('tbl'), plotOutput("hist_4" , height = 300, width = 700)),
+  server = function(input, output) {selected_data_tab_6 <- reactive({
+    req(input$zip)
+    req(input$price_range_value)
+    req(input$type_of_rating)
+    data_tab %>% dplyr::filter(type_of_rating %in% input$type_of_rating & zip %in% input$zip & price_range_value %in% input$price_range_value)})
+    output$tbl = DT::renderDataTable(
+      selected_data_tab_6(), options = list(lengthChange = FALSE), caption = "This table shows the pizza place with the highest rating score based on the selections above.")
+    output$hist_4 <- renderPlot({
+    ggplot(selected_data_tab_6(), aes(rating_score)) + geom_histogram() + ggtitle("Histogram of Datafiniti and Barstool Combined Rating Score", subtitle = "Select the zip, price range value, and type of rating you want to evaluate") + scale_x_continuous(name = "rating score")})
+  },
+  
+  options = list(height = 1200, width = 900))
+```
+
+```{r}
+jared_tab_good <- jared2 %>%
+  mutate(bad_rating = Pct_Never_Again + Pct_Poor) %>%
+  mutate(good_rating = Pct_Good + Pct_Excellent) 
+jared_new_calc <- jared_tab_good[ ,c(1, 16:17)]
+jared_good <- jared_new_calc %>%
+  arrange(desc(good_rating))
+jared_bad <- jared_new_calc %>%
+  arrange(desc(bad_rating))
+datatable(head(jared_good, 10), caption = "This table shows the top 10 jared items that have a good rating.")
+datatable(head(jared_bad, 10), caption = "This table shows the top 10 jared items that have a bad rating.")
+
 ```
