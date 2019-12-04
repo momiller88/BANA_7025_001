@@ -994,8 +994,6 @@ shinyApp(
   options = list(height = 1200, width = 900))
 ```
 
-
-
 #### **Datafiniti Exploratory Data Analysis Results**
 
 After all of the analysis on the Datafiniti dataset we developed several tools that brought out some key insights. The first is the shiny table that allows us to filter pizza places based on state, price range max/min, and a select value for the max, or min, price. So, the user can mix and match any sort of combination to figure out the best pizza place in their area to fit their budget. The map allows us to visualize the most and least expensive places to get pizza. The majority of the most expensive pizza places tended to center around coastal regions and large cities. While the more rural locations tended to have a lower price cap. We were able to derive the most expensive states to buy pizza based on our data set, leading the top three with Conneticut, South Dakota, and Iowa. Finally, our last table allows you to filter each pizza place based on their average price. The top 3 places being: Crust Stone Oven Pizza in Bettendorf, Oregano in Brooklyn, and Apizza Scholls in Portland.
