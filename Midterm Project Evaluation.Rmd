@@ -15,7 +15,11 @@ runtime: shiny
 
 #### **Do You Love Pizza?**
 
-We would say most people love pizza. Also, most people want to try a new pizza when they travel or move somewhere new. This is the problem we are hoping to help answer through our analysis. Yelp and other food review sites are great for finding new food locations to eat at, but what they lack is the ability to tell you upfront what is the actual price range of the restaurant. They only provide you a 5 scale rating of the price range, and this can be interpreted very differently based on the person. Our goal was to show you the top pizza places by price range, zip, and type of rating in an easy to use interactive format. Our analysis provides you with a more concrete number of the price range each resturant. We have created interative datatables, maps, and histograms of the the top rated pizza places by zip code, price range, and type of review. This analysis was all done using a shiny application, because shiny apps give us the ability to make our visualizations interactive. We combined the barstool and datafiniti datasets, so we can have reviews and price ranges in a single view. And, the table will contains the name, address, price range, and rating of each resturant. This table will help the user find the best pizza place they can afford to eat whenever they are traveling or want to try a new pizza place.
+We would say most people love pizza. Also, most people want to try a new pizza when they travel or move somewhere new. This is the problem we are hoping to help answer through our analysis. Yelp and other food review sites are great for finding new food locations to eat at, but what they lack is the ability to tell you upfront what is the actual price range of the restaurant. They only provide you a 5 scale rating of the price range, and this can be interpreted very differently based on the person. Also, they don't always visual their ratings in great way.
+
+One of our goals for this project is to allow users to find the best pizza place for them based on zip code, price level, and type of rating in the barstool dataset. Also, another goal is to allow users to see where the top rated pizza places are on a map based on the type of rating selected from the barstool dataset. Also, a goal of ours is to allow users to see which zip codes has the highest and lowest average rating score based on the type of rating selected from the barstool dataset. Also, we are hoping to show users which pizza place received the highest rating based on the average of all the rankings from the barstool dataset. In adittion, our  is to allow users to find the best pizza place for them based on province and price type from the datafiniti dataset. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select from the datafiniti dataset. Also, we have a goal of showing users the average price value of pizza by province and price type from the datafiniti dataset. Also, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values from the datafiniti dataset. Also, our goal is to find the top 10 pizza places that have a good rating in the jared data set. Also, it is to find the top 10 pizza places that a bad rating in the jared dataset. Finally, our last goal is allow a user to find the best pizza place for them based on zip, price range, and type of rating.
+
+We are planning on addressing these goals through the use of shiny, data tables, histograms, and joining data tables. We believe that these final results will help the user find their ideal pizza place.
 
 ### Packages Required
 
@@ -825,7 +829,7 @@ shinyApp(
   options = list(height = 700))
 ```
 
-The final part we wanted to do for our exploratory analysis was to allow users to see which pizza place had the highest average rating across all the type of ratings. The code below allows us to achieve this goal. In this code, we first need to group the data by name, address, and zip. Next, we created a calculation to find the mean of all the ratings. Finally, we sorted the data in descending order by average score. The last piece of code allows us to see the top 10 results for pizza places in data table. 
+The final part we wanted to do for our exploratory analysis was to allow users to see which pizza place had the highest average rating across all the type of ratings. The code below allows us to achieve this goal. In this code, we first need to group the data by name, address, and zip. Next, we created a calculation to find the mean of all the ratings. Finally, we sorted the data in descending order by average score. The last piece of code allows us to see the top 10 results for pizza places in data table based on average score. 
 
 ```{r}
 #Creates dataset and data table to see the top 10 pizza places on average for all the ratings#
@@ -844,7 +848,7 @@ After all of the analysis on the Barstool dataset we were able to derive several
 
 #### **Datafiniti Exploratory Data Analysis Results**
 
-The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on province and price type. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select. Also, we have a goal of showing users the average price value of pizza by state and price type. Finally, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values. 
+The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on province and price type. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select. Also, we have a goal of showing users the average price value of pizza by province and price type. Finally, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values. 
 
 This first part allows users to find best pizza place for them based on province and price type. We thought the best way to achieve this goal would be to create a shiny data table and histogram. Before we would create the shiny data table and histogram, we needed to create a data set for this data table and histogram. The code below allows us to create this new dataset. In this new dataset, we need to use some of the orignial columns to the create the price type and price range value columns. Also, we needed to remove some columns that we didn't want in our data table. Below is the code to create this new dataset.
 
@@ -860,7 +864,6 @@ datatable(head(datafiniti_tab))
 The code below creates the shiny table and histogram. In this shiny data table and histogram, a user should be able to select the province and price type that they would like to evaluate for datafiniti. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, city, province, price type, and price range value. The table will be sorted in descending order by price range value. Please make the selections below in order to see the data table and histogram. You can select multiple provinces and price types. 
 
 ```{r}
-#Creates shiny table and histogram#
 #Creates shiny table and histogram#
 shinyApp(
   ui = fluidPage(selectInput("province", "Select the province you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),             selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = FALSE),
@@ -931,13 +934,15 @@ shinyApp(
   options = list(height = 700))
 ```
 
+The final part we wanted to do for our exploratory analysis was to allow users to see which pizza place had the lowest average price across all the price types. The code below allows us to achieve this goal. In this code, we first need to group the data by name, address, and city. Next, we created a calculation to find the mean of all the prices. Finally, we sorted the data in descending order by average price. The last piece of code allows us to see the top 10 results for lowest average price for a pizza place.
 
 ```{r}
+#Creates table of top ten places with the lowest average price#
 datafiniti_price <- datafiniti_map %>%
   group_by(name, address, city) %>%
   summarise(average_price = mean(price_range_value, na.rm = TRUE)) %>%
   arrange(average_price)
-datatable(datafiniti_price)
+datatable(head(datafiniti_price, 10))
 ```
 
 #### **Summary of Datafiniti Exploratory Data Analysis Results**
@@ -948,7 +953,7 @@ After all of the analysis on the Datafiniti dataset we developed several tools t
 
 #### **Jared Exploratory Data Analysis Results**
 
-The goal of this part is to find the top 10 pizza places that have a good rating. Also, it is to find the top 10 pizza places that a bad rating. We thought that a data table would best illustrate these findings. Before we made the table, we needed to create a calculation to get the good rating. We found the good rating by summing up the percent good and the percent excellent. We thought that these two selections would determine whether a pizza place was really good. Also, we needed to create a calculation to sum up the percent poor and the percent never again. We  
+The goal of this exploratory data analysis is to find the top 10 pizza places that have a good rating. Also, it is to find the top 10 pizza places that a bad rating. We thought that a data table would best illustrate these findings. Before we made the table, we needed to create a calculation to get the good rating. We found the good rating by summing up the percent good and the percent excellent. We thought that these two selections would determine whether a pizza place was really good. Also, we needed to create a calculation to sum up the percent poor and the percent never again. We thought that these two selections would determine whether a pizza place was really bad. Next, we greated new datasets based of these selections so we could create two separate tables. Below is the code to create this dataset and data table. 
 
 ```{r}
 #Create good and bad rating#
@@ -969,23 +974,30 @@ datatable(head(jared_good, 10), caption = "This table shows the top 10 jared ite
 datatable(head(jared_bad, 10), caption = "This table shows the top 10 jared items that have a bad rating.")
 ```
 
-#### **Jared Exploratory Data Analysis Results**
+#### **Summary of Jared Exploratory Data Analysis**
 
-
+After evaluating the good table, we found that the top ten good places for pizza are Patsy's, Dona Bella, Williamsburg Pizza, Tappo, Artichoke Basille's Pizza, Rocky's, Naples 45, Fiore's, Bleecker Street Pizza, and Arturo's. After evaluating the bad table, we found that the top ten bad places for pizza are Ben's of SoHO 14th Street, Kiss My Slice, Frank's Express Pizza, Nonna's LES Pizza, Previti Pizza, Steve's Pizza, Highline Pizza, Prince Street Pizza, and Champion Pizza. We found these values by looking at which values had the largest value for good or bad rating.
 
 ### Datafiniti and Barstool Combination Exploratory Data Analysis
 
+#### **Datafiniti and Barstool Combination Exploratory Data Analysis**
+
+The goal of this exploratory data analysis is to allow a user to find the best pizza place for them based on zip, price range, and type of rating. We thought a shiny data table and histogram would best illustrate these findings. The first thing we did was combine the datafiniti and barstool datasets through an inner join. We thought address would be good to do the inner join since it is likely a unique value. Next, we selected the columns we wanted from both datasets and we arranged them by rating score. Finally, we selected the columns we wanted included in the data table. Below is the code to create this dataset. 
+
 ```{r}
+#Creates dataset for shiny data table and histogram#
 data_combine <- barstool_for_table %>%
   inner_join(datafiniti_map, by = "address") %>%
   dplyr::select("name.x", "address", "zip", "longitude.x", "latitude.x", "type_of_rating", "rating_score", "price_type", "price_range_value") %>%
   arrange(desc(rating_score))
-
-datatable(data_combine)
+data_tab <- data_combine[, c(1:3, 6:9)]
+datatable(head(data_tab))
 ```
 
+The code below allows creates the shiny data table and histogram that was mentioned above. Please make sure to select zip, price range, and type of rating.
+
 ```{r}
-data_tab <- data_combine[, c(1:3, 6:9)]
+#Create shiny data table and histogram#
 shinyApp(
   ui = fluidPage(selectInput("zip", "Select the zip you want to evaluate:", choices = sort(unique(data_tab$zip)), multiple = TRUE),
                  selectInput("price_range_value", "Select the price range value you want to evaluate:", choices =  sort(unique(data_tab$price_range_value)), multiple = TRUE),
@@ -1000,18 +1012,15 @@ shinyApp(
     output$hist_4 <- renderPlot({
     ggplot(selected_data_tab_6(), aes(rating_score)) + geom_histogram() + ggtitle("Histogram of Datafiniti and Barstool Combined Rating Score", subtitle = "Select the zip, price range value, and type of rating you want to evaluate") + scale_x_continuous(name = "rating score")})
   },
-  
-  options = list(height = 1200, width = 900))
+options = list(height = 1200, width = 900))
 ```
 
-<<<<<<< HEAD
-#### **Datafiniti Exploratory Data Analysis Results**
-=======
+#### **Summary of Combined Datafiniti and Barstool Exploratory Data Analysis**
 
-
->>>>>>> b2d326af8c131b59164794e2eafd8163e0b2ecb5
-
+After completing this exploratory analysis, we found that there weren't many matches between the datafiniti and barstool. We were still able to get a good amount that it would allow a user to use this table to search for their ideal pizza place. Also, we discovered from this join that most of the similar results were from NY. 
 
 ### Summary Evaluation
 
 #### **Summary Evaluation**
+
+We had a variety of goals we wanted to solve at the beginning of this project. They are the following. One of our goals for this project is to allow users to find the best pizza place for them based on zip code, price level, and type of rating in the barstool dataset. Also, another goal is to allow users to see where the top rated pizza places are on a map based on the type of rating selected from the barstool dataset. Also, a goal of ours is to allow users to see which zip codes has the highest and lowest average rating score based on the type of rating selected from the barstool dataset. Also, we are hoping to show users which pizza place received the highest rating based on the average of all the rankings from the barstool dataset. In adittion, our  is to allow users to find the best pizza place for them based on province and price type from the datafiniti dataset. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select from the datafiniti dataset. Also, we have a goal of showing users the average price value of pizza by province and price type from the datafiniti dataset. Also, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values from the datafiniti dataset. Also, our goal is to find the top 10 pizza places that have a good rating in the jared data set. Also, it is to find the top 10 pizza places that a bad rating in the jared dataset. Finally, our last goal is allow a user to find the best pizza place for them based on zip, price range, and type of rating.
