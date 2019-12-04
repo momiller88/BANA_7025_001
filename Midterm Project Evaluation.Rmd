@@ -839,6 +839,8 @@ datatable(head(barstool_rate, 10))
 
 #### **Summary of Barstool Exploratory Analysis Results**
 
+After all of the analysis on the Barstool dataset we were able to derive several key insights. We noticed that not every zipcode had every price level. This would make sense considering that resturants would want to cater towards their clientelle and those in more affluent areas would be able to charge premium prices. From the map we were able to notice that the majority of our data was collected from areas in the northeast of the US, with heavy focus on the New York area. Selecting through the different ratings you will notice that the average community score is tends to higer than critics ratings. Where as, provider and overall average ratings tend to be more comparable across the board. Additionally, we provided summary tables for the top zipcodes based on rating. Finally, if you know where you would like to travel you can search the particular zipcode and see what rating it was given based on our datasets. 
+
 ### Datafiniti Exploratory Data Analysis
 
 #### **Datafiniti Exploratory Data Analysis Results**
@@ -993,3 +995,7 @@ datatable(head(jared_good, 10), caption = "This table shows the top 10 jared ite
 datatable(head(jared_bad, 10), caption = "This table shows the top 10 jared items that have a bad rating.")
 
 ```
+
+### Summary Evaluation
+
+#### **Summary Evaluation**
