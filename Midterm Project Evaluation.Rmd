@@ -775,7 +775,7 @@ shinyApp(
   options = list(height = 1200))
 ```
 
-This part of the analysis allows users to see where the top rated pizza places are on a map based on the type of rating selected. We used the barstool_for_table dataset from above to plot points on the map. We decided to use a shiny map to allow users to see where the top rate pizza places are. A user will be able to select type of rating they would like to see on the map. Below is the code to create this shiny map. 
+This part of the analysis allows users to see where the pizza places are on a map and the rating score they had based on the type of rating selected. We used the barstool_for_table dataset from above to plot points on the map. We decided to use a shiny map to allow users to see where the top rate pizza places are. A user will be able to select type of rating they would like to see on the map. Below is the code to create this shiny map. 
 
 ```{r}
 #Creates shiny map to allow users to see where the top rated pizza places are located#
@@ -800,7 +800,7 @@ server = function(input, output) {
 options = list(height = 500))
 ```
 
-In this part, our goal is to allow users to see which zip code has the highest average rating score based on the type of rating selected. We decided that we thought we would achieve this goal through a shiny table. The first item we needed to do before we created the table was to create a dataset for it. The code below allows us to calculate the average rating score by zip and type of rating. Also, we arranged the average rating score average rating score. We thought this dataset would help us in creating the table to show which zips had the highest average rating based on type of rating selected. Below is the code to create this dataset. 
+In this part, our goal is to allow users to see which zip code has the highest average rating score based on the type of rating selected. We decided that we thought we would achieve this goal through a shiny table. The first item we needed to do before we created the table was to create a dataset for it. The code below allows us to calculate the average rating score by zip and type of rating. Also, we arranged the average rating score in descending order. We thought this dataset would help us in creating the table to show which zips had the highest average rating based on type of rating selected. Below is the code to create this dataset. 
 
 ```{r}
 #Creates dataset to help us create a shiny table to show which zips had the highest average rating based on the type of rating selected#
@@ -852,16 +852,16 @@ This first part allows users to find best pizza place for them based on province
 ```{r}
 #Creates data set for our shiny table and histogram#
 datafiniti_map <- datafiniti_dup_removed %>%
-                      gather(price_type, price_range_value, 8:9) %>%
-                      arrange(price_range_value)
+  gather(price_type, price_range_value, 8:9) %>%
+  arrange(price_range_value)
 datafiniti_tab <- datafiniti_map[ , c(1:3,5,8:9)]
 datatable(head(datafiniti_tab))
 ```
 
-The code below creates the shiny table and histogram. In this shiny data table and histogram, a user should be able to select the province, price type, and price range value that they would like to evaluate for datafiniti. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, city, province, price type, and price range value. The table will be sorted in descending order by price range value. Please make the selections below in order to see the data table and histogram. You can select multiple zip codes and price levels. 
+The code below creates the shiny table and histogram. In this shiny data table and histogram, a user should be able to select the province, price type, and price range value that they would like to evaluate for datafiniti. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, city, province, price type, and price range value. The table will be sorted in descending order by price range value. Please make the selections below in order to see the data table and histogram. You can select multiple provinces, price types, and price range values. 
 
 ```{r}
-#Creates 
+#Creates shiny table and histogram#
 shinyApp(
   ui = fluidPage(selectInput("province", "Select the province you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
                  selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = TRUE),
@@ -872,24 +872,68 @@ shinyApp(
     req(input$province)
     req(input$price_type)
     req(input$price_range_value)
-    datafiniti_tab %>% dplyr::filter(province %in% input$province & price_type %in% input$price_type)})
+    datafiniti_tab %>% 
+      dplyr::filter(province %in% input$province & price_type %in% input$price_type)})
     output$tbl = DT::renderDataTable(
       selected_data_tab_2(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order based on the lowest price range value.")
     output$data_2 <- renderPlot({
-    ggplot(selected_data_tab_2(), aes(price_range_value)) + geom_histogram() + scale_x_continuous(name = "price range value") + ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the province, price type, and price range value you want to evaluate")
-  }
-)
-  },
-  
-  options = list(height = 1200)
-)
+    ggplot(selected_data_tab_2(), aes(price_range_value)) + 
+        geom_histogram() + 
+        scale_x_continuous(name = "price range value") + 
+        ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the province, price type, and price range value you want to evaluate")})},
+  options = list(height = 1200))
 ```
 
+This part of the analysis allows users to see where the pizza places are on a map and the price range value they have based on the price type you selected. We used the datafiniti_map dataset from above to plot points on the map. We decided to use a shiny map to allow users to see where the cheapest pizza places are. A user will be able to select price type they would like to see on the map. Below is the code to create this shiny map.
+
 ```{r}
-datafiniti_state <- datafiniti_map %>%
-                      group_by(province, price_type) %>%
-                      summarise(average_price_value = mean(price_range_value, na.rm = TRUE)) %>% arrange(average_price_value) 
+#Creates shiny map for datafiniti#
+shinyApp(ui = fluidPage(
+  selectInput("price_type", "Select the price type you want to see on the map:", choices = sort(unique(datafiniti_map$price_type)), multiple = FALSE),
+  plotOutput("bar", height = 400, width = 800)),
+  server = function(input, output) {
+    selected_data_2 <- reactive({
+    req(input$price_type)
+      datafiniti_map %>% 
+        dplyr::filter(price_type %in% input$price_type)})
+    output$bar <- renderPlot({
+      if (require("maps")) {
+        data(us.cities)
+        capitals <- subset(us.cities, capital == 2)
+        ggplot(capitals, aes(long, lat)) +
+          borders("state") + 
+          geom_point(data= selected_data_2(), aes(x = (longitude), y = latitude, colour = price_range_value)) +
+          ggtitle("Datfiniti Map Showing the Price Range Value by Price Type", subtitle = "Select the price type you want to evaluate") + 
+          scale_x_continuous(name = "longitude") + scale_y_continuous(name = "latitude") +
+          coord_cartesian(xlim=c(-130, -60), ylim = c(20, 50))}})}, 
+  options = list(height = 500))
 ```
+
+In this part, our goal is to allow users to see which province has the lowest price range value based on the price type selected. We decided that we thought we would achieve this goal through a shiny table. The first item we needed to do before we created the table was to create a dataset for it. The code below allows us to calculate the average price value by province and price type. Also, we arranged the average price value in ascending order. We thought this dataset would help us in creating the table to show which provinces had the lowest average price value based on the price type selected. Below is the code to create this dataset.
+
+```{r}
+#Create dataset to help us create a shiny table to show which provinces had the lowest average price value based on the price type selected#
+datafiniti_state <- datafiniti_map %>%
+  group_by(province, price_type) %>%
+  summarise(average_price_value = mean(price_range_value, na.rm = TRUE)) %>% 
+  arrange(average_price_value) 
+```
+
+The following code allows us to create the shiny table that was mentioned prior. Please make sure to select the price type you want to evaluate before you start evaluating the table.
+
+```{r}
+#Create shiny table to show which provinces had the lowest average price value#
+shinyApp(
+  ui = fluidPage(selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_state$price_type)), multiple = FALSE),
+                 DT::dataTableOutput('tbl')),
+  server = function(input, output) {selected_data_tab_3 <- reactive({
+    req(input$price_type)
+    datafiniti_state %>% dplyr::filter(price_type %in% input$price_type)})
+  output$tbl = DT::renderDataTable(
+    selected_data_tab_3(), options = list(lengthChange = FALSE), caption = "This shows the average price value by province and price_type. This is sorted by the lowest average price value. Select the price type you want to evaluate.")},
+  options = list(height = 700))
+```
+
 
 ```{r}
 datafiniti_price <- datafiniti_map %>%
@@ -899,11 +943,7 @@ datafiniti_price <- datafiniti_map %>%
 datatable(datafiniti_price)
 ```
 
-```{r}
-datafiniti_state_2 <- datafiniti_state %>% 
-  arrange(desc(average_price_value))
-```
-
+### Shiny Table
 
 
 
@@ -916,7 +956,6 @@ data_combine <- barstool_for_table %>%
 datatable(data_combine)
 ```
 
-### Shiny Table
 
 
 
@@ -924,43 +963,12 @@ datatable(data_combine)
 
 
 
-```{r}
-shinyApp(ui = fluidPage(
-  selectInput("price_type", "Select the price type you want to see on the map:", choices = sort(unique(datafiniti_map$price_type)), multiple = FALSE),
-  plotOutput("bar", height = 400, width = 800)
-),
-server = function(input, output) {
-  selected_data_2 <- reactive({
-    req(input$price_type)
-    datafiniti_map %>% dplyr::filter(price_type %in% input$price_type)})
-  output$bar <- renderPlot({
- if (require("maps")) {
-  data(us.cities)
-  capitals <- subset(us.cities, capital == 2)
-  ggplot(capitals, aes(long, lat)) +
-    borders("state") + 
-    geom_point(data= selected_data_2(), aes(x = (longitude), y = latitude, colour = price_range_value)) +
-    ggtitle("Datfiniti Map Showing the Price Range Value by Price Type", subtitle = "Select the price type you want to evaluate") + 
-    scale_x_continuous(name = "longitude") + scale_y_continuous(name = "latitude") +
-    coord_cartesian(xlim=c(-130, -60), ylim = c(20, 50))}})
-}, 
-options = list(height = 500))
-```
 
 
 
-```{r}
-shinyApp(
-  ui = fluidPage(selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_state$price_type)), multiple = FALSE),
-                DT::dataTableOutput('tbl')),
-  server = function(input, output) {selected_data_tab_3 <- reactive({
-    req(input$price_type)
-    datafiniti_state %>% dplyr::filter(price_type %in% input$price_type)})
-    output$tbl = DT::renderDataTable(
-      selected_data_tab_3(), options = list(lengthChange = FALSE), caption = "This shows the average price value by state and price_type. This is sorted by the lowest average price value. Select the price type you want to evaluate.")},
-  
-  options = list(height = 700))
-```
+
+
+
 
 ```{r}
 data_tab <- data_combine[, c(1:3, 6:9)]
