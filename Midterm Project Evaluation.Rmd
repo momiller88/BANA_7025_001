@@ -845,9 +845,9 @@ After all of the analysis on the Barstool dataset we were able to derive several
 
 #### **Datafiniti Exploratory Data Analysis Results**
 
-The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on province, price type, and price_range_value. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select. Also, we have a goal of showing users the average price value of pizza by state and price type. Finally, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values. 
+The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on province and price type. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select. Also, we have a goal of showing users the average price value of pizza by state and price type. Finally, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values. 
 
-This first part allows users to find best pizza place for them based on province, price type, and price range value. We thought the best way to achieve this goal would be to create a shiny data table and histogram. Before we would create the shiny data table and histogram, we needed to create a data set for this data table and histogram. The code below allows us to create this new dataset. In this new dataset, we need to use some of the orignial columns to the create the price type and price range value columns. Also, we needed to remove some columns that we didn't want in our data table. Below is the code to create this new dataset.
+This first part allows users to find best pizza place for them based on province and price type. We thought the best way to achieve this goal would be to create a shiny data table and histogram. Before we would create the shiny data table and histogram, we needed to create a data set for this data table and histogram. The code below allows us to create this new dataset. In this new dataset, we need to use some of the orignial columns to the create the price type and price range value columns. Also, we needed to remove some columns that we didn't want in our data table. Below is the code to create this new dataset.
 
 ```{r}
 #Creates data set for our shiny table and histogram#
@@ -858,20 +858,18 @@ datafiniti_tab <- datafiniti_map[ , c(1:3,5,8:9)]
 datatable(head(datafiniti_tab))
 ```
 
-The code below creates the shiny table and histogram. In this shiny data table and histogram, a user should be able to select the province, price type, and price range value that they would like to evaluate for datafiniti. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, city, province, price type, and price range value. The table will be sorted in descending order by price range value. Please make the selections below in order to see the data table and histogram. You can select multiple provinces, price types, and price range values. 
+The code below creates the shiny table and histogram. In this shiny data table and histogram, a user should be able to select the province and price type that they would like to evaluate for datafiniti. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, city, province, price type, and price range value. The table will be sorted in descending order by price range value. Please make the selections below in order to see the data table and histogram. You can select multiple provinces and price types. 
 
 ```{r}
 #Creates shiny table and histogram#
 shinyApp(
   ui = fluidPage(selectInput("province", "Select the province you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
-                 selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = TRUE),
-                 selectInput("price_range_value", "Select the price range value you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_range_value)), multiple = TRUE),
+                 selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = TRUE)),
                 DT::dataTableOutput('tbl'),
-  plotOutput("data_2" , height = 300, width = 700)),
-  server = function(input, output) {selected_data_tab_2 <- reactive({
+  plotOutput("data_2" , height = 300, width = 700),
+server = function(input, output) {selected_data_tab_2 <- reactive({
     req(input$province)
     req(input$price_type)
-    req(input$price_range_value)
     datafiniti_tab %>% 
       dplyr::filter(province %in% input$province & price_type %in% input$price_type)})
     output$tbl = DT::renderDataTable(
@@ -880,7 +878,7 @@ shinyApp(
     ggplot(selected_data_tab_2(), aes(price_range_value)) + 
         geom_histogram() + 
         scale_x_continuous(name = "price range value") + 
-        ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the province, price type, and price range value you want to evaluate")})},
+        ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the province and price type you want to evaluate")})},
   options = list(height = 1200))
 ```
 
@@ -943,9 +941,30 @@ datafiniti_price <- datafiniti_map %>%
 datatable(datafiniti_price)
 ```
 
-### Shiny Table
+### Jared Exploratory Data Analysis
 
+The goal of this part is to find the top 10 pizza places that have a good rating. Also, it is to find the top 10 pizza places that a bad rating. We thought that a data table would best illustrate these findings. Before we made the table, we needed to create a calculation to get the good rating. We found the good rating by summing up the percent good and the percent excellent. We thought that these two selections would determine whether a pizza place was really good. Also, we needed to create a calculation to sum up the percent poor and the percent never again. We  
 
+```{r}
+#Create good and bad rating#
+jared_tab_good <- jared2 %>%
+  mutate(bad_rating = Pct_Never_Again + Pct_Poor) %>%
+  mutate(good_rating = Pct_Good + Pct_Excellent) 
+#Drop unecessary columns#
+jared_new_calc <- jared_tab_good[ ,c(1, 16:17)]
+#Create jared good dataset#
+jared_good <- jared_new_calc %>%
+  arrange(desc(good_rating))
+#Create jared bad dataset#
+jared_bad <- jared_new_calc %>%
+  arrange(desc(bad_rating))
+#Create jared data table to show the top 10 pizza places with highest percentage for good#
+datatable(head(jared_good, 10), caption = "This table shows the top 10 jared items that have a good rating.")
+#Create jared data table to show the top 10 pizza places with the highest percentage for bad#
+datatable(head(jared_bad, 10), caption = "This table shows the top 10 jared items that have a bad rating.")
+```
+
+### Datafiniti and Barstool Combination Exploratory Data Analysis
 
 ```{r}
 data_combine <- barstool_for_table %>%
@@ -955,20 +974,6 @@ data_combine <- barstool_for_table %>%
 
 datatable(data_combine)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ```{r}
 data_tab <- data_combine[, c(1:3, 6:9)]
@@ -990,19 +995,7 @@ shinyApp(
   options = list(height = 1200, width = 900))
 ```
 
-```{r}
-jared_tab_good <- jared2 %>%
-  mutate(bad_rating = Pct_Never_Again + Pct_Poor) %>%
-  mutate(good_rating = Pct_Good + Pct_Excellent) 
-jared_new_calc <- jared_tab_good[ ,c(1, 16:17)]
-jared_good <- jared_new_calc %>%
-  arrange(desc(good_rating))
-jared_bad <- jared_new_calc %>%
-  arrange(desc(bad_rating))
-datatable(head(jared_good, 10), caption = "This table shows the top 10 jared items that have a good rating.")
-datatable(head(jared_bad, 10), caption = "This table shows the top 10 jared items that have a bad rating.")
 
-```
 
 #### **Datafiniti Exploratory Data Analysis Results**
 
