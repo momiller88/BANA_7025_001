@@ -1,6 +1,7 @@
 ---
+title: 
 output: 
-  rmarkdown::html_document:
+  rmarkdown:: html_document:
     theme: yeti
 runtime: shiny
 ---
@@ -609,21 +610,21 @@ table(barstool_variable_name$review_stats_dave_average_score)
 The code below allows us to see a snippet of the final cleaned dataset for barstool. 
 ```{r}
 #Final cleaned dataset for barstool#
-datatable(head(barstool_variable_name, 50))
+datatable(head(barstool_variable_name, 10))
 ```
 
 The code below allows us to see a snippet of the final cleaned dataset for datafiniti. 
 
 ```{r}
 #Final cleaned dataset for datafiniti#
-datatable(head(datafiniti_dup_removed, 50))
+datatable(head(datafiniti_dup_removed, 10))
 ```
 
 The code below allos us to see a snippet of the final cleaned dataset for jared. 
 
 ```{r}
 #Final cleaned dataset for jared#
-datatable(head(jared2, 50))
+datatable(head(jared2, 10))
 ```
 
 ### Summary of Variables
@@ -842,7 +843,7 @@ datatable(head(barstool_rate, 10))
 
 #### **Summary of Barstool Exploratory Analysis Results**
 
-After all of the analysis on the Barstool dataset we were able to derive several key insights. We noticed that not every zipcode had every price level. This would make sense considering that resturants would want to cater towards their clientelle and those in more affluent areas would be able to charge premium prices. From the map we were able to notice that the majority of our data was collected from areas in the northeast of the US, with heavy focus on the New York area. Selecting through the different ratings you will notice that the average community score is tends to higer than critics ratings. Where as, provider and overall average ratings tend to be more comparable across the board. Additionally, we provided summary tables for the top zipcodes based on rating. Finally, if you know where you would like to travel you can search the particular zipcode and see what rating it was given based on our datasets. 
+After all of the analysis on the Barstool dataset we were able to derive several key insights. We noticed that not every zipcode had every price level. This would make sense considering that resturants would want to cater towards their clientelle and those in more affluent areas would be able to charge premium prices. From the map we were able to notice that the majority of our data was collected from areas in the northeast of the US, with heavy focus on the New York area. Selecting through the different ratings you will notice that the average community score is tends to higer than critics ratings. Where as, provider and overall average ratings tend to be more comparable across the board. Additionally, we provided summary tables for the top zipcodes based on rating. Finally, if you know where you would like to travel you can search the particular zipcode and see what rating it was given based on our datasets. From our own evaluations the top zipcodes based on provider ratings were 01801, 02115, 02563, 10461, 10550, 11003, 11231, 11238, 32250, and 33602. The top ten for overall average ratings were 11231, 10550, 60453, 11230, 02301, 11224, 33139, 02467, 02151, and 02368. The top ten based on community average score were 52241, 60453, 11231, 10550, 02301, 11230, 33480, 11224, 02151, and 33139. The top ten for critic's average ratings were 30342, 10280, 02128, 30326, 10038, 40202, 30305, 55417, 06338, and 32118. And, according to Dave's average scores the top ten zipcodes are 01902, 02467, 11230, 11231, 02184, 10550, 02072, 07110, 02564, and 10035. Finally, the leading pizza places based on average score are Serafina Broadway with 7.773, Jiannetto's Pizza Truck with 7.625, and Lucali - Henry with 7.574.
 
 ### Datafiniti Exploratory Data Analysis
 
@@ -947,7 +948,7 @@ datatable(head(datafiniti_price, 10))
 
 #### **Summary of Datafiniti Exploratory Data Analysis Results**
 
-After all of the analysis on the Datafiniti dataset we developed several tools that brought out some key insights. The first is the shiny table that allows us to filter pizza places based on state, price range max/min, and a select value for the max, or min, price. So, the user can mix and match any sort of combination to figure out the best pizza place in their area to fit their budget. The map allows us to visualize the most and least expensive places to get pizza. The majority of the most expensive pizza places tended to center around coastal regions and large cities. While the more rural locations tended to have a lower price cap. We were able to derive the most expensive states to buy pizza based on our data set, leading the top three with Conneticut, South Dakota, and Iowa. Finally, our last table allows you to filter each pizza place based on their average price. The top 3 places being: Crust Stone Oven Pizza in Bettendorf, Oregano in Brooklyn, and Apizza Scholls in Portland.
+After all of the analysis on the Datafiniti dataset we developed several tools that brought out some key insights. The first is the shiny table that allows us to filter pizza places based on state, price range max/min, and a select value for the max, or min, price. So, the user can mix and match any sort of combination to figure out the best pizza place in their area to fit their budget. The map allows us to visualize the most and least expensive places to get pizza. The majority of the most expensive pizza places tended to center around coastal regions and large cities. While the more rural locations tended to have a lower price cap. We were able to derive the most expensive states to buy pizza based on our data set, leading the top ten with Conneticut, South Dakota, Iowa, Alabama, Nebraska, Arizona, West Virginia, Maryland, Louisiana, and Oregon. Finally, our last table allows you to filter each pizza place based on their average price. The top ten places being: Crust Stone Oven Pizza, Oregano, Apizza Scholls, Barbaro, Buca di Beppo Italian Resturant, Dough Pizzeria Napoletana, La Montanara Resturant, Papa's Pizza, Spin, and Stella Barra Pizzeria.
 
 ### Jared Exploratory Data Analysis
 
@@ -1015,6 +1016,7 @@ shinyApp(
 options = list(height = 1200, width = 900))
 ```
 
+
 #### **Summary of Combined Datafiniti and Barstool Exploratory Data Analysis**
 
 After completing this exploratory analysis, we found that there weren't many matches between the datafiniti and barstool. We were still able to get a good amount that it would allow a user to use this table to search for their ideal pizza place. Also, we discovered from this join that most of the similar results were from NY. 
@@ -1024,3 +1026,7 @@ After completing this exploratory analysis, we found that there weren't many mat
 #### **Summary Evaluation**
 
 We had a variety of goals we wanted to solve at the beginning of this project. They are the following. One of our goals for this project is to allow users to find the best pizza place for them based on zip code, price level, and type of rating in the barstool dataset. Also, another goal is to allow users to see where the top rated pizza places are on a map based on the type of rating selected from the barstool dataset. Also, a goal of ours is to allow users to see which zip codes has the highest and lowest average rating score based on the type of rating selected from the barstool dataset. Also, we are hoping to show users which pizza place received the highest rating based on the average of all the rankings from the barstool dataset. In adittion, our  is to allow users to find the best pizza place for them based on province and price type from the datafiniti dataset. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select from the datafiniti dataset. Also, we have a goal of showing users the average price value of pizza by province and price type from the datafiniti dataset. Also, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values from the datafiniti dataset. Also, our goal is to find the top 10 pizza places that have a good rating in the jared data set. Also, it is to find the top 10 pizza places that a bad rating in the jared dataset. Finally, our last goal is allow a user to find the best pizza place for them based on zip, price range, and type of rating.
+
+We are addressed these goals through the use of shiny, data tables, histograms, and joining data tables. If you would like to see more information, look at the prior exploratory tabs. Also, we had a variety of results from addressing these goals. You can see our analysis and findings in the prior exploratory tabs.
+
+Based on our analysis of these datasets we believe any user can gain a better understanding of the varied pizza places across the US. They should be able to filter and sort based on their location, or planned destination, to find pizza places in their price range. They should be able to determine which places are a "Must Try!" and which places are "Avoid at ALL Cost!". Our analysis and tools provide a lot of varied insights for many different types of users. However, with additional datapoints and clarity around the data liniage we my have been able to derive more. We were not able to merge all three datasets in an effective manner that would result in enough records to run our regression analysis. We wanted to highlight key attributes that lead to the highest rated pizza place by both Barstool, Critics, and the Community. But, we simply didn't have enough information. Additionally, with some of our visualizations you may be limited to secific areas. Not every state is represented and there is a clear skew towards the north eastern region of the country. This could ultimately lead to bias in our results based on limited records in other states.
