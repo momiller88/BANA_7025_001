@@ -838,7 +838,7 @@ datatable(head(barstool_rate, 10))
 
 #### **Summary of Barstool Exploratory Analysis Results**
 
-After all of the analysis on the Barstool dataset we were able to derive several key insights. We noticed that not every zipcode had every price level. This would make sense considering that resturants would want to cater towards their clientelle and those in more affluent areas would be able to charge premium prices. From the map we were able to notice that the majority of our data was collected from areas in the northeast of the US, with heavy focus on the New York area. Selecting through the different ratings you will notice that the average community score is tends to higer than critics ratings. Where as, provider and overall average ratings tend to be more comparable across the board. Additionally, we provided summary tables for the top zipcodes based on rating. Finally, if you know where you would like to travel you can search the particular zipcode and see what rating it was given based on our datasets. 
+After all of the analysis on the Barstool dataset we were able to derive several key insights. We noticed that not every zipcode had every price level. This would make sense considering that resturants would want to cater towards their clientelle and those in more affluent areas would be able to charge premium prices. From the map we were able to notice that the majority of our data was collected from areas in the northeast of the US, with heavy focus on the New York area. Selecting through the different ratings you will notice that the average community score is tends to higer than critics ratings. Where as, provider and overall average ratings tend to be more comparable across the board. Additionally, we provided summary tables for the top zipcodes based on rating. Finally, if you know where you would like to travel you can search the particular zipcode and see what rating it was given based on our datasets. From our own evaluations the top zipcodes based on provider ratings were 01801, 02115, 02563, 10461, 10550, 11003, 11231, 11238, 32250, and 33602. The top ten for overall average ratings were 11231, 10550, 60453, 11230, 02301, 11224, 33139, 02467, 02151, and 02368. The top ten based on community average score were 52241, 60453, 11231, 10550, 02301, 11230, 33480, 11224, 02151, and 33139. The top ten for critic's average ratings were 30342, 10280, 02128, 30326, 10038, 40202, 30305, 55417, 06338, and 32118. And, according to Dave's average scores the top ten zipcodes are 01902, 02467, 11230, 11231, 02184, 10550, 02072, 07110, 02564, and 10035. Finally, the leading pizza places based on average score are Serafina Broadway with 7.773, Jiannetto's Pizza Truck with 7.625, and Lucali - Henry with 7.574.
 
 ### Datafiniti Exploratory Data Analysis
 
@@ -1004,12 +1004,9 @@ shinyApp(
   options = list(height = 1200, width = 900))
 ```
 
-<<<<<<< HEAD
-#### **Datafiniti Exploratory Data Analysis Results**
-=======
 
+#### **Datafiniti and Barstool Combination Exploratory Data Analysis Results**
 
->>>>>>> b2d326af8c131b59164794e2eafd8163e0b2ecb5
 
 
 ### Summary Evaluation
