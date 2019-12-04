@@ -35,6 +35,7 @@ install.packages("DT")
 install.packages("shiny")
 install.packeges("pastecs")
 install.packages("tibble")
+install.packages("mapdata")
 ```
 
 ##### **Code to Find Packages in the Library**
