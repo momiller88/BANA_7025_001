@@ -755,8 +755,7 @@ The code below creates the shiny table and histogram. In this shiny data table a
 ```{r}
 #Creates shiny table and histogram#
 shinyApp(
-  ui = fluidPage(selectInput("zip", "Select the zip you want to evaluate:", choices = sort(unique(barstool_tab$zip)), multiple = TRUE),
-                 selectInput("price_level", "Select the price level you want to evaluate:", choices =  sort(unique(barstool_tab$price_level)), multiple = TRUE),
+  ui = fluidPage(selectInput("zip", "Select the zip you want to evaluate:", choices = sort(unique(barstool_tab$zip)), multiple = TRUE),             selectInput("price_level", "Select the price level you want to evaluate:", choices =  sort(unique(barstool_tab$price_level)), multiple = TRUE),
                  selectInput("type_of_rating", "Select the type of rating you want to evaluate:", choices = sort(unique(barstool_tab$type_of_rating)), multiple = FALSE), DT::dataTableOutput('tbl'), 
                  plotOutput("hist" , height = 300, width = 700)),
   server = function(input, output) {selected_data_tab <- reactive({
@@ -862,23 +861,23 @@ The code below creates the shiny table and histogram. In this shiny data table a
 
 ```{r}
 #Creates shiny table and histogram#
+#Creates shiny table and histogram#
 shinyApp(
-  ui = fluidPage(selectInput("province", "Select the province you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
-                 selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = TRUE)),
-                DT::dataTableOutput('tbl'),
-  plotOutput("data_2" , height = 300, width = 700),
-server = function(input, output) {selected_data_tab_2 <- reactive({
+  ui = fluidPage(selectInput("province", "Select the province you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),             selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = FALSE),
+                 DT::dataTableOutput('tbl'), 
+                 plotOutput("hist" , height = 300, width = 700)),
+  server = function(input, output) {selected_data_tab_2 <- reactive({
     req(input$province)
     req(input$price_type)
     datafiniti_tab %>% 
       dplyr::filter(province %in% input$province & price_type %in% input$price_type)})
     output$tbl = DT::renderDataTable(
-      selected_data_tab_2(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order based on the lowest price range value.")
-    output$data_2 <- renderPlot({
+      selected_data_tab_2(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order of lowest price range value.")
+    output$hist <- renderPlot({
     ggplot(selected_data_tab_2(), aes(price_range_value)) + 
         geom_histogram() + 
-        scale_x_continuous(name = "price range value") + 
-        ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the province and price type you want to evaluate")})},
+        scale_x_continuous(name = "price range value") +
+        ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the province and price type you would like to evaluate through a histogram")})},
   options = list(height = 1200))
 ```
 
