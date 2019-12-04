@@ -941,7 +941,13 @@ datafiniti_price <- datafiniti_map %>%
 datatable(datafiniti_price)
 ```
 
+#### **Summary of Datafiniti Exploratory Data Analysis Results**
+
+After all of the analysis on the Datafiniti dataset we developed several tools that brought out some key insights. The first is the shiny table that allows us to filter pizza places based on state, price range max/min, and a select value for the max, or min, price. So, the user can mix and match any sort of combination to figure out the best pizza place in their area to fit their budget. The map allows us to visualize the most and least expensive places to get pizza. The majority of the most expensive pizza places tended to center around coastal regions and large cities. While the more rural locations tended to have a lower price cap. We were able to derive the most expensive states to buy pizza based on our data set, leading the top three with Conneticut, South Dakota, and Iowa. Finally, our last table allows you to filter each pizza place based on their average price. The top 3 places being: Crust Stone Oven Pizza in Bettendorf, Oregano in Brooklyn, and Apizza Scholls in Portland.
+
 ### Jared Exploratory Data Analysis
+
+#### **Jared Exploratory Data Analysis Results**
 
 The goal of this part is to find the top 10 pizza places that have a good rating. Also, it is to find the top 10 pizza places that a bad rating. We thought that a data table would best illustrate these findings. Before we made the table, we needed to create a calculation to get the good rating. We found the good rating by summing up the percent good and the percent excellent. We thought that these two selections would determine whether a pizza place was really good. Also, we needed to create a calculation to sum up the percent poor and the percent never again. We  
 
@@ -963,6 +969,10 @@ datatable(head(jared_good, 10), caption = "This table shows the top 10 jared ite
 #Create jared data table to show the top 10 pizza places with the highest percentage for bad#
 datatable(head(jared_bad, 10), caption = "This table shows the top 10 jared items that have a bad rating.")
 ```
+
+#### **Jared Exploratory Data Analysis Results**
+
+
 
 ### Datafiniti and Barstool Combination Exploratory Data Analysis
 
@@ -997,9 +1007,7 @@ shinyApp(
 
 
 
-#### **Datafiniti Exploratory Data Analysis Results**
 
-After all of the analysis on the Datafiniti dataset we developed several tools that brought out some key insights. The first is the shiny table that allows us to filter pizza places based on state, price range max/min, and a select value for the max, or min, price. So, the user can mix and match any sort of combination to figure out the best pizza place in their area to fit their budget. The map allows us to visualize the most and least expensive places to get pizza. The majority of the most expensive pizza places tended to center around coastal regions and large cities. While the more rural locations tended to have a lower price cap. We were able to derive the most expensive states to buy pizza based on our data set, leading the top three with Conneticut, South Dakota, and Iowa. Finally, our last table allows you to filter each pizza place based on their average price. The top 3 places being: Crust Stone Oven Pizza in Bettendorf, Oregano in Brooklyn, and Apizza Scholls in Portland.
 
 ### Summary Evaluation
 
