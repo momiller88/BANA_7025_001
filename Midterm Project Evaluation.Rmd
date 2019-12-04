@@ -738,7 +738,7 @@ server = function(input, output) {
 
 The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on zip code, price level, and type of rating. Another goal is to allow users to see where the top rated pizza places are on a map based on the type of rating selected. Also, a goal of ours is to allow users to see which zip codes has the highest and lowest average rating score based on the type of rating selected. Finally, we are hoping to show users which pizza place received the highest rating based on the average of all the rankings. 
 
-This first part allows users to find the best pizza place for them based on zip code, price, level, and type of rating. In this part, we first needed to edit the final dataset for barstool in order to make visualizations for it. The first new dataset we created from the barstool dataset was to help us create a shiny table and histogram. A user should be able to select the zip, price level, and type of rating that they would like to evaluate for barstool. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, zip, price level, type of rating, and rating score. The table will be sorted in descending order by rating_score. Below is the code to create the dataset. 
+This first part allows users to find the best pizza place for them based on zip code, price, level, and type of rating. In this part, we first needed to edit the final dataset for barstool in order to make visualizations for it. This new dataset we created from the barstool dataset was to help us create a shiny table and histogram. In this new dataset, we need to use some of the orignial columns to the create the type of rating and rating score columns. Also, we needed to remove some columns that we didn't want in our data table. Below is the code to create the dataset. 
 
 ```{r}
 #Creates final dataset for barstool shiny table and histogram#
@@ -747,11 +747,10 @@ barstool_for_table <-  barstool_variable_name %>%
   gather(type_of_rating, rating_score, 7:11) %>% 
   arrange(desc(rating_score)) 
 barstool_tab <- barstool_for_table[ , c(1:3,6:8)]
-#Allows us to see a snippet of the final dataset for the shiny data table and histogram#
 datatable(head(barstool_tab))
 ```
 
-The code below creates the shiny table and histogram. Please make the selections below in order to see the data table and histogram. You can select multiple zip codes and price levels. 
+The code below creates the shiny table and histogram. In this shiny data table and histogram, a user should be able to select the zip, price level, and type of rating that they would like to evaluate for barstool. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, zip, price level, type of rating, and rating score. The table will be sorted in descending order by rating score. Please make the selections below in order to see the data table and histogram. You can select multiple zip codes and price levels. 
 
 ```{r}
 #Creates shiny table and histogram#
@@ -846,7 +845,7 @@ datatable(head(barstool_rate, 10))
 
 The goal of this exploratory data analysis is to allow users to find the best pizza place for them based on province, price type, and price_range_value. Another goal of ours is to allow users to see where the cheapest pizza places are located on a map based on the price type they select. Also, we have a goal of showing users the average price value of pizza by state and price type. Finally, we have a goal of showing users which pizza places have the lowest average price value based on all the price type values. 
 
-This first part allows users to find cheapest pizza place for them. They are able to sele
+This first part allows users to find best pizza place for them based on province, price type, and price range value. We thought the best way to achieve this goal would be to create a shiny data table and histogram. Before we would create the shiny data table and histogram, we needed to create a data set for this data table and histogram. The code below allows us to create this new dataset. In this new dataset, we need to use some of the orignial columns to the create the price type and price range value columns. Also, we needed to remove some columns that we didn't want in our data table. Below is the code to create this new dataset.
 
 ```{r}
 #Creates data set for our shiny table and histogram#
@@ -857,10 +856,12 @@ datafiniti_tab <- datafiniti_map[ , c(1:3,5,8:9)]
 datatable(head(datafiniti_tab))
 ```
 
-```{r}
+The code below creates the shiny table and histogram. In this shiny data table and histogram, a user should be able to select the province, price type, and price range value that they would like to evaluate for datafiniti. After selecting the results, the user would be able to see a data table and histogram of these results. The table will show the pizza place name, address, city, province, price type, and price range value. The table will be sorted in descending order by price range value. Please make the selections below in order to see the data table and histogram. You can select multiple zip codes and price levels. 
 
+```{r}
+#Creates 
 shinyApp(
-  ui = fluidPage(selectInput("province", "Select the state you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
+  ui = fluidPage(selectInput("province", "Select the province you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
                  selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = TRUE),
                  selectInput("price_range_value", "Select the price range value you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_range_value)), multiple = TRUE),
                 DT::dataTableOutput('tbl'),
@@ -873,12 +874,12 @@ shinyApp(
     output$tbl = DT::renderDataTable(
       selected_data_tab_2(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order based on the lowest price range value.")
     output$data_2 <- renderPlot({
-    ggplot(selected_data_tab_2(), aes(price_range_value)) + geom_histogram() + scale_x_continuous(name = "price range value") + ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the state, price type, and price range value you want to evaluate")
+    ggplot(selected_data_tab_2(), aes(price_range_value)) + geom_histogram() + scale_x_continuous(name = "price range value") + ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the province, price type, and price range value you want to evaluate")
   }
 )
   },
   
-  options = list(height = 1000)
+  options = list(height = 1200)
 )
 ```
 
