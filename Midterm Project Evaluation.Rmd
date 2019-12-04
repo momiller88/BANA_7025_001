@@ -843,11 +843,38 @@ datatable(head(barstool_rate, 10))
 
 ### Datafiniti Exploratory Data Analysis
 
+T
+
 ```{r}
+#Creates data set for our shiny table and histogram#
 datafiniti_map <- datafiniti_dup_removed %>%
                       gather(price_type, price_range_value, 8:9) %>%
                       arrange(price_range_value)
-datatable(head(datafiniti_map))
+datafiniti_tab <- datafiniti_map[ , c(1:3,5,8:9)]
+datatable(head(datafiniti_tab))
+```
+
+```{r}
+
+shinyApp(
+  ui = fluidPage(selectInput("province", "Select the state you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
+                 selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = FALSE),
+                DT::dataTableOutput('tbl'),
+  plotOutput("data_2" , height = 300, width = 700)),
+  server = function(input, output) {selected_data_tab_2 <- reactive({
+    req(input$province)
+    req(input$price_type)
+    datafiniti_tab %>% dplyr::filter(province %in% input$province & price_type %in% input$price_type)})
+    output$tbl = DT::renderDataTable(
+      selected_data_tab_2(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order based on the lowest price range value.")
+    output$data_2 <- renderPlot({
+    ggplot(selected_data_tab_2(), aes(price_range_value)) + geom_histogram() + scale_x_continuous(name = "price range value") + ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the state and price type you want to evaluate")
+  }
+)
+  },
+  
+  options = list(height = 1000)
+)
 ```
 
 ```{r}
@@ -912,28 +939,7 @@ server = function(input, output) {
 options = list(height = 500))
 ```
 
-```{r}
-datafiniti_tab <- datafiniti_map[ , c(1:3,5,8:9)]
-shinyApp(
-  ui = fluidPage(selectInput("province", "Select the state you want to evaluate:", choices = sort(unique(datafiniti_tab$province)), multiple = TRUE),
-                 selectInput("price_type", "Select the price type you want to evaluate:", choices =  sort(unique(datafiniti_tab$price_type)), multiple = FALSE),
-                DT::dataTableOutput('tbl'),
-  plotOutput("data_2" , height = 300, width = 700)),
-  server = function(input, output) {selected_data_tab_2 <- reactive({
-    req(input$province)
-    req(input$price_type)
-    datafiniti_tab %>% dplyr::filter(province %in% input$province & price_type %in% input$price_type)})
-    output$tbl = DT::renderDataTable(
-      selected_data_tab_2(), options = list(lengthChange = FALSE), caption = "This table shows the pizza places based on the selections above in order based on the lowest price range value.")
-    output$data_2 <- renderPlot({
-    ggplot(selected_data_tab_2(), aes(price_range_value)) + geom_histogram() + scale_x_continuous(name = "price range value") + ggtitle("Histogram of Datafiniti Items Selected", subtitle = "Select the state and price type you want to evaluate")
-  }
-)
-  },
-  
-  options = list(height = 1000)
-)
-```
+
 
 ```{r}
 shinyApp(
