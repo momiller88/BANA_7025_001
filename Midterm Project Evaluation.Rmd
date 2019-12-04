@@ -826,7 +826,7 @@ shinyApp(
   options = list(height = 700))
 ```
 
-The final part we wanted to do for our exploratory analysis was to allow users to see which pizza place had the highest average rating across all the type of ratings. The code below allows us to achieve this goal. In this code, we first need to group the data by name, address, and zip. Next, we created a calculation to find the mean of all the ratings. Finally, we sorted the data in descending order by average score. The last piece of code allows us to see the top 10 results for pizza places in data table. 
+The final part we wanted to do for our exploratory analysis was to allow users to see which pizza place had the highest average rating across all the type of ratings. The code below allows us to achieve this goal. In this code, we first need to group the data by name, address, and zip. Next, we created a calculation to find the mean of all the ratings. Finally, we sorted the data in descending order by average score. The last piece of code allows us to see the top 10 places for pizza based on the average score. 
 
 ```{r}
 #Creates dataset and data table to see the top 10 pizza places on average for all the ratings#
@@ -834,7 +834,7 @@ barstool_rate <- barstool_for_table %>%
   group_by(name, address, zip) %>%
   summarise(average_score = mean(rating_score, na.rm = TRUE)) %>% 
   arrange(desc(average_score))
-datatable(head(barstool_rate, 10))
+datatable(head(barstool_rate, 10), caption = "This shows the top 10 pizza places based on highest average score.")
 ```
 
 #### **Summary of Barstool Exploratory Analysis Results**
@@ -932,13 +932,15 @@ shinyApp(
   options = list(height = 700))
 ```
 
+The final part we wanted to do for our exploratory analysis was to allow users to see which pizza place had the lowest average price across all the price types. The code below allows us to achieve this goal. In this code, we first need to group the data by name, address, and city. Next, we created a calculation to find the mean of all the price types. Finally, we sorted the data in descending order by average price. The last piece of code allows us to see the top 10 results for pizza places that have the lowest average price.
 
 ```{r}
+#Creates dataset and data table to see the top 10 pizza places for lowest average price#
 datafiniti_price <- datafiniti_map %>%
   group_by(name, address, city) %>%
   summarise(average_price = mean(price_range_value, na.rm = TRUE)) %>%
   arrange(average_price)
-datatable(datafiniti_price)
+datatable(head(datafiniti_price, 10), caption = "This table shows the top 10 pizza place for the lowest average price.")
 ```
 
 ### Shiny Table
